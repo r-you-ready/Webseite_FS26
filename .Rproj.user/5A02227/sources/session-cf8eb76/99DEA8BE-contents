@@ -1,0 +1,150 @@
+---
+title: "Federica"
+author: "Laura Hirt"
+date: "2026-01-13"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Relevante Pakete laden
+
+```{r}
+library(tidyverse)
+library(lme4)
+library(lmerTest)
+library(emmeans)
+```
+
+## 1. Data import
+
+Der relevante Datensatz wird einmal eingelesen und einem Zielobjekt (dr_raw) zugewiesen. Du arbeitest ab nun nur mit diesem Datensatz.
+
+Mit glimpse() und head() erhältst du einen ersten Einblick in den Datensatz.
+
+```{r}
+df_raw <- readr::read_csv("df.csv", show_col_types = FALSE)
+glimpse(df_raw)
+head(df_raw)
+```
+
+**Interpretation:**
+
+Der Datensatz verfügt nun über 292 Observationen (Zeilen) und 23 verschiedene Variablen (Spalten). Davon sind für die weitere Analyse aber nicht alle relevant.
+
+## 2. Data cleaning & variable construction
+
+Nun werden die Variablen in den korrekten Datentyp transformiert und Variablen zusammengefasst. Du tust dies bereits an früher Stelle im Prozess, damit du dies anschliessend nicht bei jedem Schritt erneut wiederholen musst. Sonst weist du einer Variable mehrmals andere Werte zu, wodurch frühere Zuweisungen überschrieben werden und anschliessend nicht mehr funktionieren.
+
+Dazu weisen wir den veränderten Datensatz einem neuen Objekt (df) zu, mit dem wir von nun an arbeiten. So entsteht keine Verwirrung und du kannst im Datensatz df_raw immer einen Schritt zurückgehen, da dort die ursprüngliche Codierung beibehalten wird.
+
+-   Die Variable der Versuchspersonen (VP) wird zu einem Faktor
+
+-   Session_type zu einem Character
+
+-   bed motion wird dichotomisiert in motion vs. no motion. Anschliessend werden diese beiden Ausprägungen zu Faktorstufen gemacht.
+
+-   dream_present wird dichotomisiert in 0L vs. 1L; dasselbe passiert mit vestibular_dream.
+
+```{r}
+
+df <- df_raw %>%
+mutate(
+  VP = factor(VP),
+  Session_type = as.character(Session_type),
+  bed_motion = case_when(
+    Session_type %in% c("high", "low", "motion1", "motion2", "motion") ~ "motion",
+    Session_type %in% c("nomotion", "no motion", "no_motion", "adapt") ~ "no_motion",
+    TRUE ~ NA_character_
+    ),
+  bed_motion = factor(bed_motion, levels = c("no_motion", "motion")),
+  grob = as.character(grob),
+  dream_present = case_when(
+    grob == "A" ~ 0L,
+    grob %in% c("B", "C", "D", "E", "C, D", "C,D") ~ 1L,
+    TRUE ~ NA_integer_
+    ),
+  vestibular_dream = case_when(
+    grob == "B" ~ 0L,
+    grob %in% c("C", "D", "E", "C, D", "C,D") ~ 1L,
+    grob == "A" ~ NA_integer_,  # no dream -> not defined
+    TRUE ~ NA_integer_
+    )
+  )
+```
+
+## 3. Create analysis dataset (dream sessions only)
+
+Nun erstellen wir aus dem transformierten Datensatz einen finalen Datensatz, der nur diejenigen Variablen enthält, welche du für deine Analyse benötigst. So hast du einen besseren Überblick und verwendest nicht fälschlicherweise eine falsche Variable.
+
+Im ersten Schritt wählen wir nur diejenigen Personen aus, welche überhaupt geträumt haben. Danach entfernen wir noch Versuchspersonen, die entweder auf der Variable bed_motion oder vestibular_dream fehlende Werte haben. Diese können in der Analyse nicht berücksichtigt werden, da fehlende Werte im Modell nicht integriert werden können.
+
+```{r}
+df_model <- df %>%
+  filter(dream_present == 1) %>%
+  select(VP, bed_motion, vestibular_dream) %>%
+  drop_na(bed_motion, vestibular_dream)
+
+df_model %>% count(bed_motion)
+df_model %>% summarise(n = n(), n_vp = n_distinct(VP))
+```
+
+**Interpretation:**
+
+Nach diesen Ausschlussprozessen bleiben uns insgesamt 61 Beobachtungen von 35 Personen. Das bedeutet, dass wir zwangsläufig von einigen Versuchspersonen mehrere Beobachtungen vorliegen haben. Dies stellt aber kein Problem dar, da die mixed logistic regression mit solchen abhängigen Beobachtungen gut umgehen kann. Jedoch sind dies sehr wenige Beobachtungen, was zu Problemen in der Power führt.
+
+## 4. Mixed logistic regression (random intercept per person)
+
+MIthilfe dieses Modells können wir die Fragestellung untersuchen, ob die vestibuläre Stimulation die Wahrscheinlichkeit eines vestibulären Traums verändert, wenn man berücksichtigt, dass Personen grundsätzlich unterschiedlich vestibulär träumen.
+
+```{r}
+mlr <- glmer(
+  vestibular_dream ~ bed_motion + (1 | VP),
+  data = df_model,
+  family = binomial
+  )
+
+summary(mlr)
+```
+
+**Interpretation:**
+
+-   Die Varianz des **Random Intercepts** ist gross (3.396)
+
+    -   Das bedeutet, dass sich Personen stark darin unterscheiden, wie wahrscheinlich sie generell (ohne Berücksichtigung der vestibulären Stimulaton) vestibulär träumen.
+
+    -   Deswegen ist es so wichtig, dass du in deiner Arbeit ein solches mixed Modell verwendest, da ein einfaches glm (ohne Random Effect) diese Unterschiede einfach ignorieren würde.
+
+    -   Es gibt als grosse individuelle Unterschiede in der Grundwahrscheinlichkeit vestibulärer Träume, weswegen ein Random Intercept pro Person sinnvoll ist.
+
+-   **Fixed Effect: Intercept**
+
+    -   Inhaltlich stellt der Intercept die log-Odds eines vestibulären Traums in der Referenzbedingung dar. Wir haben oben bei der Transformation der Variablen bei der Erstellung der Faktorstufen der Variablen bed_motion die Faktorstufe no_motion als Referenzkategorie definiert. Deswegen bezieht sich hier der Intercept auf diese Faktorstufe.
+
+    -   Inhaltlich sind log-Odds nur extrem schwer zu interpretieren, weswegen wir sie in Wahrscheinlichkeiten umrechnen können. Dabei erhalten wir einen Wert von 0.13. Das bedeutet also, dass in Sessions ohne Bettbewegung die geschätzte Wahrscheinlichkeit eines vestibulären Traums bei ca. 13% liegt. Dass dieser Intercept nicht signifikant ist, ist inhaltlich irrelevant. Es handelt sich nur um den Referenzpunkt.
+
+![](images/clipboard-1059492884.png){width="150" height="50"}
+
+-   **Fixed Effect: Effekt von Bettbewegung**
+
+    -   0.5034 ist der Log-Odds-Unterschied zwischen der Bedingung ohne vestibulärer Stimulation und der Bedingung mit vestibulärer Stimulation.
+
+    -   Erneut ist dies nur sehr schwer veratändlich und interpretierbar. Hier eignet es sich, dies in einen Odds Ratio umzurechnen.
+
+    -   Bei vestibulärer Stimulation sind die Odds für einen vestibulären Traum etwa 1.65-mal so hoch wie ohne vestibuläre Stimulation.
+
+    -   Jedoch ist der Effekt der vestibulären Stimulation statistisch nicht signifikant. Auch sehen wir, dass der Standardfehler sehr hoch ist.
+
+![](images/clipboard-2106586396.png){width="150"}
+
+-   **Mögliche Gründe für Nicht-Signifikanz:**
+
+    -   Die Stichprobe ist sehr klein. Wir haben insgesamt nur 61 verwertbare Traum-Sessoins von nur 35 Versuchspersonen. Da bei den restlichen Erhebungen entweder nicht geträumt wurde oder keine Werte vorliegen, sind diese Untersuchungen für das vorliegende Modell nicht zu verwenden.
+
+    -   Auch ist die Random-Intercept-Varianz sehr hoch, was bedeutet, dass grosse interindividuelle Unterschiede im generellen Erlebn vestibulärer Träume vorliegen, unabhängig von der Versuchsbedingung. Es hängt also stärker von der Person als von der Bettbewegung ab, ob jemand vestibulär träumt oder nicht.
+
+    -   Auch der Standardfehler ist sehr gross, wodurch das Konfidenzintervall breit wird, wodurch viele Effekte in den nicht-signifikanten Bereich fallen.
+
+        -\> Das gemischte logistische Modell zeigte keinen signifikanten Effekt der vestibulären Stimulatino auf die Wahrscheinlichkeit eines vestibulären Traums. Zwar war die geschätzte Odds Ratio grösser als 1, jedoch war der Effekt mit hoher Unsicherheit behaftet und nicht statistisch signifikant. Zugleich zeigten sich starke interindividuelle Unterschiede in der Grundwahrscheinlichkeit vestibulärer Träume, was die Verwendeung eines mixed Modells notwendig macht.

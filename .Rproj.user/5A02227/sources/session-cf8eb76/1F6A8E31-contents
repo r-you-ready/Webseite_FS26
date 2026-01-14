@@ -1,0 +1,906 @@
+library(readr)
+library(readxl)
+library(dplyr)
+
+# CSV: vollständige Traumdaten
+all_data_dreams <- read_csv(
+  "all_data_dreams_new.csv",
+  show_col_types = FALSE
+)
+
+# Excel: Federica Ratings
+library(readxl)
+federica_rating_raw <- read_excel("federica_rating_raw")
+View(federica_rating_raw)
+
+#chipher in beiden datensätzen gleich formatieren
+all_data_dreams <- all_data_dreams |>
+  mutate(cipher = as.character(cipher))
+
+federica_rating_raw <- federica_rating_raw |>
+  mutate(cipher = as.character(cipher))
+
+#checken ob beide datensätze dieselbern personen (cipher) haben
+# Nur in all_data_dreams
+setdiff(all_data_dreams$cipher, federica_rating_raw$cipher)
+
+# Nur in federica_rating_raw
+setdiff(federica_rating_raw$cipher, all_data_dreams$cipher)
+
+#check: gleiche anzahl zeilen pro cipher?
+dream_counts <- all_data_dreams |>
+  count(cipher, name = "n_dreams")
+
+rating_counts <- federica_rating_raw |>
+  count(cipher, name = "n_ratings")
+
+vergleich <- dream_counts |>
+  full_join(rating_counts, by = "cipher") |>
+  mutate(stimmt = n_dreams == n_ratings)
+
+vergleich |>
+  filter(is.na(stimmt) | !stimmt) |>
+  print(n = Inf)
+
+# wo ist die fehlende zeile?
+federica_rating_raw |>
+  filter(is.na(cipher) | trimws(as.character(cipher)) == "") |>
+  print(n = Inf)
+
+which(is.na(federica_rating_raw$cipher) | trimws(as.character(federica_rating_raw$cipher)) == "")
+
+
+
+
+
+
+
+#relevante spalten von federica auswählen (vorbereitung für join
+library(dplyr)
+
+#federica_for_join <- federica_rating_raw |>
+#  transmute(
+ #  cipher = as.character(VP),
+  #  tag = as.integer(tag),
+   # fein = as.factor(fein),
+    #grob = as.factor(grob),
+    #laborkategorie = as.factor(laborkategorie)
+  #)
+#habe hier überall # gesetzt wegen fehlermeldung
+#meldung: vp not found
+names(federica_rating_raw)
+
+library(dplyr)
+
+library(dplyr)
+
+
+#federica auf vier relevante spalten reduzieren!
+federica_for_join <- federica_rating_raw |>
+  transmute(
+    cipher = as.character(cipher),
+    fein = as.factor(Feinkategorie),
+    grob = as.factor(Grobkategorie),
+    laborkategorie = as.factor(Labor)
+  )
+
+#ist federica pro cipher eindeutig?
+federica_for_join |>
+  count(cipher) |>
+  filter(n > 1) |>
+  print(n = Inf)
+
+
+
+#join durchführen
+all_data_dreams_joined <- all_data_dreams |>
+  mutate(cipher = as.character(cipher)) |>
+  left_join(federica_for_join, by = "cipher")
+
+#prüfen ob neuen spalten drin sind
+names(all_data_dreams_joined)
+
+#und ob es eine zuordnung gibt
+all_data_dreams_joined |>
+  summarise(
+    fehlende_fein = sum(is.na(fein)),
+    fehlende_grob = sum(is.na(grob)),
+    fehlende_labor = sum(is.na(laborkategorie))
+  )
+
+#speichern
+readr::write_csv(all_data_dreams_joined, "data_clean/all_data_dreams_with_federica.csv")
+
+#als CSV Datei speichern
+library(readr)
+
+write_csv(
+  all_data_dreams_joined,
+  "data_clean/all_data_dreams_joined.csv"
+)
+
+write_csv(all_data_dreams_joined, "data_clean/all_data_dreams_joined.csv")
+saveRDS(all_data_dreams_joined, "data_clean/all_data_dreams_joined.rds")
+
+
+
+
+
+
+
+
+
+#Versuch 1 Auswertung
+
+install.packages("ggeffects")
+
+#Packete importieren: 
+
+
+library(tidyverse)
+library(readxl)
+library(lme4)
+library(broom.mixed)
+library(ggeffects)
+
+df_raw <- readr::read_csv("data_clean/all_data_dreams_joined.csv", show_col_types = FALSE)
+
+glimpse(df_raw)
+names(df_raw)
+
+
+#Variabeln Sauber erstellen
+#df <- df_raw |>
+  #mutate(
+   # VP = factor(VP),
+    #sleep_setting = factor(type, levels = c("nap", "sleep")),
+    #session_type = factor(
+     # Session_type,
+      #levels = c(0, 0, 1, 1, 1, ),
+      #labels = c("nomotion", "low", "high"),
+      #ordered = TRUE
+    #),
+    #grob = factor(grob, levels = c("A", "B", "C", "D", "E"))
+  #)
+
+library(dplyr)
+
+df <- df_raw |>
+  mutate(
+    VP = factor(VP),
+    
+    # sleep_setting (nap/sleep)
+    sleep_setting = factor(type, levels = c("nap", "sleep")),
+    
+    # Bettbewegung aus Session_type ableiten
+    bed_motion = case_when(
+      Session_type %in% c("high", "low", "motion1", "motion2") ~ "motion",
+      Session_type %in% c("nomotion", "adapt", "no motion", "no motion") ~ "no_motion",
+      TRUE ~ NA_character_
+    ),
+    bed_motion = factor(bed_motion, levels = c("no_motion", "motion"))
+  )
+
+
+#hier ist mein neuer datensatz mit bed_motion
+
+
+#checken
+table(df$Session_type, useNA = "ifany")
+table(df$bed_motion, useNA = "ifany")
+
+
+df <- df |>
+  mutate(
+    grob = factor(grob),
+    
+    # Traum vorhanden? (A vs B–E)
+    dream_present = case_when(
+      grob == "A" ~ 0L,
+      grob %in% c("B", "C", "D", "E", "C, D") ~ 1L,
+      TRUE ~ NA_integer_
+    ),
+    
+    # vestibulär nur innerhalb "Traum": (B = 0) vs (C/D/E = 1)
+    vestibular_dream = case_when(
+      grob == "B" ~ 0L,
+      grob %in% c("C", "D", "E", "C, D") ~ 1L,
+      TRUE ~ NA_integer_
+    )
+  )
+
+table(df$grob, df$vestibular_dream, useNA = "ifany")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#logistische regression mit random intercept pro person ?
+library(lme4)
+library(dplyr)
+library(tidyr)
+
+library(dplyr)
+library(lme4)
+
+# Sicherstellen: richtige Datentypen + nur Traumfaelle + keine NAs
+df_model <- df |>
+  mutate(
+    VP = factor(VP),
+    bed_motion = relevel(factor(bed_motion), ref = "no_motion"),
+    vestibular_dream = as.integer(vestibular_dream)  # 0/1 fuer binomial
+  ) |>
+  filter(dream_present == 1) |>
+  select(VP, bed_motion, vestibular_dream) |>
+  drop_na()
+
+# Mixed logistische Regression (random intercept pro Person)
+m_vest <- glmer(
+  vestibular_dream ~ bed_motion + (1 | VP),
+  data = df_model,
+  family = binomial
+)
+
+summary(m_vest)
+
+#hmm irgendwo fehlern 4 träume
+df |>
+  filter(dream_present == 1) |>
+  summarise(
+    total_traeume = n(),
+    na_bed_motion = sum(is.na(bed_motion)),
+    na_vestibular = sum(is.na(vestibular_dream))
+  )
+#es fehlen 3 träume weil NA bei bed motion (EG kaputt)
+#aber die hat gar nicht geträumt?
+df |>
+  filter(is.na(bed_motion), !is.na(Session_type)) |>
+  count(Session_type, sort = TRUE)
+
+#12 januar update
+save.image(file = "workspace_fede_bachelor.RData")
+# Workspace speichern vor dem Schliessen
+save.image("workspace_fede_bachelor.RData")
+
+
+
+load("workspace_fede_bachelor.RData")
+
+
+
+
+
+
+# Optional: Odds Ratios + 95% Wald-CI
+exp(fixef(m_vest))
+exp(confint(m_vest, parm = "beta_", method = "Wald"))
+
+
+# Odds Ratio + 95% CI
+exp(fixef(m_vest))
+exp(confint(m_vest, parm = "beta_", method = "Wald"))
+
+install.packages("parameters")
+
+library(parameters)
+
+model_parameters(
+  m_vest,
+  exponentiate = TRUE
+)
+
+    
+
+
+
+
+
+
+
+
+
+    # Originalskala (Interpretation, Deskription)
+    #panas_pa = as.numeric(panas_pa),
+    #panas_na = as.numeric(panas_na),
+    
+    # Standardisiert (Modelle, Effekte, Interaktionen)
+   # panas_pa_z = as.numeric(scale(panas_pa)),
+    #panas_na_z = as.numeric(scale(panas_na))
+  
+    # PANAS (numerisch + z-standardisiert)
+    #panas_pa = as.numeric(panas_pa)
+   # panas_na = as.numeric(panas_na),
+   # panas_pa_z = as.numeric(scale(panas_pa)),
+   # panas_na_z = as.numeric(scale(panas_na)),
+  
+  #)
+
+
+#hier habe ich ein mutate ( rausgelöscht)
+
+
+#Outcomes bauen: Traum vorhanden? und verstibulär?
+#Traum Vorhanden? A vs B-E
+df <- df |>
+  mutate(
+    dream_present = case_when(
+      grob == "A" ~ 0L,
+      grob %in% c("B", "C", "D", "E") ~ 1L,
+      TRUE ~ NA_integer_
+    )
+  )
+#Haupt-Outcome: vestibulär (C,D, E vs. B)
+df <- df |>
+  mutate(
+    vestibular_present = case_when(
+      grob == "A" ~ 0L,
+      grob %in% c("B", "C", "D", "E") ~ 1L,
+      TRUE ~ NA_integer_
+    )
+  )
+
+
+  
+
+
+#heir war bei 214 vorher dream_present
+#Checks, Missingness überblick
+library(tidyverse)
+
+# 1) Sicherstellen, dass du auf df arbeitest
+df <- df_raw
+
+# 2) Outcomes erzeugen (dream_present + vestibular)
+df <- df |>
+  mutate(
+    # Falls grob noch nicht Faktor ist: macht nichts kaputt, hilft aber
+    grob = as.character(grob),
+    
+    dream_present = case_when(
+      grob == "A" ~ 0L,
+      grob %in% c("B", "C", "D", "E") ~ 1L,
+      TRUE ~ NA_integer_
+    ),
+    
+    vestibular = case_when(
+      grob %in% c("C", "D", "E") ~ 1L,
+      grob == "B" ~ 0L,
+      grob == "A" ~ NA_integer_,   # kein Traum
+      TRUE ~ NA_integer_
+    )
+  )
+
+library(tidyverse)
+
+
+# 3) Check: existieren die Spalten jetzt?
+names(df)
+
+
+#vomir:
+df|>
+  count(grob, sort = TRUE)
+
+
+
+#Verteilung: 
+df |>
+  count(grob, sort = TRUE)
+
+df |>
+  count(sleep_setting, sort = TRUE)
+
+
+#Wieviele Zeilen pro VP (wichtig für mixed models
+df |>
+  count(VP, name = "n_rows") |>
+  arrange(desc(n_rows)) |>
+  print(n = 50)
+
+
+#Deskriptive Auswertung
+#Traum ja/nein nach Stimulation und Setting
+dream_tab <- df |>
+  count(sleep_setting, bed_motion, dream_present, vestibular_dream) |>
+  group_by(sleep_setting, vestibular_dream) |>
+  mutate(prop = n / sum(n))
+dream_tab
+
+
+library(ggplot2)
+library(scales)
+
+library(dplyr)
+library(ggplot2)
+library(forcats)
+
+# 1) Person-Level pro Bedingung (motion/no_motion) zusammenfassen
+person_bed <- df |>
+  filter(!is.na(VP), !is.na(bed_motion)) |>
+  group_by(VP, bed_motion) |>
+  summarise(
+    dreamed_any = any(dream_present == 1, na.rm = TRUE),
+    vest_any = any(vestibular_dream == 1, na.rm = TRUE),
+    .groups = "drop"
+  ) |>
+  mutate(
+    dream_category = case_when(
+      !dreamed_any ~ "no_dream",
+      dreamed_any & vest_any ~ "dream_vest",
+      dreamed_any & !vest_any ~ "dream_no_vest"
+    ),
+    dream_category = factor(
+      dream_category,
+      levels = c("no_dream", "dream_no_vest", "dream_vest"),
+      labels = c("Kein Traum", "Traum ohne Vestibulär", "Traum mit Vestibulär")
+    )
+  )
+
+# 2) Zählen: wie viele Personen pro Kategorie und Bedingung
+plot_tab <- person_bed |>
+  count(bed_motion, dream_category, name = "n_persons") |>
+  mutate(
+    bed_motion = fct_relevel(bed_motion, "no_motion", "motion")
+  )
+
+# 3) Plot: Anzahl Personen pro Bedingung, gestapelt nach Kategorie
+ggplot(plot_tab, aes(x = bed_motion, y = n_persons, fill = dream_category)) +
+  geom_col(color = "black") +
+  labs(
+    x = "Bettbewegung",
+    y = "Anzahl Personen",
+    fill = "Kategorie",
+    title = "Personen mit Traum / vestibulärem Traum nach Bettbewegung"
+  ) +
+  theme_minimal(base_size = 12)
+
+#mit Prozent
+ggplot(plot_tab, aes(x = bed_motion, y = n_persons, fill = dream_category)) +
+  geom_col(position = "fill", color = "black") +
+  scale_y_continuous(labels = scales::percent_format()) +
+  labs(
+    x = "Bettbewegung",
+    y = "Anteil Personen",
+    fill = "Kategorie",
+    title = "Anteil Personen mit Traum / vestibulärem Traum nach Bettbewegung"
+  ) +
+  theme_minimal(base_size = 12)
+
+
+
+
+
+
+plot_tab
+#macht nicht so sinn. nur wenn prozent gezeit wird. nochmal versuchen:
+
+#Anzahl träume pro person berechnen
+library(dplyr)
+
+dreams_per_person <- df |>
+  group_by(VP) |>
+  summarise(
+    n_dreams = sum(dream_present == 1, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+# Kontrolle (soll deine Zahlen reproduzieren)
+table(dreams_per_person$n_dreams)
+
+#in welcher bettbedingung traten träume auf?
+motion_exposure <- df |>
+  filter(dream_present == 1) |>
+  distinct(VP, bed_motion) |>
+  group_by(VP) |>
+  summarise(
+    motion_type = case_when(
+      all(bed_motion == "no_motion") ~ "nur no_motion",
+      all(bed_motion == "motion") ~ "nur motion",
+      length(unique(bed_motion)) == 2 ~ "motion & no_motion"
+    ),
+    .groups = "drop"
+  )
+
+#beides zusammenführen
+plot_df <- dreams_per_person |>
+  left_join(motion_exposure, by = "VP") |>
+  mutate(
+    motion_type = if_else(n_dreams == 0, "kein Traum", motion_type),
+    n_dreams_f = factor(
+      n_dreams,
+      levels = c(0, 1, 2, 3, 4),
+      labels = c("0 Träume", "1 Traum", "2 Träume", "3 Träume", "4 Träume")
+    )
+  )
+
+
+library(ggplot2)
+
+ggplot(plot_df, aes(x = n_dreams_f, fill = motion_type)) +
+  geom_bar(color = "black") +
+  labs(
+    x = "Anzahl berichteter Träume pro Person",
+    y = "Anzahl Versuchspersonen",
+    fill = "Bettbedingung der Träume",
+    title = "Traumhäufigkeit pro Person und Bettbewegung"
+  ) +
+  theme_minimal(base_size = 13)
+
+#diesen plot nehmen gut
+
+#tabelle dazu
+library(dplyr)
+library(tidyr)
+
+table_persons <- plot_df |>
+  count(n_dreams_f, motion_type) |>
+  pivot_wider(
+    names_from = motion_type,
+    values_from = n,
+    values_fill = 0
+  ) |>
+  mutate(
+    Gesamt = rowSums(across(where(is.numeric)))
+  )
+
+table_persons
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Zählen (Fedi)
+df |>
+  count(dream_present)
+
+#nur die 1
+df |>
+filter(dream_present == 1) |>
+  summarise(n_dream_present = n())
+
+#wie oft vestibulär? 
+df |>
+  filter(vestibular == 1) |>
+  summarise(n_vestibular = n())
+
+
+#von denen die geträumt haben, wieviele davon vestibulär?
+df |>
+  filter(dream_present == 1, vestibular == 1) |>
+  summarise(n_dream_and_vestibular = n())
+
+
+df |>
+  count(dream_present, vestibular)
+
+#alle die geträumt haben, mit und ohne vestibulär
+df |>
+  filter(dream_present == 1) |>
+  count(vestibular)
+
+df |>
+  filter(dream_present == 1) |>
+  summarise(
+    n_dream_total = n(),
+    n_dream_no_vestibular = sum(vestibular == 0, na.rm = TRUE),
+    n_dream_with_vestibular = sum(vestibular == 1, na.rm = TRUE)
+  )
+
+
+
+
+
+
+
+#Jetzt schauen welche Personen haben dann eigentlich geträumt?
+library(dplyr)
+
+vp_dream_summary <- df |>
+  filter(!is.na(VP)) |>
+  group_by(VP) |>
+  summarise(
+    n_sessions = n(),
+    n_dream_1 = sum(dream_present == 1, na.rm = TRUE),
+    n_dream_0 = sum(dream_present == 0, na.rm = TRUE),
+    n_dream_na = sum(is.na(dream_present)),
+    prop_dream = n_dream_1 / (n_dream_1 + n_dream_0),
+    .groups = "drop"
+  ) |>
+  arrange(desc(prop_dream), desc(n_dream_1), desc(n_sessions))
+
+vp_dream_summary
+
+#Personen nach anzahl träume zählen
+vp_dream_summary |>
+  count(n_dream_1, name = "n_personen") |>
+  arrange(n_dream_1)
+
+
+vp_dream_summary |>
+  mutate(
+    dream_category = case_when(
+      n_dream_1 == 0 ~ "nie geträumt",
+      n_dream_1 == 1 ~ "einmal geträumt",
+      n_dream_1 == 2 ~ "zweimal geträumt",
+      n_dream_1 == 3 ~ "dreimal geträumt",
+      n_dream_1 >  3 ~ "mehr als dreimal geträumt"
+    )
+  ) |>
+  count(dream_category) |>
+  arrange(dream_category)
+
+#ordnen
+vp_dream_summary |>
+  mutate(
+    dream_category = case_when(
+      n_dream_1 == 0 ~ "nie geträumt",
+      n_dream_1 == 1 ~ "einmal geträumt",
+      n_dream_1 == 2 ~ "zweimal geträumt",
+      n_dream_1 == 3 ~ "dreimal geträumt",
+      n_dream_1 >= 4 ~ "viermal oder mehr geträumt"
+    ),
+    dream_category = factor(
+      dream_category,
+      levels = c(
+        "nie geträumt",
+        "einmal geträumt",
+        "zweimal geträumt",
+        "dreimal geträumt",
+        "viermal oder mehr geträumt"
+      )
+    )
+  ) |>
+  count(dream_category)
+
+
+#jetzt auf personen bezogen: wer hat verstibulär geträumt?
+vp_vest_dream_summary <- df |>
+  filter(dream_present == 1) |>          # nur Traumfälle
+  group_by(VP) |>
+  summarise(
+    n_vest_dream = sum(vestibular == 1, na.rm = TRUE),
+    n_dream_total = n(),
+    .groups = "drop"
+  ) |>
+  arrange(desc(n_vest_dream))
+
+vp_vest_dream_summary
+
+#wieviele personen in welcher kategorie?
+vp_vest_dream_summary |>
+  count(n_vest_dream, name = "n_personen") |>
+  arrange(n_vest_dream)
+
+
+save.image(file = "workspace_2026-01-12.RData")
+
+
+
+
+
+
+#Tabellen speichern
+# Ordner anlegen (im Projektverzeichnis)
+out_dir <- "export_tables_csv"
+dir.create(out_dir, showWarnings = FALSE)
+
+# Alle Objekte im Global Environment finden, die data.frame/tibble sind
+obj_names <- ls(envir = .GlobalEnv)
+
+df_names <- obj_names[
+  vapply(
+    obj_names,
+    function(nm) inherits(get(nm, envir = .GlobalEnv), "data.frame"),
+    logical(1)
+  )
+]
+
+# Export
+for (nm in df_names) {
+  x <- get(nm, envir = .GlobalEnv)
+  
+  # Als CSV speichern (UTF-8; Komma als Trennzeichen)
+  readr::write_csv(x, file.path(out_dir, paste0(nm, ".csv")))
+}
+
+message("Gespeichert: ", length(df_names), " Tabellen nach: ", normalizePath(out_dir))
+
+
+
+
+
+
+
+
+
+
+
+#vorbereitung modell
+library(lme4)
+
+df_mixed <- df |>
+  filter(dream_present == 1) |>
+  filter(!is.na(vestibular), !is.na(session_type)) |>
+  mutate(
+    vestibular = as.factor(vestibular),
+    session_type = factor(session_type)
+  )
+
+#no motion als baseline
+df_mixed$session_type <- relevel(df_mixed$session_type, ref = "nomotion")
+
+model_vest <- glmer(
+  vestibular ~ session_type + (1 | VP),
+  data = df_mixed,
+  family = binomial
+)
+
+summary(model_vest)
+
+#aktuelles Problem: nomotion gibts nicht. wo weiter machen?
+#aktueller stand: gerade dran mixed models vorzubereiten! siehe 
+
+
+# Ordner für gespeicherte Objekte
+dir.create("saved_workspace", showWarnings = FALSE)
+
+# Alles im Global Environment speichern
+save.image(file = "saved_workspace/workspace_all.RData")
+
+
+#beim nächstne Öffnen
+load("saved_workspace/workspace_all.RData")
+
+
+
+
+# bis hier korrigiert, geordnet etc stand 12 Januar
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#TEIL 2 DER AUSWERTUNG
+
+# MODELL BERECHNEN
+
+#LOGISTISCHE REGRESSION
+
+#Person N026 entfernen,da session type = NA
+library(tidyverse)
+
+all_dreams_joined_ohneN026 <- all_data_dreams_joined |>
+  filter(VP != "N026")
+
+# --------------------------------------------------
+# Vorbereitung
+# --------------------------------------------------
+library(tidyverse)
+
+# --------------------------------------------------
+# 1) Person N026 entfernen
+# --------------------------------------------------
+all_dreams_joined_ohneN026 <- all_data_dreams_joined |>
+  filter(VP != "N026")
+
+# --------------------------------------------------
+# 2) Session-Type zusammenfassen
+#    bewegendes vs. nicht bewegendes Bett
+# --------------------------------------------------
+dreams_clean <- all_dreams_joined_ohneN026 |>
+  mutate(
+    bed_motion = case_when(
+      Session_type %in% c("high", "low", "motion1", "motion2") ~ "motion",
+      Session_type %in% c("no motion", "adapt") ~ "no_motion",
+      TRUE ~ NA_character_
+    )
+  )
+
+# --------------------------------------------------
+# 3) Zielvariable: vestibulärer Traum (ja / nein)
+# --------------------------------------------------
+dreams_clean <- dreams_clean |>
+  mutate(
+    vestibular_dream = case_when(
+      grob %in% c("C", "D", "C,D") ~ "yes",
+      grob %in% c("A", "B") ~ "no",
+      TRUE ~ NA_character_
+    )
+  )
+
+# --------------------------------------------------
+# 4) Nur relevante Beobachtungen behalten
+# --------------------------------------------------
+dreams_clean <- dreams_clean |>
+  drop_na(bed_motion, vestibular_dream)
+
+# --------------------------------------------------
+# 5) Kontingenztafel
+# --------------------------------------------------
+Kontingenztafel <- table(
+  dreams_clean$bed_motion,
+  dreams_clean$vestibular_dream
+)
+
+Kontingenztafel
+
+
+chisq.test(Kontingenztafel)
+
+fisher.test(Kontingenztafel)
+
+
+#Signifikanztest 2: logistische Regression
+dreams_clean <- dreams_clean |>
+  mutate(
+    vestibular_dream = if_else(vestibular_dream == "yes", 1, 0),
+    bed_motion = factor(bed_motion)
+  )
+
+model_logit <- glm(
+  vestibular_dream ~ bed_motion,
+  data = dreams_clean,
+  family = binomial
+)
+
+summary(model_logit)
+
+#effektgrösse odds ration
+exp(coef(model_logit))
+exp(confint(model_logit))
+
+
+save.image(file = "saved_workspace/workspace_all.RData")
+load("saved_workspace/workspace_all.RData")
+
+source("Data_raw/data_auswertung.R")
