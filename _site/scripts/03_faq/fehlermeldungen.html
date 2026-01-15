@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R u Ready</title>
+<title>R u Ready - Fehlermeldungen</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -417,16 +451,107 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="-1">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#rendering-in-quarto-zu-einer-pdf-funktioniert-nicht" id="toc-rendering-in-quarto-zu-einer-pdf-funktioniert-nicht" class="nav-link active" data-scroll-target="#rendering-in-quarto-zu-einer-pdf-funktioniert-nicht">Rendering in Quarto zu einer PDF funktioniert nicht</a></li>
+  <li><a href="#beim-rendern-einer-html-werden-noch-einige-weitere-ordner-und-dateien-erstellt" id="toc-beim-rendern-einer-html-werden-noch-einige-weitere-ordner-und-dateien-erstellt" class="nav-link" data-scroll-target="#beim-rendern-einer-html-werden-noch-einige-weitere-ordner-und-dateien-erstellt">Beim Rendern einer html werden noch einige weitere Ordner und Dateien erstellt</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../scripts/03_faq/faq.html">FAQ</a></li><li class="breadcrumb-item"><a href="../../scripts/03_faq/rstudio.html">1 RStudio</a></li><li class="breadcrumb-item"><a href="../../scripts/03_faq/fehlermeldungen.html">1.1 Fehlermeldungen</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Fehlermeldungen</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
+
+
+<section id="rendering-in-quarto-zu-einer-pdf-funktioniert-nicht" class="level1">
+<h1>Rendering in Quarto zu einer PDF funktioniert nicht</h1>
+<p>In der Vergangenheit gab es öfter Probleme mit der Installation von <code>tinytex</code>. Eine beispielhafte Fehlermeldung hierfür sah folgendermassen aus:</p>
+<p>processing file: skript.qmd</p>
+<p>|…………………………………. | x% [unnamed-chunk-x]</p>
+<p>Error in <code>contrib.url()</code>:</p>
+<p>! trying to use CRAN without setting a mirror</p>
+<p>Backtrace:</p>
+<pre><code>x</code></pre>
+<p>-utils::install.packages(“tinytex”) -utils::contrib.url(repos, “source”)</p>
+<p>Quitting from skript.qmd:Zeile-Zeile [unnamed-chunk-x]</p>
+<p>Execution halted</p>
+<p>Der Kern der Fehlermeldung lautet: “! trying ot use CRAN without setting a mirror”. CRAN ist die Plattform, von welcher standardmässig Pakete heruntergeladen werden. Die URL, also die Internetadressse von CRAN, ist dafür im Hintergrund in R eingestellt. Hier scheint es nun aber so, dass es unter der gesetzten URL kein Paket <code>tinytex</code> gibt. Dieses Problem lässt sich temporär (also einmalig für eure laufende Sitzung in RStudio) oder dauerhaft (also auch, wenn ihr RStudio schliesst und wieder neu startet) beheben. Um das Problem temporär zu lösen kann man einfach die URL zu CRAN explizit in der Console angeben:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a> <span class="co">#| eval: false</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a> <span class="co">#| echo: true</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">repos =</span> <span class="fu">c</span>(<span class="at">CRAN =</span> <span class="st">"https://cloud.r-project.org"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Möchte man die Einstellung dauerhaft behalten braucht es einen weiteren Schritt. Erst wird über die Console eine globale Einstellungsdatei von RStudio geöffnet:</p>
+<pre><code>
+In diese Datei kann dann der Befehl zur expliziten Setzung der URL
+platziert werden. Diese Datei abspeichern und RStudio neu starten. Jetzt
+sollte `tinytex` von der korrekten URL abgerufen, gefunden und
+schlussendlich auch erfolgreich installiert werden können.
+
+# Das Objekt mit dem ich etwas machen möchte kann nicht gefunden werden
+
+"==\&gt; quarto preview Hands on - Block 3.qmd --to html --no-watch-inputs
+--no-browse
+
+processing file: Hands-on---Block-3.rmarkdown
+\|................................................. \| 96%
+\[unnamed-chunk-10\] Error:! object 'dat_full' not foundBacktrace: ▆ 1.
+└─dplyr::rename(dat_full, cvstm_sum = "csvtm_sum") Quitting from
+Hands-on---Block-3.rmarkdown:331-343 \[unnamed-chunk-10\] Execution
+halted"
+
+Netterweise gibt uns die Fehlermeldung die Stelle im Code aus, an
+welcher das Problem aufrat:
+
+::: {.cell}
+
+```{.r .cell-code}
+dplyr::rename(dat_full, cvstm_sum = "csvtm_sum")</code></pre>
+<p>:::</p>
+<p><img src="images/Fehlermeldungen.png" class="img-fluid"></p>
+<p>Der zentrale Teil der Fehlermeldung ist hierbei “Error:! object <code>dat_full</code> not found”. Der Datensatz <code>dat_full</code> ist vor der Ausführung scheinbar noch nicht vorhanden. Stellt also unbedingt sicher, vor der Ausführung von <code>dplyr::rename(dat_full, cvstm_sum = "csvtm_sum")</code>den Datensatz eingelesen und den dafür vorgesehenen Chunk zum Einlesen <strong>nicht</strong> auf <code>eval = FALSE</code> gesetzt zu haben.</p>
+</section>
+<section id="beim-rendern-einer-html-werden-noch-einige-weitere-ordner-und-dateien-erstellt" class="level1">
+<h1>Beim Rendern einer html werden noch einige weitere Ordner und Dateien erstellt</h1>
+<p>Um zu grosse html-files oder Ladezeiten eines html-files zu vermeiden, weicht Quarto ggf. beim Rendern dazu aus nicht einen einzelnen html-file zu erstellen, sondern einen Ordner mit mehreren Dateien. Der html-file ruft diese dann beim Laden allesamt auf. Wenn das nicht gewünscht ist, dann gibt es mindestens zwei Möglichkeiten Quarto zu zwingen einen einzelnen und unabhängigen html-file zu erstellen. Als erste Variante kann der YAML-Header (der ganz oben im Quarto-file positioniert ist) um die Zeile <code>embed-resources: true</code> ergänzt werden:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># vorher</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  format<span class="sc">:</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    html<span class="sc">:</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># nachher</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  format<span class="sc">:</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    html<span class="sc">:</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>      embed<span class="sc">-</span>resources<span class="sc">:</span> true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Sollte sich auch damit das Problem nicht lösen, dann kann der Quarto-file auch manuell über das <em>Terminal</em> gerendert werden. Das Terminal beachten wir sonst im Seminar nicht, ist hierfür aber ausnahmsweise eine elegante Lösung. Das Terminal befindet sich unten links, wo sich auch die euch bereits vertraute <em>Console</em> und beim Rendern das Fenster <em>Background Jobs</em> befinden. Ist das Terminal noch nicht vorhanden, kann es über Tools –&gt; Terminal –&gt; New Terminal (Alt+ Umschalttaste + R) geöffnet werden. Dort wird dann folgender Befehl eingegeben:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>quarto render meinDokument.qmd <span class="sc">--</span>embed<span class="sc">-</span>resources</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Hierbei muss natürlich noch der Dateiname des .qmd-file entsprechend angepasst werden. Weitere Informationen gibt es <a href="https://quarto.org/docs/reference/formats/html.html">hier</a> (am besten auf der Seite selbst noch nach dem Begriff embed-resources suchen).</p>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

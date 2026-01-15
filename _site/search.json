@@ -1,5 +1,501 @@
 [
   {
+    "objectID": "scripts/03_faq/rstudio.html",
+    "href": "scripts/03_faq/rstudio.html",
+    "title": "1 RStudio",
+    "section": "",
+    "text": "Fragen zu RStudio\nUnabhängig von konkreten Fragen zu RStudio kannst du hier noch mal das Skript zur Einführung in R Studio von Andrew Ellis und Boris Mayer abrufen.",
+    "crumbs": [
+      "FAQ",
+      "1  RStudio"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/rstudio.html#was-gibt-es-alles-für-funktionen-zum-einlesen-der-daten-und-welche-davon-ist-am-besten-geeignet",
+    "href": "scripts/03_faq/rstudio.html#was-gibt-es-alles-für-funktionen-zum-einlesen-der-daten-und-welche-davon-ist-am-besten-geeignet",
+    "title": "1 RStudio",
+    "section": "Was gibt es alles für Funktionen zum Einlesen der Daten und welche davon ist am besten geeignet?",
+    "text": "Was gibt es alles für Funktionen zum Einlesen der Daten und welche davon ist am besten geeignet?\nDer einfachste Weg die Daten zu laden, geht über das Environment oben rechts in RStudio. Welche Funktion benötigt wird bzw. welche Funktion verwenden werden kann hängt vom Dateiformat der zu ladende Datei ab. Häufig verwendete Dateiformate sind .xlsx, .csv und .sav. Bei .csv handelt es sich um eine Textdatei, bei welcher die Spalten durch Kommas (csv = Comma-separated values) oder Semikolons getrennt sind. .sav ist die Dateiendung für eine SPSS-Datei und .xlsx ist die Dateiendung für eine Excel-Datei.\n\n\n\n\n\n\nNote\n\n\n\nWeiterführende Informationen und Beispiele können hier nachgelesen werden.",
+    "crumbs": [
+      "FAQ",
+      "1  RStudio"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/rstudio.html#wofür-stehen-die-zusätzlichen-argumente-wie-escape_double-oder-trim_ws-beim-einlesen-von-dateien",
+    "href": "scripts/03_faq/rstudio.html#wofür-stehen-die-zusätzlichen-argumente-wie-escape_double-oder-trim_ws-beim-einlesen-von-dateien",
+    "title": "1 RStudio",
+    "section": "Wofür stehen die zusätzlichen Argumente wie escape_double oder trim_ws beim Einlesen von Dateien?",
+    "text": "Wofür stehen die zusätzlichen Argumente wie escape_double oder trim_ws beim Einlesen von Dateien?\n\n\n\n\n\n\nImportant\n\n\n\nDu kannst anhand der Syntax ?Funktionsname()die Dokumentation einer Funktion aufrufen. Hier wird beschrieben, welche Argumente die Funktion erwartet, was die Default-Einstellungen sind und was die Funktion ausgibt.\n\n\nWenn man mit read_delim() aus dem readr Paket die Daten einliest, interpretiert das Argument escape_double = TRUE doppelte Anführungsstriche als einfache Anführungsstriche (““ = “). Mit dem Argument trim_ws = TRUE werden Leerzeichen vor oder nach einer Zeichenkette gelöscht („ Vor dem „V“ befindet sich ein Leerzeichen = „Vor dem „V“ befindet sich ein Leerzeichen). Beide Optionen sind per Default auf TRUE gesetzt. Die folgenden beiden Varianten sind somit identisch:\n\ndata &lt;- readr::read_delim(\"data.csv\", delim = \";\", escape_double = TRUE, trim_ws = TRUE)\n\ndata &lt;- readr::read_delim(\"data.csv\", delim = \";\")",
+    "crumbs": [
+      "FAQ",
+      "1  RStudio"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/rstudio.html#was-ist-der-unterschied-zwischen-cbind-und-den-xy_join-funktionen",
+    "href": "scripts/03_faq/rstudio.html#was-ist-der-unterschied-zwischen-cbind-und-den-xy_join-funktionen",
+    "title": "1 RStudio",
+    "section": "Was ist der Unterschied zwischen cbind() und den xy_join()-Funktionen?",
+    "text": "Was ist der Unterschied zwischen cbind() und den xy_join()-Funktionen?\nDie Funktion cbind() kann man sich wie „Kleber“ vorstellen. Die Datensätze werden ohne Berücksichtigung der Reihenfolgen der Zeilen aneinandergeklebt. Hierdurch könnten im zusammengefügten Datensatz Werte derselben Zeile von verschiedenen Versuchspersonen stammen. Mit der Funktion xy_join() wird vor dem Zusammenfügen der beiden Datensätze die Reihenfolge der Zeilen über beide Datensätze hinweg kontrolliert und angeglichen. Hierfür wird jene Spalte verwendet, die im Argument xy_join(data, by = „…“) genannt wurde. Damit wird sichergestellt, dass im resultierenden Datensatz Werte derselben Zeile auch von einer einzelnen Versuchsperson stammen.",
+    "crumbs": [
+      "FAQ",
+      "1  RStudio"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/rstudio.html#was-ist-der-unterschied-zwischen-inner_join-left_join-right_join-full_join",
+    "href": "scripts/03_faq/rstudio.html#was-ist-der-unterschied-zwischen-inner_join-left_join-right_join-full_join",
+    "title": "1 RStudio",
+    "section": "Was ist der Unterschied zwischen inner_join(), left_join(), right_join(), full_join()?",
+    "text": "Was ist der Unterschied zwischen inner_join(), left_join(), right_join(), full_join()?\nDie Funktionen unterscheiden sich dahingehend, was von den beiden Datensätzen nach der Zusammenfügung erhalten bleiben soll. inner_join() übernimmt nur Zeilen, welche in beiden Datensätzen vorhanden sind. full_join() übernimmt alle Zeilen, auch wenn sie nur in einen der beiden Datensätze auftaucht. Der Eintrag in der Spalte des anderen Datensatzes wird einfach mit NA ergänzt. Die verbleibenden beiden Funktionen “bevorzugen” sozusagen ihren entsprechenden Datensatz, übernehmen von diesem alle Zeilen und vom anderen Datensatz lediglich die damit übereinstimmenden.\n\n\n\n\n\n\nNote\n\n\n\nEine ausführlichere Beschreibung zu dem Thema findet sich auch noch mal hier unter Kapitel 19.4. Hier sind animierte Abbildungen zu den Funktionsweisen.",
+    "crumbs": [
+      "FAQ",
+      "1  RStudio"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/rstudio.html#wann-verwendet-man-welche-der-xy_join-funktionen-und-anhand-welcher-variable-sollen-die-datensätze-zusammengefügt-werden",
+    "href": "scripts/03_faq/rstudio.html#wann-verwendet-man-welche-der-xy_join-funktionen-und-anhand-welcher-variable-sollen-die-datensätze-zusammengefügt-werden",
+    "title": "1 RStudio",
+    "section": "Wann verwendet man welche der xy_join()-Funktionen und anhand welcher Variable sollen die Datensätze zusammengefügt werden?",
+    "text": "Wann verwendet man welche der xy_join()-Funktionen und anhand welcher Variable sollen die Datensätze zusammengefügt werden?\nWelche der xy_join()-Funktionen man am sinnvollsten nutzen sollte hängt von der Datenstruktur ab und was man mit den Daten im Folgenden noch machen möchte. Ein Datensatz mit full_join() erstellt würde beispielsweise die meisten Einträge (inkl. NAs) aufweisen, andererseits wäre dieser Datensatz aber auch vermutlich am unübersichtlichsten. Ob man right_join() oder left_join() verwendet kann beispielsweise einfach nur davon abhängen, welchen Datensatz man als links (bzw. zuerst) vorliegend oder als rechts (bzw. als zweites) vorliegend definiert. Das hängt von den Argumenten in der Funktion ab. Kurzum: Welche Funktion am passendsten ist hängt von der spezifischen Fragestellung ab und davon, in welcher Reihenfolge man die Datensätze betrachtet und der Funktion übergeben möchte. Anhand welcher Variable die Zusammenfügung der Datensätze erfolgen soll lässt sich ebenfalls nicht pauschal sagen. Jeder Datensatz kann andere Spaltennamen oder Strukturen aufweisen. In der Psychologie ist es allerdings üblich, dass man jeder Versuchsperson über Datenerhebungen hinweg einen individuellen Code zuweist. Dieser wird dann zum Zusammenfügen verwendet. Oft heisst diese Variable Code oder ID – sie kann aber auch komplett anders heissen. Unabhängig vom konkreten Namen sollte das Codebook anzeigen, ob es eine solche Variable gibt und um welche es sich handelt.",
+    "crumbs": [
+      "FAQ",
+      "1  RStudio"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/rstudio.html#wie-kann-man-ein-bereits-gesetztes-working-directory-also-den-arbeitsspeicher-des-skriptes-verschieben-idealerweise-sogar-von-ausserhalb-eines-projektes-in-ein-projekt-hinein",
+    "href": "scripts/03_faq/rstudio.html#wie-kann-man-ein-bereits-gesetztes-working-directory-also-den-arbeitsspeicher-des-skriptes-verschieben-idealerweise-sogar-von-ausserhalb-eines-projektes-in-ein-projekt-hinein",
+    "title": "1 RStudio",
+    "section": "Wie kann man ein bereits gesetztes working directory (also den Arbeitsspeicher des Skriptes) verschieben, idealerweise sogar von ausserhalb eines Projektes in ein Projekt hinein?",
+    "text": "Wie kann man ein bereits gesetztes working directory (also den Arbeitsspeicher des Skriptes) verschieben, idealerweise sogar von ausserhalb eines Projektes in ein Projekt hinein?\nAm einfachsten schliesst man das Skript und verschiebt es innerhalb deines Ordnersystems in das Projekt. Dann öffnet man RStudio (aber nicht das Skript, sondern nur das Programm) und wählt im gestarteten RStudio über File – Open File… das Skript aus und speichert es ab. Das working directory sollte nun innerhalb des Projektes liegen.",
+    "crumbs": [
+      "FAQ",
+      "1  RStudio"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/rstudio.html#was-ist-der-unterschied-zwischen-der-funktion-mutate-und-der-funktion-summarize-wie-kombiniert-man-diese-funktionen-am-besten-mit-group_by",
+    "href": "scripts/03_faq/rstudio.html#was-ist-der-unterschied-zwischen-der-funktion-mutate-und-der-funktion-summarize-wie-kombiniert-man-diese-funktionen-am-besten-mit-group_by",
+    "title": "1 RStudio",
+    "section": "Was ist der Unterschied zwischen der Funktion mutate() und der Funktion summarize()? Wie kombiniert man diese Funktionen am besten mit group_by()?",
+    "text": "Was ist der Unterschied zwischen der Funktion mutate() und der Funktion summarize()? Wie kombiniert man diese Funktionen am besten mit group_by()?\n\n\n\n\n\n\nImportant\n\n\n\nVorweg: Du kannst anhand der Syntax ?Funktionsname()die Dokumentation einer Funktion aufrufen. Hier wird beschrieben, welche Argumente die Funktion erwartet, was die Default-Einstellungen sind und was die Funktion ausgibt.\n\n\nMit mutate() fügst du Spalten hinzu oder änderst sie, während alle Zeilen erhalten bleiben; summarise() verdichtet hingegen die Zeilen zu Aggregaten – ohne Gruppierung zu einer Zeile für den gesamten Datensatz und mit group_by() zu einer Zeile pro Gruppe – und gibt dabei nur die Gruppenvariablen sowie die neu berechneten Kennwerte zurück.\n\n\n\n\n\n\nNote\n\n\n\nVisualisierungen finden sich hier.",
+    "crumbs": [
+      "FAQ",
+      "1  RStudio"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/rstudio.html#wie-funktioniert-die-umwandlung-eines-wide-datensatzes-hin-zu-einem-long-datensatz-und-welche-argumente-beinhaltet-die-hierfür-angewendete-funktion-pivot_longer",
+    "href": "scripts/03_faq/rstudio.html#wie-funktioniert-die-umwandlung-eines-wide-datensatzes-hin-zu-einem-long-datensatz-und-welche-argumente-beinhaltet-die-hierfür-angewendete-funktion-pivot_longer",
+    "title": "1 RStudio",
+    "section": "Wie funktioniert die Umwandlung eines wide-Datensatzes hin zu einem long-Datensatz und welche Argumente beinhaltet die hierfür angewendete Funktion pivot_longer()?",
+    "text": "Wie funktioniert die Umwandlung eines wide-Datensatzes hin zu einem long-Datensatz und welche Argumente beinhaltet die hierfür angewendete Funktion pivot_longer()?\n\n\n\n\n\n\nImportant\n\n\n\nDu kannst anhand der Syntax ?Funktionsname()die Dokumentation einer Funktion aufrufen. Hier wird beschrieben, welche Argumente die Funktion erwartet, was die Default-Einstellungen sind und was die Funktion ausgibt.\n\n\nWie schon in der Frage erwähnt, die passende Funktion zur Umwandlung eines Datensatzes vom wide-Format in das long-Format erfolgt anhand der Funktion pivot_longer(). Die Funktion nimmt als die ersten beiden Argumente den Datensatz (data) und die Spalten, welche transformiert werden sollen (cols). Mit den anderen beiden Argumenten werden die Namen bestimmt, welche die Spalten haben sollen, in welcher die früheren Spaltenüberschriften (names_to = \"name\") und die Werte (values_to = \"value\") eingetragen werden.\n\ndata_long &lt;- data_wide |&gt; \n  pivot_longer(\n    cols = c(Spalte1, Spalte2, Spalte3), \n    names_to = \"Hier kommt der Name der Spalte rein, in welcher die früheren Spaltenüberschriften abgelegt sind\", \n    values_to = \"Hier kommt der Name der Spalte rein, in welcher die Werte der entsprechenden früheren Spalten abgelegt sind\"\n  )\n\n\n\n\n\n\n\nNote\n\n\n\nWeitere Informationen und Beispiele finden sich hier.",
+    "crumbs": [
+      "FAQ",
+      "1  RStudio"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/rstudio.html#wie-funktioniert-der-pipe-operator-bzw.-und-was-ist-der-unterschied-zwischen-den-beiden",
+    "href": "scripts/03_faq/rstudio.html#wie-funktioniert-der-pipe-operator-bzw.-und-was-ist-der-unterschied-zwischen-den-beiden",
+    "title": "1 RStudio",
+    "section": "Wie funktioniert der Pipe Operator |> bzw. %>% und was ist der Unterschied zwischen den beiden?",
+    "text": "Wie funktioniert der Pipe Operator |&gt; bzw. %&gt;% und was ist der Unterschied zwischen den beiden?\nDer Pipe Operator nimmt das Resultat von oben bzw. links und übergibt dieses Zwischenergebnis nach unten bzw. rechts. Was helfen könnte: Die Syntax erst ohne Pipe aufschreiben und dann die Klammern nach und nach auflösen und mit der Pipe ersetzen. Die folgenden Code-Snippets sind äquivalent:\n\nsummarize(\n  filter(data, Variable == \"A\"),\n  mean = mean(Wert, na.rm = TRUE),\n  sd = sd(Wert, na.rm = TRUE)\n)\n\ndata %&gt;%\n  filter(Variable == \"A\") %&gt;%\n  summarize(mean = mean(Wert, na.rm = TRUE), sd = sd(Wert, na.rm = TRUE))\n\ndata |&gt; \n  filter(Variable == \"A\") |&gt; \n  summarize(mean = mean(Wert, na.rm = TRUE), sd = sd(Wert, na.rm = TRUE))\n\n\n\n\n\n\n\nNote\n\n\n\nDie Pipe Operatoren unterscheiden sich nur geringfügig und die Unterschiede sind für den Rahmen des Seminars nicht relevant, können jedoch hier nachgelesen werden.",
+    "crumbs": [
+      "FAQ",
+      "1  RStudio"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/rstudio.html#wie-funktioniert-die-t.test-funktion",
+    "href": "scripts/03_faq/rstudio.html#wie-funktioniert-die-t.test-funktion",
+    "title": "1 RStudio",
+    "section": "Wie funktioniert die t.test()-Funktion?",
+    "text": "Wie funktioniert die t.test()-Funktion?\n\n\n\n\n\n\nImportant\n\n\n\nDu kannst anhand der Syntax ?Funktionsname()die Dokumentation einer Funktion aufrufen. Hier wird beschrieben, welche Argumente die Funktion erwartet, was die Default-Einstellungen sind und was die Funktion ausgibt.\n\n\nBei der t.test()-Funktion werden die Mittelwerte von Gruppen verglichen. Das Argument x ist verpflichtend und erwartet einen nummerischen Vektor (üblicherweise der Wert von Versuchspersonen auf der relevanten Variable). Das Argument y ist ein optionaler weiterer nummerischer Vektor, falls es sich um einen Zwei-Stichproben-Tests handelt. Das Argument alternative spezifiziert wie der t-Test ausgerichtet ist (≤, ≥ oder ≠). Das Argument mu gibt den erwarteten Mittelwert unter H0 an (Default = 0). Das Argument var.equal bestimmt, ob der Test unter der Annahme von Varianzhomogenität durch wird. Sprich, ob zwischen den beiden Gruppen die Varianzen gleich sind. Ist diese Annahme erfüllt, so wird ein students t-Test gerechnet. Ansonsten wird ein Welch t-Test gerechnet. Mit conf.level kann das Konfidenzintervall beliebig angepasst werden (Default = 0.95). Hier ein Beispiel Code-Snippet:\n\nt.test(x = data$Wert[data$Gruppe == \"A\"], \n       y = data$Wert[data$Gruppe == \"B\"], \n       alternative = \"two.sided\", # in diesem Fall ist der Test ungerichtet\n       mu = 0, # H0: Mittelwertunterschied = 0 (Default)\n       var.equal = FALSE, # Ablehnung der Varianzhomogenität (Defualt) und damit ein Welch`s t-Test\n       conf.level = 0.95) # Default",
+    "crumbs": [
+      "FAQ",
+      "1  RStudio"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/rstudio.html#was-ist-der-unterschied-zwischen-as_factor-und-as.factor",
+    "href": "scripts/03_faq/rstudio.html#was-ist-der-unterschied-zwischen-as_factor-und-as.factor",
+    "title": "1 RStudio",
+    "section": "Was ist der Unterschied zwischen as_factor() und as.factor()?",
+    "text": "Was ist der Unterschied zwischen as_factor() und as.factor()?\n\n\n\n\n\n\nImportant\n\n\n\nDu kannst anhand der Syntax ?Funktionsname()die Dokumentation einer Funktion aufrufen. Hier wird beschrieben, welche Argumente die Funktion erwartet, was die Default-Einstellungen sind und was die Funktion ausgibt. Hierüber lassen sich auch Unterschiede zwischen ähnlichen Funktionen feststellen.\n\n\nBeide Funktionen formatieren Werte einer Spalte hin zu Faktoren. as.factor() ist in Base R vorhanden und erstellt die Faktoren anhand des Alphabets. as_factor() stammt aus dem Tidyverse, kann bereits in SPSS-Dateien enthaltene Faktorisierungen auslesen und erstellt neue Faktoren anhand der Auftrittsreihenfolge im Vektor.",
+    "crumbs": [
+      "FAQ",
+      "1  RStudio"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/rstudio.html#was-gibt-es-bei-ggplot-alles-für-visualisierungsmöglichkeiten",
+    "href": "scripts/03_faq/rstudio.html#was-gibt-es-bei-ggplot-alles-für-visualisierungsmöglichkeiten",
+    "title": "1 RStudio",
+    "section": "Was gibt es bei ggplot alles für Visualisierungsmöglichkeiten?",
+    "text": "Was gibt es bei ggplot alles für Visualisierungsmöglichkeiten?\nMit ggplot kann eine ganze Reihe an Visualisierungen manuell festgelegt werden, von der Art des Graphen, mehrdimensionale Darstellungen, Formatierung wie Farben, Grössen uvm. Eine grobe Übersicht gibt es hier.\n\n\n\n\n\n\nNote\n\n\n\nBeispiele und Übungen finden sich hier.",
+    "crumbs": [
+      "FAQ",
+      "1  RStudio"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/rstudio.html#wie-kann-man-sicherstellen-dass-bei-der-visualisierung-von-graphen-die-apa-guidelines-eingehalten-werden",
+    "href": "scripts/03_faq/rstudio.html#wie-kann-man-sicherstellen-dass-bei-der-visualisierung-von-graphen-die-apa-guidelines-eingehalten-werden",
+    "title": "1 RStudio",
+    "section": "Wie kann man sicherstellen, dass bei der Visualisierung von Graphen die APA-Guidelines eingehalten werden?",
+    "text": "Wie kann man sicherstellen, dass bei der Visualisierung von Graphen die APA-Guidelines eingehalten werden?\nHierfür gibt es ein extra [theme_apa()](https://rdrr.io/cran/jtools/man/theme_apa.html). Dieses nimmt einem viele der Formatierungen ab. Einzelheiten muss man trotzdem noch prüfen bzw. je nach Abbildung müssen manche Formatierungen auch noch selbst ergänzt werden. Die genaueren APA-Guidelines sind auch noch mal hier zu finden.",
+    "crumbs": [
+      "FAQ",
+      "1  RStudio"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/rstudio.html#wann-wird-ein-element-mit-und-wann-wird-ein-element-ohne-anführungszeichen-angesprochen",
+    "href": "scripts/03_faq/rstudio.html#wann-wird-ein-element-mit-und-wann-wird-ein-element-ohne-anführungszeichen-angesprochen",
+    "title": "1 RStudio",
+    "section": "Wann wird ein Element mit und wann wird ein Element ohne Anführungszeichen angesprochen?",
+    "text": "Wann wird ein Element mit und wann wird ein Element ohne Anführungszeichen angesprochen?\nAls Regel: Spricht man ein Objekt aus der Environment an, dann werden keine Anführungszeichen verwendet. Spricht man numerische Elemente aus einer Spalte an, dann werden ebenfalls keine Anführungszeichen verwendet. Spricht man Spaltenelemente an, welche als Faktor oder als Character formatiert sind, dann werden auch Anführungszeichen verwendet.",
+    "crumbs": [
+      "FAQ",
+      "1  RStudio"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/rstudio.html#wie-funktionieren-die-relativen-pfade-und-wie-stellt-man-sicher-dass-diese-auch-bei-fremden-personen-funktionieren",
+    "href": "scripts/03_faq/rstudio.html#wie-funktionieren-die-relativen-pfade-und-wie-stellt-man-sicher-dass-diese-auch-bei-fremden-personen-funktionieren",
+    "title": "1 RStudio",
+    "section": "Wie funktionieren die relativen Pfade und wie stellt man sicher, dass diese auch bei fremden Personen funktionieren?",
+    "text": "Wie funktionieren die relativen Pfade und wie stellt man sicher, dass diese auch bei fremden Personen funktionieren?\nRelative Pfade gehen immer vom working directory (Arbeitsspeicher des Skripts) aus. Wenn man also Daten laden möchtest, dann muss man immer schauen, wo sich – ausgehend vom working directory – die Datenfiles befindet. Bei der Syntax des dann angegebenen Pfades gilt folgendes: 1. “Datensatz.Dateiendung” bildet ausnahmslos das Ende des Pfades. 2. “/” bilden den nächsten Step, also den Übergang von einem Ordner zum nächsten oder vom finalen Ordner zur Datei. 3. Soll im Ordnersystem in einen Ordner auf einer Ebene weiter oben gewechselt werden, dann kann ein “.” zusätzlich verwendet werden. Hier ein beispielhaftes Code-Snipet:\n\ndata &lt;- readr::read_csv(\"../data/Datensatz.Dateiendung\") # Starte im working directory (deswegen der erste \".\") und gehe eine Ordnerebene hoch (deswegen der zweite \".\"). Von dort aus gehe in den Ordner \"data\" und wähle dort die Datei \"Datensatz\" aus, welche dem Format \"Dateiendung\" entspricht.\n\nWird einer fremden Person nun das gesamte Ordnersystem mit all seinen Inhalten unverändert übergeben, so kann der Dateipfad innerhalb dieses Ordnersystems immer auch den Datensatz einlesen.\n\n\n\nAbb. 2.: Dateipfade",
+    "crumbs": [
+      "FAQ",
+      "1  RStudio"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/rstudio.html#wann-wird-die-tilde-und-das-dollarzeichen-verwendet",
+    "href": "scripts/03_faq/rstudio.html#wann-wird-die-tilde-und-das-dollarzeichen-verwendet",
+    "title": "1 RStudio",
+    "section": "Wann wird die Tilde (~) und das Dollarzeichen ($) verwendet?",
+    "text": "Wann wird die Tilde (~) und das Dollarzeichen ($) verwendet?\nDie Tilde bedeutet, was links von ihr steht, wird von dem, was rechts von ihr steht, vorhergesagt. Beispielsweise wird die Tilde üblicherweise bei Regressionen verwendet: lm(AV ~ UV). Das Dollarzeichen dient vor allem, um Spalten anhand ihrer Namen anzusprechen: data$Spaltenname. Manche Funktionen arbeiten mit beiden Schreibweisen. Beispielsweise sind die folgenden Schreibweisen äquivalent:\n\nt.test(data$variable1, data$variable2)\n      \nt.test(data, formula = variable ~ group)\n\nAllerdings müssen bei letzterer Schreibweise die Werte beider Gruppen zwingend im selben Datensatz vorliegen.",
+    "crumbs": [
+      "FAQ",
+      "1  RStudio"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/rstudio.html#wann-wird-die-tilde-verwendet-und-wann-wird-ein-komma-verwendet",
+    "href": "scripts/03_faq/rstudio.html#wann-wird-die-tilde-verwendet-und-wann-wird-ein-komma-verwendet",
+    "title": "1 RStudio",
+    "section": "Wann wird die Tilde (~) verwendet und wann wird ein Komma (,) verwendet?",
+    "text": "Wann wird die Tilde (~) verwendet und wann wird ein Komma (,) verwendet?\nDie Tilde bedeutet, was links von ihr steht, wird von dem, was rechts von ihr steht, vorhergesagt. Beispielsweise wird die Tilde üblicherweise bei Regressionen verwendet: lm(AV ~ UV). Das Komma wird verwendet, um Argumente in einer Funktion zu trennen. Beispiel:\n\nresult &lt;- lm(AV ~ UV, data = datensatz)\n\nresult &lt;- t.test(x = datensatz$variable1, y = datensatz$variable2)\n\n\n\n\n\n\n\nWarning\n\n\n\nDas Komma sollte nicht verwendet werden um Dezimalzahlen zu definieren! Dies führt zu einer Fehlermeldung. Für Dezimalzahlen wird immer der Punkt verwendet (z.B. 3.14).",
+    "crumbs": [
+      "FAQ",
+      "1  RStudio"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/rstudio.html#wie-berechnet-man-das-generalisierte-η²",
+    "href": "scripts/03_faq/rstudio.html#wie-berechnet-man-das-generalisierte-η²",
+    "title": "1 RStudio",
+    "section": "Wie berechnet man das generalisierte η²?",
+    "text": "Wie berechnet man das generalisierte η²?\nMan erhält das generalisierte η² indem man erst eine ANOVA berechnet, abspeichert und dann über summary(anova_ergebnis, es = ges) ausgeben lässt.\n\nanova_ergebnis &lt;- afex::aov_car(value ~ treatment, data = example_data)\n\nsummary(anova_ergebnis, es = ges)",
+    "crumbs": [
+      "FAQ",
+      "1  RStudio"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/rstudio.html#wie-bereitet-man-die-daten-für-eine-mixed-anova-vor",
+    "href": "scripts/03_faq/rstudio.html#wie-bereitet-man-die-daten-für-eine-mixed-anova-vor",
+    "title": "1 RStudio",
+    "section": "Wie bereitet man die Daten für eine mixed-ANOVA vor?",
+    "text": "Wie bereitet man die Daten für eine mixed-ANOVA vor?\nEine mixed-ANOVA besteht aus der Varianzerklärung aufgrund unterschiedlicher Gruppenzugehörigkeiten (bspw. Kontrollgruppe und Experimentalgruppe) und einer Messwiederholung (mehrerer Messwerte pro Person, unabhängig von der Gruppenzugehörigkeit). Beides muss auch bereits in den Daten erkennbar sein. Sprich, pro Versuchsperson muss anhand einer Variable codiert sein, zu welcher Gruppe diese Versuchsperson gehört. Darüber hinaus muss es für jede Versuchsperson zu jedem Messzeitpunkt einen Wert geben. Angenommen die Daten liegen ursprünglich im wide-Format vor, dann müssen diese erst ins long-Format übertragen werden (siehe auch Fragen zum long-Format). Erst dann können die entsprechenden ANOVA-Funktionen die Daten entsprechend interpretieren.\n\n\n\n\n\n\nNote\n\n\n\nInhalte zu ANOVAs mit Messwiederholung oder mixed-ANOVAs könnt ihr auch noch mal über die Inhalte aus Statistik IV von Boris Mayer und Stefan Thoma wiederholen",
+    "crumbs": [
+      "FAQ",
+      "1  RStudio"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/rstudio.html#wofür-gibt-es-bei-der-funktion-aov_4-das-argument-1-personenidentifikationscode.-bzw.-das-argument-wiederholungsfaktor-personenidentifikationscode",
+    "href": "scripts/03_faq/rstudio.html#wofür-gibt-es-bei-der-funktion-aov_4-das-argument-1-personenidentifikationscode.-bzw.-das-argument-wiederholungsfaktor-personenidentifikationscode",
+    "title": "1 RStudio",
+    "section": "Wofür gibt es bei der Funktion aov_4() das Argument (1 | Personenidentifikationscode). bzw. das Argument (Wiederholungsfaktor | Personenidentifikationscode)?",
+    "text": "Wofür gibt es bei der Funktion aov_4() das Argument (1 | Personenidentifikationscode). bzw. das Argument (Wiederholungsfaktor | Personenidentifikationscode)?\n\n\n\n\n\n\nImportant\n\n\n\nDu kannst anhand der Syntax ?Funktionsname()die Dokumentation einer Funktion aufrufen. Hier wird beschrieben, welche Argumente die Funktion erwartet, was die Default-Einstellungen sind und was die Funktion ausgibt.\n\n\nDie Funktion aov_4() ist auf ANOVAs mit Messwiederholung ausgelegt und erwartet die zusätzliche Syntax (x | y). Die genaue Formulierung dieses Arguments hängt dann davon ab, ob es keine Messwiederholung gibt (1 | Personenidentifikationscode) oder ob es eine Messwiederholung gibt (Wiederholungsfaktor | Personenidentifikationscode).\n\nafex::aov_4(value ~ treatment + (1 | Personenidentifikationscode), data = example_data) # Beispiel ohne(!) Messwiederholung\n\nafex::aov_4(value ~ treatment + (time | Personenidentifikationscode), data = example_data) # Beispiel mit(!) Messwiederholung\n\n\n\n\n\n\n\nNote\n\n\n\nFür die Funktion aov_4() gibt es aus Statistik-IV von Boris Mayer und Stefan Thoma noch tiefere und beispielhafte Ausführungen.",
+    "crumbs": [
+      "FAQ",
+      "1  RStudio"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/rstudio.html#wie-stellt-man-ein-dass-in-markdown-oder-quarto-der-output-meines-codes-unterbunden-wird",
+    "href": "scripts/03_faq/rstudio.html#wie-stellt-man-ein-dass-in-markdown-oder-quarto-der-output-meines-codes-unterbunden-wird",
+    "title": "1 RStudio",
+    "section": "Wie stellt man ein, dass in Markdown oder Quarto der Output meines Codes unterbunden wird?",
+    "text": "Wie stellt man ein, dass in Markdown oder Quarto der Output meines Codes unterbunden wird?\nEs kann entweder im ersten Chunk des Dokuments als globale Einstellung knitr::opts_chunk$set(output = FALSE) oder im entsprechend gewünschten Chunk einzeln die Option {r, output = FALSE} gesetzt werden den Output zu unterdrücken. Mittlerweile können solche Optionen auch über die Schreibweise #| explizit innerhalb des Chunks geschrieben werden. Ähnliche Befehle existieren auch, wenn man stattdessen oder zusätzlich Warnmeldungen oder den Code unterbinden möchte. Stellt bei der Endabgabe aber bitte sicher, dass der Code und mögliche Warnmeldungen sichtbar sind!\n\n# Hierdurch würde der Code zwar angezeigt, aber nicht mehr durchgeführt werden\n# #| eval: FALSE\n# Hierdurch würde der Code dann zusätzlich auch nicht mehr angezeigt werden\n# #| echo: FALSE",
+    "crumbs": [
+      "FAQ",
+      "1  RStudio"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/rstudio.html#was-bedeutet-die-meldung-summarise-has-grouped-output-by-group.-you-can-override-using-the-.groups-argument.-und-was-muss-ich-dabei-beachten",
+    "href": "scripts/03_faq/rstudio.html#was-bedeutet-die-meldung-summarise-has-grouped-output-by-group.-you-can-override-using-the-.groups-argument.-und-was-muss-ich-dabei-beachten",
+    "title": "1 RStudio",
+    "section": "Was bedeutet die Meldung „summarise() has grouped output by ‘group’. You can override using the .groups argument.“ und was muss ich dabei beachten?",
+    "text": "Was bedeutet die Meldung „summarise() has grouped output by ‘group’. You can override using the .groups argument.“ und was muss ich dabei beachten?\nÜblicherweise werden deskriptive Werte (auch) für Subgruppen der Gesamtstichprobe angegeben (beispielsweise getrennt für Männer und Frauen, für die Kontrollgruppe oder die Experimentalgruppe etc.). Um entsprechende Änderungen vorzunehmen, wird daher vor der Anwendung von summarise() noch die Funktion group_by() verwendet. Nach der Berechnung der Deskriptivstatistik wird die Gruppierung nicht aufgehoben. Sie bleibt im Hintergrund, nicht direkt sichtbar, erhalten. Die Warnmeldung weisst genau darauf hin. Möchte man die Gruppierung aufheben, dann kann entweder die Funktion ungroup() verwendet werden oder summarise() wird um das Argument summarise(.group = „drop) ergänzt. Gruppierungen aufzulösen kann für manche Vorgänge, wie beispielsweise das Löschen von noch gruppierten Spalten relevant sein.",
+    "crumbs": [
+      "FAQ",
+      "1  RStudio"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/rstudio.html#wann-soll-eine-neue-variable-bzw.-ein-neuer-datensatz-erstellt-werden-und-wann-soll-die-alte-variable-bzw.-der-neue-datensatz-überspeichert-werden",
+    "href": "scripts/03_faq/rstudio.html#wann-soll-eine-neue-variable-bzw.-ein-neuer-datensatz-erstellt-werden-und-wann-soll-die-alte-variable-bzw.-der-neue-datensatz-überspeichert-werden",
+    "title": "1 RStudio",
+    "section": "Wann soll eine neue Variable bzw. ein neuer Datensatz erstellt werden und wann soll die alte Variable bzw. der neue Datensatz überspeichert werden?",
+    "text": "Wann soll eine neue Variable bzw. ein neuer Datensatz erstellt werden und wann soll die alte Variable bzw. der neue Datensatz überspeichert werden?\nGrundsätzlich ist es vorzuziehen neue Variablen oder Datensätze zu erstellen. Zum einen kann so bei Bedarf noch auf die ursprünglichen Variablen oder Datensätze zugegriffen werden. Zum anderen ist die Analyse so für aussenstehende leichter nachzuvollziehen. Ausnahmen sind ästhetische Änderungen oder wiederholte Berechnungen, welche für die weitere Analyse nicht weiter relevant sind.",
+    "crumbs": [
+      "FAQ",
+      "1  RStudio"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/rstudio.html#wann-eignet-es-sich-ein-projekt-anzulegen",
+    "href": "scripts/03_faq/rstudio.html#wann-eignet-es-sich-ein-projekt-anzulegen",
+    "title": "1 RStudio",
+    "section": "Wann eignet es sich ein Projekt anzulegen?",
+    "text": "Wann eignet es sich ein Projekt anzulegen?\nEin Projekt anzulegen, lohnt sich vor allem dann, wenn in mehreren Skripten gearbeitet wird. Dann muss nicht in jedem Skript einzeln das working directory (Arbeitsspeicher des Skripts) gesetzt werden. Wird in nur einem Skript gearbeitet, dann macht das Anlegen des Projekts keinen Unterschied.",
+    "crumbs": [
+      "FAQ",
+      "1  RStudio"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/rstudio.html#wenn-ich-mein-quarto-dokument-zu-einer-pdf-datei-rendern-möchte-erhalte-ich-die-fehlermeldung-dass-latex-nicht-installiert-ist.-wie-kann-ich-latex-installieren",
+    "href": "scripts/03_faq/rstudio.html#wenn-ich-mein-quarto-dokument-zu-einer-pdf-datei-rendern-möchte-erhalte-ich-die-fehlermeldung-dass-latex-nicht-installiert-ist.-wie-kann-ich-latex-installieren",
+    "title": "1 RStudio",
+    "section": "Wenn ich mein Quarto-Dokument zu einer PDF-Datei rendern möchte, erhalte ich die Fehlermeldung, dass LaTeX nicht installiert ist. Wie kann ich LaTeX installieren?",
+    "text": "Wenn ich mein Quarto-Dokument zu einer PDF-Datei rendern möchte, erhalte ich die Fehlermeldung, dass LaTeX nicht installiert ist. Wie kann ich LaTeX installieren?\nLaTeX ist eine Software um individuelle, professionelle Formatierungen für PDFs oder andere Dateien zu erstellen. Was für unsere Zwecke bereits ausreichen sollte ist die Installation von tinytex. tinytex ist keine eigenständige Software, sondern schlichtweg um ein Paket von vielen in R.\n\n#install.packages(\"tinytex\")\n\nNach der Installation des Pakets ruft ihr dann folgendene Funktion auf:\n\n#tinytex::install_tinytex() \n#tinytex:: stellt sicher, dass die Funktion aus dem entsprechenden Paket aufgerufen wird\n\nHierdurch wird temporär die eigentliche Software installiert, mit welcher aus eurem Quarto-Dokument eine PDF erstellt werden kann. Dies kann einige Minuten dauern. Im Anschluss sollte das Rendern hin zu einer PDF funktionieren.",
+    "crumbs": [
+      "FAQ",
+      "1  RStudio"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/fehlermeldungen.html",
+    "href": "scripts/03_faq/fehlermeldungen.html",
+    "title": "Fehlermeldungen",
+    "section": "",
+    "text": "Rendering in Quarto zu einer PDF funktioniert nicht\nIn der Vergangenheit gab es öfter Probleme mit der Installation von tinytex. Eine beispielhafte Fehlermeldung hierfür sah folgendermassen aus:\nprocessing file: skript.qmd\n|…………………………………. | x% [unnamed-chunk-x]\nError in contrib.url():\n! trying to use CRAN without setting a mirror\nBacktrace:\nx\n-utils::install.packages(“tinytex”) -utils::contrib.url(repos, “source”)\nQuitting from skript.qmd:Zeile-Zeile [unnamed-chunk-x]\nExecution halted\nDer Kern der Fehlermeldung lautet: “! trying ot use CRAN without setting a mirror”. CRAN ist die Plattform, von welcher standardmässig Pakete heruntergeladen werden. Die URL, also die Internetadressse von CRAN, ist dafür im Hintergrund in R eingestellt. Hier scheint es nun aber so, dass es unter der gesetzten URL kein Paket tinytex gibt. Dieses Problem lässt sich temporär (also einmalig für eure laufende Sitzung in RStudio) oder dauerhaft (also auch, wenn ihr RStudio schliesst und wieder neu startet) beheben. Um das Problem temporär zu lösen kann man einfach die URL zu CRAN explizit in der Console angeben:\n\n #| eval: false\n #| echo: true\n\noptions(repos = c(CRAN = \"https://cloud.r-project.org\"))\n\nMöchte man die Einstellung dauerhaft behalten braucht es einen weiteren Schritt. Erst wird über die Console eine globale Einstellungsdatei von RStudio geöffnet:\n\nIn diese Datei kann dann der Befehl zur expliziten Setzung der URL\nplatziert werden. Diese Datei abspeichern und RStudio neu starten. Jetzt\nsollte `tinytex` von der korrekten URL abgerufen, gefunden und\nschlussendlich auch erfolgreich installiert werden können.\n\n# Das Objekt mit dem ich etwas machen möchte kann nicht gefunden werden\n\n\"==\\&gt; quarto preview Hands on - Block 3.qmd --to html --no-watch-inputs\n--no-browse\n\nprocessing file: Hands-on---Block-3.rmarkdown\n\\|................................................. \\| 96%\n\\[unnamed-chunk-10\\] Error:! object 'dat_full' not foundBacktrace: ▆ 1.\n└─dplyr::rename(dat_full, cvstm_sum = \"csvtm_sum\") Quitting from\nHands-on---Block-3.rmarkdown:331-343 \\[unnamed-chunk-10\\] Execution\nhalted\"\n\nNetterweise gibt uns die Fehlermeldung die Stelle im Code aus, an\nwelcher das Problem aufrat:\n\n::: {.cell}\n\n```{.r .cell-code}\ndplyr::rename(dat_full, cvstm_sum = \"csvtm_sum\")\n:::\n\nDer zentrale Teil der Fehlermeldung ist hierbei “Error:! object dat_full not found”. Der Datensatz dat_full ist vor der Ausführung scheinbar noch nicht vorhanden. Stellt also unbedingt sicher, vor der Ausführung von dplyr::rename(dat_full, cvstm_sum = \"csvtm_sum\")den Datensatz eingelesen und den dafür vorgesehenen Chunk zum Einlesen nicht auf eval = FALSE gesetzt zu haben.\n\n\nBeim Rendern einer html werden noch einige weitere Ordner und Dateien erstellt\nUm zu grosse html-files oder Ladezeiten eines html-files zu vermeiden, weicht Quarto ggf. beim Rendern dazu aus nicht einen einzelnen html-file zu erstellen, sondern einen Ordner mit mehreren Dateien. Der html-file ruft diese dann beim Laden allesamt auf. Wenn das nicht gewünscht ist, dann gibt es mindestens zwei Möglichkeiten Quarto zu zwingen einen einzelnen und unabhängigen html-file zu erstellen. Als erste Variante kann der YAML-Header (der ganz oben im Quarto-file positioniert ist) um die Zeile embed-resources: true ergänzt werden:\n\n# vorher\n  format:\n    html:\n\n# nachher\n  format:\n    html:\n      embed-resources: true\n\nSollte sich auch damit das Problem nicht lösen, dann kann der Quarto-file auch manuell über das Terminal gerendert werden. Das Terminal beachten wir sonst im Seminar nicht, ist hierfür aber ausnahmsweise eine elegante Lösung. Das Terminal befindet sich unten links, wo sich auch die euch bereits vertraute Console und beim Rendern das Fenster Background Jobs befinden. Ist das Terminal noch nicht vorhanden, kann es über Tools –&gt; Terminal –&gt; New Terminal (Alt+ Umschalttaste + R) geöffnet werden. Dort wird dann folgender Befehl eingegeben:\n\nquarto render meinDokument.qmd --embed-resources\n\nHierbei muss natürlich noch der Dateiname des .qmd-file entsprechend angepasst werden. Weitere Informationen gibt es hier (am besten auf der Seite selbst noch nach dem Begriff embed-resources suchen).",
+    "crumbs": [
+      "FAQ",
+      "1  RStudio",
+      "1.1  Fehlermeldungen"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/endabgabe.html",
+    "href": "scripts/03_faq/endabgabe.html",
+    "title": "5 Abschlussprojekt",
+    "section": "",
+    "text": "Note\n\n\n\nLies dir neben den folgenden Fragen auch noch mal die allgemeinen Infos zum Abschlussprojekt unter “Leistungsnachweis” durch.",
+    "crumbs": [
+      "FAQ",
+      "5  Abschlussprojekt"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/endabgabe.html#was-gibt-es-für-formatvorgaben-für-das-skript-schriftgrösse-fettmarkierungen-etc.",
+    "href": "scripts/03_faq/endabgabe.html#was-gibt-es-für-formatvorgaben-für-das-skript-schriftgrösse-fettmarkierungen-etc.",
+    "title": "5 Abschlussprojekt",
+    "section": "Was gibt es für Formatvorgaben für das Skript (Schriftgrösse, Fettmarkierungen etc.)?",
+    "text": "Was gibt es für Formatvorgaben für das Skript (Schriftgrösse, Fettmarkierungen etc.)?\nEs gibt keine exakten Formatvorgaben für das Skript. Vielmehr gilt: Das Skript sollte übersichtlich sein und keine ungewöhnlichen Formatierungen enthalten. Mit den Vorgaben von APA 7 ist das Skript sicher passend formatiert.",
+    "crumbs": [
+      "FAQ",
+      "5  Abschlussprojekt"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/endabgabe.html#welche-stilvorgaben-gibt-es-bei-der-erstellung-des-skripts-zu-beachten",
+    "href": "scripts/03_faq/endabgabe.html#welche-stilvorgaben-gibt-es-bei-der-erstellung-des-skripts-zu-beachten",
+    "title": "5 Abschlussprojekt",
+    "section": "Welche Stilvorgaben gibt es bei der Erstellung des Skripts zu beachten?",
+    "text": "Welche Stilvorgaben gibt es bei der Erstellung des Skripts zu beachten?\nDas Skript sollte sinnvolle Überschriften und eine sinnvolle Gliederung enthalten. Der Code sollte kommentiert sein, so dass die Auswahl von Funktionen und das Vorgehen begründet sind. Sofern LLMs oder andere externe Tools zur Hilfe herangezogen worden sind, muss dies angemerkt werden. Hierfür kann ggf. eine getrennte Kopie des Chatverlaufes eingereicht oder ein Link nach APA-Guidelines ergänzt werden.",
+    "crumbs": [
+      "FAQ",
+      "5  Abschlussprojekt"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/endabgabe.html#in-welcher-sprache-zeitform-perspektive-und-in-welchem-stil-soll-der-datenanalyseplan-geschrieben-werden",
+    "href": "scripts/03_faq/endabgabe.html#in-welcher-sprache-zeitform-perspektive-und-in-welchem-stil-soll-der-datenanalyseplan-geschrieben-werden",
+    "title": "5 Abschlussprojekt",
+    "section": "In welcher Sprache, Zeitform, Perspektive und in welchem Stil soll der Datenanalyseplan geschrieben werden?",
+    "text": "In welcher Sprache, Zeitform, Perspektive und in welchem Stil soll der Datenanalyseplan geschrieben werden?\nAlle für die Abgabe relevanten Unterlagen dürfen auf Englisch oder Deutsch eingereicht werden. Wichtig ist lediglich, dass die Unterlagen untereinander einer einheitlichen Sprache folgen. Als Zeitform gilt das Präsens. Bitte schreibe in der Wir-Form und im wissenschaftlichen Stil.",
+    "crumbs": [
+      "FAQ",
+      "5  Abschlussprojekt"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/endabgabe.html#wie-umfangreich-sollen-die-kommentare-des-codes-im-skript-sein",
+    "href": "scripts/03_faq/endabgabe.html#wie-umfangreich-sollen-die-kommentare-des-codes-im-skript-sein",
+    "title": "5 Abschlussprojekt",
+    "section": "Wie umfangreich sollen die Kommentare des Codes im Skript sein?",
+    "text": "Wie umfangreich sollen die Kommentare des Codes im Skript sein?\nDie Funktionsweise von üblicher Syntax (wie beispielsweise dem Pipe Operator) oder einer Funktion muss nicht kommentiert werden. Aber: Das Dokument muss für fremde Wissenschaftler:innen der Psychologie ohne weiteres nachvollziehbar sein. Bedeutet, Kommentare sollten das Vorgehen im Skript ausreichend begründen.",
+    "crumbs": [
+      "FAQ",
+      "5  Abschlussprojekt"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/endabgabe.html#sollen-im-skript-warn--undoder-fehlermeldungen-unterbunden-werden-oder-sichtbar-sein",
+    "href": "scripts/03_faq/endabgabe.html#sollen-im-skript-warn--undoder-fehlermeldungen-unterbunden-werden-oder-sichtbar-sein",
+    "title": "5 Abschlussprojekt",
+    "section": "Sollen im Skript Warn- und/oder Fehlermeldungen unterbunden werden oder sichtbar sein?",
+    "text": "Sollen im Skript Warn- und/oder Fehlermeldungen unterbunden werden oder sichtbar sein?\nDamit wir die Abgabe leichter kontrollieren können sollen die Warn- und Fehlermeldungen bitte sichtbar sein und nicht ausgeschaltet sein. Auch unabhängig von der Abgabe ist zu empfehlen die Meldungen sichtbar zu lassen. Das erleichtert Unbeteiligten die Analyse nachzuvollziehen und sie auf mögliche Fehler zu untersuchen.",
+    "crumbs": [
+      "FAQ",
+      "5  Abschlussprojekt"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/endabgabe.html#darf-im-skript-auch-noch-code-von-übungsaufgaben-vorhanden-sein",
+    "href": "scripts/03_faq/endabgabe.html#darf-im-skript-auch-noch-code-von-übungsaufgaben-vorhanden-sein",
+    "title": "5 Abschlussprojekt",
+    "section": "Darf im Skript auch noch Code von Übungsaufgaben vorhanden sein?",
+    "text": "Darf im Skript auch noch Code von Übungsaufgaben vorhanden sein?\nHier gilt der Grundsatz: Euer Skript, wie auch alle anderen Unterlagen, sollten für fremde Wissenschaftler:innen der Psychologie ohne weiteres nachvollziehbar sein. Code, welcher nicht im Zusammenhang mit der Endabgabe steht - und dementsprechend auch nicht im Datenanalyseplan erwähnt wird – würde nur vom wesentlichen Ablenken und soll daher nicht im Skript vorhanden sein.",
+    "crumbs": [
+      "FAQ",
+      "5  Abschlussprojekt"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/endabgabe.html#wie-exakt-sollen-die-tabellen-und-abbildungen-denen-aus-dem-paper-von-grinschgl-et-al.-2020-entsprechen",
+    "href": "scripts/03_faq/endabgabe.html#wie-exakt-sollen-die-tabellen-und-abbildungen-denen-aus-dem-paper-von-grinschgl-et-al.-2020-entsprechen",
+    "title": "5 Abschlussprojekt",
+    "section": "Wie exakt sollen die Tabellen und Abbildungen denen aus dem Paper von Grinschgl et al. (2020) entsprechen?",
+    "text": "Wie exakt sollen die Tabellen und Abbildungen denen aus dem Paper von Grinschgl et al. (2020) entsprechen?\nDie Tabellen und Abbildungen aus dem Originalpaper von Grinschgl et al. (2020) müssen nicht exakt repliziert werden. Wichtig ist allerdings, dass die Aussage der Abbildung bzw. der Tabelle korrekt ist und keine wichtigen Details ausgelassen werden.",
+    "crumbs": [
+      "FAQ",
+      "5  Abschlussprojekt"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/endabgabe.html#soll-die-berechnung-von-cronbachs-alpha-aus-dem-paper-von-grinschgl-et-al.-2020-auch-durchgeführt-werden",
+    "href": "scripts/03_faq/endabgabe.html#soll-die-berechnung-von-cronbachs-alpha-aus-dem-paper-von-grinschgl-et-al.-2020-auch-durchgeführt-werden",
+    "title": "5 Abschlussprojekt",
+    "section": "Soll die Berechnung von Cronbachs Alpha aus dem Paper von Grinschgl et al. (2020) auch durchgeführt werden?",
+    "text": "Soll die Berechnung von Cronbachs Alpha aus dem Paper von Grinschgl et al. (2020) auch durchgeführt werden?\nNein, die Berechnung von Cronbachs-Alpha aus dem Paper von Grinschgl et al. (2020) ist nicht Teil des Abschlussprojekts.",
+    "crumbs": [
+      "FAQ",
+      "5  Abschlussprojekt"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/codebook.html",
+    "href": "scripts/03_faq/codebook.html",
+    "title": "2 Codebook",
+    "section": "",
+    "text": "Fragen zum Codebook",
+    "crumbs": [
+      "FAQ",
+      "2  Codebook"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/codebook.html#sollen-im-codebook-alle-variablen-eines-datensatzes-beschrieben-werden-oder-nur-diejenigen-welche-auch-im-rahmen-der-analyse-verwendet-werden",
+    "href": "scripts/03_faq/codebook.html#sollen-im-codebook-alle-variablen-eines-datensatzes-beschrieben-werden-oder-nur-diejenigen-welche-auch-im-rahmen-der-analyse-verwendet-werden",
+    "title": "2 Codebook",
+    "section": "Sollen im Codebook alle Variablen eines Datensatzes beschrieben werden oder nur diejenigen, welche auch im Rahmen der Analyse verwendet werden?",
+    "text": "Sollen im Codebook alle Variablen eines Datensatzes beschrieben werden oder nur diejenigen, welche auch im Rahmen der Analyse verwendet werden?\nAls Grundsatz gilt: Das Codebook soll fremden Wissenschaftler:innen aus der Psychologie dabei helfen ohne weiteren Aufwand eure Arbeit zu beurteilen und ggf. zu replizieren. Für eine Replikation würde eine genaue Beschreibung der von euch in der Analyse verwendeten Variablen ausreichend. Eine allgemeine Beurteilung ist aber erst dann vollständig möglich, wenn auch alle anderen Variablen umfangreich beschrieben sind. Deswegen müssen im Codebook alle Variablen eures Datensatzes beschrieben werden, auch jene, die in der Analyse nicht weiter Beachtung finden.",
+    "crumbs": [
+      "FAQ",
+      "2  Codebook"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/codebook.html#sollten-unter-questionnaire-wirklich-nur-fragebögen-aufgelistet-werden-oder-kann-man-hier-auch-die-namen-möglicher-kognitiver-tests-angeben",
+    "href": "scripts/03_faq/codebook.html#sollten-unter-questionnaire-wirklich-nur-fragebögen-aufgelistet-werden-oder-kann-man-hier-auch-die-namen-möglicher-kognitiver-tests-angeben",
+    "title": "2 Codebook",
+    "section": "Sollten unter „questionnaire“ wirklich nur Fragebögen aufgelistet werden oder kann man hier auch die Namen möglicher kognitiver Tests angeben?",
+    "text": "Sollten unter „questionnaire“ wirklich nur Fragebögen aufgelistet werden oder kann man hier auch die Namen möglicher kognitiver Tests angeben?\nBei Angaben im Codebook sollte immer gelten: Sie erklären für unbeteiligte Wissenschaftler:innen aus der Psychologie mehr als das sie Verwirrung stiften. Unter „questionnaire“ auch die Namen von ggf. angewendeten kognitiven Tests anzugeben, unterstützt die Nachvollziehbarkeit und kann daher so gemacht werden.",
+    "crumbs": [
+      "FAQ",
+      "2  Codebook"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/codebook.html#wo-liegt-der-unterschied-zwischen-description-und-composition-of-item",
+    "href": "scripts/03_faq/codebook.html#wo-liegt-der-unterschied-zwischen-description-und-composition-of-item",
+    "title": "2 Codebook",
+    "section": "Wo liegt der Unterschied zwischen „description“ und „Composition of item…“?",
+    "text": "Wo liegt der Unterschied zwischen „description“ und „Composition of item…“?\nBei „description“ geht es um eine kurze inhaltliche Beschreibung der Variable, also was für einen Zweck die Variable in der Studie einnimmt oder mit welchem Konstrukt die Variable im Zusammenhang steht. Bei „composition of item“ geht es um die mathematische Zusammensetzung der Variable (z.B. Mittelwert aus Items XYZ).",
+    "crumbs": [
+      "FAQ",
+      "2  Codebook"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/codebook.html#wann-sind-response_labels-zu-verwenden-und-wann-nicht",
+    "href": "scripts/03_faq/codebook.html#wann-sind-response_labels-zu-verwenden-und-wann-nicht",
+    "title": "2 Codebook",
+    "section": "Wann sind „response_labels“ zu verwenden und wann nicht?",
+    "text": "Wann sind „response_labels“ zu verwenden und wann nicht?\nDie Labels der Antwortmöglichkeiten direkt zu benennen ist dann wichtig, wenn diese nicht logisch erschliessbar sind. Dies ist z.B. bei einer Likert-Skala der Fall, da diese unterschiedlich streng formuliert sein kann. Selbst wenn diese im Datenanalyseplan aufgeführt werden, ist es sicherer diese auch noch mal im Codebook zu erwähnen.",
+    "crumbs": [
+      "FAQ",
+      "2  Codebook"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/codebook.html#was-ist-mit-der-spalte-dimensions-gemeint",
+    "href": "scripts/03_faq/codebook.html#was-ist-mit-der-spalte-dimensions-gemeint",
+    "title": "2 Codebook",
+    "section": "Was ist mit der Spalte „dimensions“ gemeint?",
+    "text": "Was ist mit der Spalte „dimensions“ gemeint?\nUnter „dimensions“ soll das Konstrukt aufgeführt werden, welches sich hinter Items eines Fragebogens verbirgt (z.B. Item XY gehört zur dimension „Extraversion“ in einem Big 5 Fragebogen).",
+    "crumbs": [
+      "FAQ",
+      "2  Codebook"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/codebook.html#wie-soll-man-vorgehen-wenn-zu-manchen-dimensionen-der-variable-weder-im-paper-noch-in-der-präregistrierung-genaue-angaben-zu-finden-sind",
+    "href": "scripts/03_faq/codebook.html#wie-soll-man-vorgehen-wenn-zu-manchen-dimensionen-der-variable-weder-im-paper-noch-in-der-präregistrierung-genaue-angaben-zu-finden-sind",
+    "title": "2 Codebook",
+    "section": "Wie soll man vorgehen, wenn zu manchen Dimensionen der Variable weder im Paper noch in der Präregistrierung genaue Angaben zu finden sind?",
+    "text": "Wie soll man vorgehen, wenn zu manchen Dimensionen der Variable weder im Paper noch in der Präregistrierung genaue Angaben zu finden sind?\nFür den Fall, dass zu einer Angabe genaue Informationen fehlen, gibt es zwei Möglichkeiten. Zum einen kann man „reverse Engineering“ anwenden. Manche Informationen sind nirgendwo explizit angegeben, lassen sich aber beispielsweise anhand der gegebenen Informationen schlussfolgern. Hierzu zählen beispielsweise die minimalen und maximalen Werte einer Skala, welche mit einer hohen Wahrscheinlichkeit aus den Rohdaten ablesbar sind. Hierzu kann aber auch zählen, sich zu überlegen, was logisch oder mögliche Angaben sind. Das bedeutet nicht, dass in der ursprünglichen Studie auch tatsächlich so gearbeitet wurde, gibt aber trotzdem einen guten Anhaltspunkt. Unabhängig davon, wie man vorgeht, müsste dies kenntlich gemacht werden. Nur so können andere Personen mögliche Fehler in den Schlussfolgerungen oder Annahmen finden, anhand welcher die entsprechenden Informationen ergänzt wurden.",
+    "crumbs": [
+      "FAQ",
+      "2  Codebook"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/codebook.html#welche-informationen-sind-für-das-codebook-relevant-die-studie-von-grinschgl-et-al.-2020-undoder-die-präregistrierung-von-grinschgl-et-al.-2020",
+    "href": "scripts/03_faq/codebook.html#welche-informationen-sind-für-das-codebook-relevant-die-studie-von-grinschgl-et-al.-2020-undoder-die-präregistrierung-von-grinschgl-et-al.-2020",
+    "title": "2 Codebook",
+    "section": "Welche Informationen sind für das Codebook relevant? Die Studie von Grinschgl et al. (2020) und/oder die Präregistrierung von Grinschgl et al. (2020)?",
+    "text": "Welche Informationen sind für das Codebook relevant? Die Studie von Grinschgl et al. (2020) und/oder die Präregistrierung von Grinschgl et al. (2020)?\nFür das Ausfüllen des Codebook sind beide Quellen relevant, die Studie von Grinschgl et al. 2020 und die Präregistrierung zu Grinschgl et al. (2020).",
+    "crumbs": [
+      "FAQ",
+      "2  Codebook"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/codebook.html#sollen-alle-messwiederholungen-im-codebook-einzeln-aufgeführt-werden-oder-soll-es-eine-einzelne-variable-für-die-messwiederholung-im-codebook-geben",
+    "href": "scripts/03_faq/codebook.html#sollen-alle-messwiederholungen-im-codebook-einzeln-aufgeführt-werden-oder-soll-es-eine-einzelne-variable-für-die-messwiederholung-im-codebook-geben",
+    "title": "2 Codebook",
+    "section": "Sollen alle Messwiederholungen im Codebook einzeln aufgeführt werden oder soll es eine einzelne Variable für die Messwiederholung im Codebook geben?",
+    "text": "Sollen alle Messwiederholungen im Codebook einzeln aufgeführt werden oder soll es eine einzelne Variable für die Messwiederholung im Codebook geben?\nPrinzipiell gilt: Das Codebook soll es aussenstehenden möglichst einfach machen, sich mit den Daten und der Analyse der Daten vertraut zu machen und diese replizieren zu können. Daher gilt: Angaben sollten vollständig sein und so exakt wie möglich. Abweichungen – wie beispielsweise Zusammenfassungen mehrerer Variablen – sind demnach nur dann möglich und sinnvoll, wenn sich die einzelnen Variablen nicht voneinander unterscheiden und dies so klarer dargestellt werden kann.",
+    "crumbs": [
+      "FAQ",
+      "2  Codebook"
+    ]
+  },
+  {
     "objectID": "scripts/04_misc/here.html",
     "href": "scripts/04_misc/here.html",
     "title": "Probleme beim Rendern",
@@ -54,14 +550,14 @@
     "href": "scripts/04_misc/index.html",
     "title": "Einleitung",
     "section": "",
-    "text": "In diesem E-Book findest du alle wichtigen Informationen zum Methodenseminar “R u Ready”. Du kannst hier u. a. die wöchentlichen Folien, Hands-On R Übungen, den Leistungsnachweis, und Frequently Asked Questions einsehen. Du kannst über die Unterkapitel (links) zu den entsprechenden Inhalten navigieren, oder auch die Suchfunktion oben links verwenden, um nach einem bestimmten Begriff zu suchen.\n\nHinweisboxen\nHier einen Überblick über die auf den Seiten enthaltenen Hinweisboxen:\n\n\n\n\n\n\nNote\n\n\n\nVertiefung: Hier geht es in die Tiefe.\n\n\n\n\n\n\n\n\nImportant\n\n\n\nWichtig: Dies ist eine wichtige Information.\n\n\n\n\n\n\n\n\nWarning\n\n\n\nAchtung: Hier ist Vorsicht geboten.\n\n\n\n\n\n\n\n\nCaution\n\n\n\nVorsicht: Diese Information ist noch in Bearbeitung.\n\n\n\n\nSyllabus\n\n\n\n\n\n\nCaution\n\n\n\nVorsicht: Der Syllabus dient als grobe Richtlinie und kann angepasst werden, falls wir in einzelnen Einheiten mehr oder weniger Zeit benötigen.\n\n\n\n\nLetztes Update January 15, 2026 at 15:32"
+    "text": "In diesem E-Book findest du alle wichtigen Informationen zum Methodenseminar “R u Ready”. Du kannst hier u. a. die wöchentlichen Folien, Hands-On R Übungen, den Leistungsnachweis, und Frequently Asked Questions einsehen. Du kannst über die Unterkapitel (links) zu den entsprechenden Inhalten navigieren, oder auch die Suchfunktion oben links verwenden, um nach einem bestimmten Begriff zu suchen.\n\nHinweisboxen\nHier einen Überblick über die auf den Seiten enthaltenen Hinweisboxen:\n\n\n\n\n\n\nNote\n\n\n\nVertiefung: Hier geht es in die Tiefe.\n\n\n\n\n\n\n\n\nImportant\n\n\n\nWichtig: Dies ist eine wichtige Information.\n\n\n\n\n\n\n\n\nWarning\n\n\n\nAchtung: Hier ist Vorsicht geboten.\n\n\n\n\n\n\n\n\nCaution\n\n\n\nVorsicht: Diese Information ist noch in Bearbeitung.\n\n\n\n\nSyllabus\n\n\n\n\n\n\nCaution\n\n\n\nVorsicht: Der Syllabus dient als grobe Richtlinie und kann angepasst werden, falls wir in einzelnen Einheiten mehr oder weniger Zeit benötigen.\n\n\n\n\nLetztes Update January 15, 2026 at 16:37"
   },
   {
     "objectID": "scripts/04_misc/front_page.html",
     "href": "scripts/04_misc/front_page.html",
     "title": "Einleitung",
     "section": "",
-    "text": "In diesem E-Book findest du alle wichtigen Informationen zum Methodenseminar “R u Ready”. Du kannst hier u. a. die wöchentlichen Folien, Hands-On R Übungen, den Leistungsnachweis, und Frequently Asked Questions einsehen. Du kannst über die Unterkapitel (links) zu den entsprechenden Inhalten navigieren, oder auch die Suchfunktion oben links verwenden, um nach einem bestimmten Begriff zu suchen.\n\nHinweisboxen\nHier einen Überblick über die auf den Seiten enthaltenen Hinweisboxen:\n\n\n\n\n\n\nNote\n\n\n\nVertiefung: Hier geht es in die Tiefe.\n\n\n\n\n\n\n\n\nImportant\n\n\n\nWichtig: Dies ist eine wichtige Information.\n\n\n\n\n\n\n\n\nWarning\n\n\n\nAchtung: Hier ist Vorsicht geboten.\n\n\n\n\n\n\n\n\nCaution\n\n\n\nVorsicht: Diese Information ist noch in Bearbeitung.\n\n\n\n\nSyllabus\n\n\n\n\n\n\nCaution\n\n\n\nVorsicht: Der Syllabus dient als grobe Richtlinie und kann angepasst werden, falls wir in einzelnen Einheiten mehr oder weniger Zeit benötigen.\n\n\n\n\nLetztes Update January 15, 2026 at 15:32",
+    "text": "In diesem E-Book findest du alle wichtigen Informationen zum Methodenseminar “R u Ready”. Du kannst hier u. a. die wöchentlichen Folien, Hands-On R Übungen, den Leistungsnachweis, und Frequently Asked Questions einsehen. Du kannst über die Unterkapitel (links) zu den entsprechenden Inhalten navigieren, oder auch die Suchfunktion oben links verwenden, um nach einem bestimmten Begriff zu suchen.\n\nHinweisboxen\nHier einen Überblick über die auf den Seiten enthaltenen Hinweisboxen:\n\n\n\n\n\n\nNote\n\n\n\nVertiefung: Hier geht es in die Tiefe.\n\n\n\n\n\n\n\n\nImportant\n\n\n\nWichtig: Dies ist eine wichtige Information.\n\n\n\n\n\n\n\n\nWarning\n\n\n\nAchtung: Hier ist Vorsicht geboten.\n\n\n\n\n\n\n\n\nCaution\n\n\n\nVorsicht: Diese Information ist noch in Bearbeitung.\n\n\n\n\nSyllabus\n\n\n\n\n\n\nCaution\n\n\n\nVorsicht: Der Syllabus dient als grobe Richtlinie und kann angepasst werden, falls wir in einzelnen Einheiten mehr oder weniger Zeit benötigen.\n\n\n\n\nLetztes Update January 15, 2026 at 16:37",
     "crumbs": [
       "Einleitung"
     ]
@@ -336,6 +832,181 @@
     "crumbs": [
       "Muddiest Points",
       "Muddiest Points 3"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/datenanalyseplan.html",
+    "href": "scripts/03_faq/datenanalyseplan.html",
+    "title": "3 Datenanalyseplan",
+    "section": "",
+    "text": "Fragen zum Datenanalyseplan",
+    "crumbs": [
+      "FAQ",
+      "3  Datenanalyseplan"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/datenanalyseplan.html#müssen-die-anmerkungen-im-datenanalyseplan-nach-der-bearbeitung-gelöscht-werden-so-dass-nur-die-frage-und-der-titel-verbleiben",
+    "href": "scripts/03_faq/datenanalyseplan.html#müssen-die-anmerkungen-im-datenanalyseplan-nach-der-bearbeitung-gelöscht-werden-so-dass-nur-die-frage-und-der-titel-verbleiben",
+    "title": "3 Datenanalyseplan",
+    "section": "Müssen die Anmerkungen im Datenanalyseplan nach der Bearbeitung gelöscht werden, so dass nur die Frage und der Titel verbleiben?",
+    "text": "Müssen die Anmerkungen im Datenanalyseplan nach der Bearbeitung gelöscht werden, so dass nur die Frage und der Titel verbleiben?\nÜblicherweise werden Datenanalysepläne auf OSF (dem Open Science Framework) mitsamt den Anmerkungen veröffentlicht. Für das Seminar ist es möglich die Anmerkungen zu behalten oder zu löschen.",
+    "crumbs": [
+      "FAQ",
+      "3  Datenanalyseplan"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/datenanalyseplan.html#müssen-auch-zu-explorativen-fragestellungen-hypothesen-aufgestellt-werden",
+    "href": "scripts/03_faq/datenanalyseplan.html#müssen-auch-zu-explorativen-fragestellungen-hypothesen-aufgestellt-werden",
+    "title": "3 Datenanalyseplan",
+    "section": "Müssen auch zu explorativen Fragestellungen Hypothesen aufgestellt werden?",
+    "text": "Müssen auch zu explorativen Fragestellungen Hypothesen aufgestellt werden?\nKurzgesagt, nein. Bei explorativen Fragestellungen kann man auch einfach anmerken, dass diese explorativ sind – es also keine bisherige Theorie oder Evidenz für einen bestimmte Richtung gibt. Wichtig ist hierbei vor allem, transparent und vorausschauend zu arbeiten, in diesem Fall also den Umstand, explorativ zu arbeiten, klar zu benennen.",
+    "crumbs": [
+      "FAQ",
+      "3  Datenanalyseplan"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/datenanalyseplan.html#wenn-voraussetzungsprüfungen-oder-post-hoc-tests-durchgeführt-werden-müssen-diese-auch-im-datenanalyseplan-ergänzt-werden",
+    "href": "scripts/03_faq/datenanalyseplan.html#wenn-voraussetzungsprüfungen-oder-post-hoc-tests-durchgeführt-werden-müssen-diese-auch-im-datenanalyseplan-ergänzt-werden",
+    "title": "3 Datenanalyseplan",
+    "section": "Wenn Voraussetzungsprüfungen oder post-hoc Tests durchgeführt werden, müssen diese auch im Datenanalyseplan ergänzt werden?",
+    "text": "Wenn Voraussetzungsprüfungen oder post-hoc Tests durchgeführt werden, müssen diese auch im Datenanalyseplan ergänzt werden?\nGrundsätzlich gilt: Der Datenanalyseplan soll fremden Wissenschaftler:innen aus der Psychologie ermöglichen die Studie und die Datenanalyse ohne weiteren Aufwand nachvollziehen zu können. Dafür sollte auf Vollständigkeit und Genauigkeit geachtet werden. Dementsprechend gilt es, die Voraussetzungsprüfungen entweder komplett wegzulassen oder sie sowohl im Skript als auch im Datenanalyseplan zu ergänzen.",
+    "crumbs": [
+      "FAQ",
+      "3  Datenanalyseplan"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/datenanalyseplan.html#soll-der-abstract-bereits-die-resultate-von-grinschgl-et-al.-2020-erwähnen-oder-offenlassen-welche-resultate-zu-erwarten-sind",
+    "href": "scripts/03_faq/datenanalyseplan.html#soll-der-abstract-bereits-die-resultate-von-grinschgl-et-al.-2020-erwähnen-oder-offenlassen-welche-resultate-zu-erwarten-sind",
+    "title": "3 Datenanalyseplan",
+    "section": "Soll der Abstract bereits die Resultate von Grinschgl et al. (2020) erwähnen oder offenlassen, welche Resultate zu erwarten sind?",
+    "text": "Soll der Abstract bereits die Resultate von Grinschgl et al. (2020) erwähnen oder offenlassen, welche Resultate zu erwarten sind?\nÜblicherweise lässt der Datenanalyseplan die Resultate der beschriebenen Analyse im Abstract noch offen, da diese zu dem Zeitpunkt, zu welchem der Datenanalyseplan erstellt wird, noch nicht bekannt sind. Bei einer Replikation der Originalstudie – wie es hier der Fall ist – können die Ergebnisse aus dieser aber auch bereits genannt werden. Bezüglich der eigenen Datenanalyse sollte wiederum von erwarteten Ergebnissen ausgehen. Da die Analyse der Daten erst nach Verfassen des Datenanalyseplans folgt sind die Resultate bis dahin nicht bekannt.",
+    "crumbs": [
+      "FAQ",
+      "3  Datenanalyseplan"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/faq.html",
+    "href": "scripts/03_faq/faq.html",
+    "title": "FAQ",
+    "section": "",
+    "text": "Hier findest du häufig gestellte Fragen und Antworten. Wir updaten diese Sammlung laufend.",
+    "crumbs": [
+      "FAQ"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/statistic.html",
+    "href": "scripts/03_faq/statistic.html",
+    "title": "4 Statistik",
+    "section": "",
+    "text": "Fragen zu Statistik",
+    "crumbs": [
+      "FAQ",
+      "4  Statistik"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/statistic.html#was-ist-das-partielle-η²-und-wie-unterscheidet-es-sich-von-dem-generalisierten-η²",
+    "href": "scripts/03_faq/statistic.html#was-ist-das-partielle-η²-und-wie-unterscheidet-es-sich-von-dem-generalisierten-η²",
+    "title": "4 Statistik",
+    "section": "Was ist das partielle η² und wie unterscheidet es sich von dem generalisierten η²?",
+    "text": "Was ist das partielle η² und wie unterscheidet es sich von dem generalisierten η²?\nDas generalisierte und partielle η² sind beides Masse, welche den Anteil an erklärter Varianz einer abhängigen Variable angeben. Das generalisierte η² berechnet den Anteil der erklärten Varianz einer abhängigen Variable unter Einbezug der gesamten Varianz, also aller Effekte. Das partielle η² beachtet bei der Berechnung des Anteils an erklärter Varianz für die abhängige Variable nicht die gesamte Varianz, sondern nur jene, welche dem zuvor definierten Effekt zugeschrieben werden kann.\n\n\n\n\n\n\nNote\n\n\n\nWeiterführende Informationen finden sich hier.",
+    "crumbs": [
+      "FAQ",
+      "4  Statistik"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/statistic.html#wozu-muss-sphärizität-gegeben-sein-und-wie-kann-man-diese-testen",
+    "href": "scripts/03_faq/statistic.html#wozu-muss-sphärizität-gegeben-sein-und-wie-kann-man-diese-testen",
+    "title": "4 Statistik",
+    "section": "Wozu muss Sphärizität gegeben sein und wie kann man diese testen?",
+    "text": "Wozu muss Sphärizität gegeben sein und wie kann man diese testen?\nUnter Sphärizität versteht man die Annahme, dass bei Messwiederholungen die Differenzen von zwei beliebigen Messwiederholungen ähnliche Varianzen aufweisen. Dies kann mit dem Mauchly-Test geprüft werden. Laut Nullhypothese sind die entsprechenden Varianzen gleich, laut Alternativhypothese sind die entsprechenden Varianzen unterschiedlich. Dementsprechend spricht ein signifikanter Mauchly-Test für eine Verletzung der Sphärizitätsannahme. In diesem Fall kann auf die Greenhouse-Geisser Korrektur zurückgegriffen werden.",
+    "crumbs": [
+      "FAQ",
+      "4  Statistik"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/statistic.html#was-macht-eine-tukey-korrektur-und-was-sagt-uns-das-ergebnis",
+    "href": "scripts/03_faq/statistic.html#was-macht-eine-tukey-korrektur-und-was-sagt-uns-das-ergebnis",
+    "title": "4 Statistik",
+    "section": "Was macht eine Tukey-Korrektur und was sagt uns das Ergebnis?",
+    "text": "Was macht eine Tukey-Korrektur und was sagt uns das Ergebnis?\nDie Tukey-Korrektur wird angewendet, um im Anschluss an eine signifikante ANOVA die Mittelwertsunterschiede der einzelnen Gruppen unter Kontrolle für multiples Testen einzeln zu untersuchen. Hierdurch wird eine Inflation der falsch-negativen Rate bzw. des p-Wertes vermieden. Bei Verwendung dieses Tests können die Ergebnisse der Mittelwertsvergleiche somit unmittelbar auf ihre Signifikanz hin bewertet werden.",
+    "crumbs": [
+      "FAQ",
+      "4  Statistik"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/statistic.html#wann-benötigt-die-berechnung-einer-anova-einen-wide-datensatz-und-wann-benötigt-die-berechnung-einer-anova-einen-long-datensatz",
+    "href": "scripts/03_faq/statistic.html#wann-benötigt-die-berechnung-einer-anova-einen-wide-datensatz-und-wann-benötigt-die-berechnung-einer-anova-einen-long-datensatz",
+    "title": "4 Statistik",
+    "section": "Wann benötigt die Berechnung einer ANOVA einen wide-Datensatz und wann benötigt die Berechnung einer ANOVA einen long-Datensatz?",
+    "text": "Wann benötigt die Berechnung einer ANOVA einen wide-Datensatz und wann benötigt die Berechnung einer ANOVA einen long-Datensatz?\nIn welchem Format der Datensatz vor der Berechnung einer ANOVA vorliegen muss hängt von der verwendeten ANOVA-Funktion ab und kann nicht pauschal beantwortet werden. Grundsätzlich gilt aber, für eine ANOVA ohne Messwiederholung ist ein wide-Datensatz meist ausreichend. Die Funktion aov_4(), welche bei ANOVAs mit Messwiederholung verwendet werden kann, benötigt eine gesonderte Variable, welche den Zeitpunkt der Messung angibt, sprich das long-Format. Hier ein Beispiel wie die Umwandlug in ein long-Format und eine anschliessende Berechnung von einer ANOVA mit Messwiederholung aussehen könnte:\n\ndata_long &lt;- data_wide |&gt; \n  pivot_longer(\n    cols = c(Spalte1, Spalte2, Spalte3), \n    names_to = \"Hier kommt der Name der Spalte rein, in welcher die früheren Spaltenüberschriften abgelegt sind\", \n    values_to = \"Hier kommt der Name der Spalte rein, in welcher die Werte der entsprechenden früheren Spalten abgelegt sind\"\n  )\n\nafex::aov_4(value ~ treatment + (time | Personenidentifikationscode), data = data_long) # Beispiel mit(!) Messwiederholung\n\n\n\n\n\n\n\nNote\n\n\n\nFür die Funktion aov_4() gibt es aus Statistik-IV von Boris Mayer und Stefan Thoma noch tiefere und beispielhafte Ausführungen.",
+    "crumbs": [
+      "FAQ",
+      "4  Statistik"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/statistic.html#was-wird-bei-einem-levene-test-berechnet-bzw.-geprüft",
+    "href": "scripts/03_faq/statistic.html#was-wird-bei-einem-levene-test-berechnet-bzw.-geprüft",
+    "title": "4 Statistik",
+    "section": "Was wird bei einem Levene-Test berechnet bzw. geprüft?",
+    "text": "Was wird bei einem Levene-Test berechnet bzw. geprüft?\nDer Levene-Test prüft die Varianzhomogenität zwischen Gruppen. Als Nullhypothese gilt hierbei, dass die Varianzen zwischen den Gruppen gleich sind. Als Alternativhypothese gilt, dass die Varianzen zwischen den Gruppen unterschiedlich sind. Dementsprechend besagt ein signifikanter Levene-Test, dass es Varianzunterschiede zwischen den Gruppen gibt und die Annahme der Varianzhomogenität verworfen werden muss.",
+    "crumbs": [
+      "FAQ",
+      "4  Statistik"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/statistic.html#wird-ein-levene-test-für-den-between-faktor-berechnet-und-muss-diese-berechnung-für-jede-abhängige-variable-einzeln-gemacht-werden",
+    "href": "scripts/03_faq/statistic.html#wird-ein-levene-test-für-den-between-faktor-berechnet-und-muss-diese-berechnung-für-jede-abhängige-variable-einzeln-gemacht-werden",
+    "title": "4 Statistik",
+    "section": "Wird ein Levene-Test für den between-Faktor berechnet und muss diese Berechnung für jede abhängige Variable einzeln gemacht werden?",
+    "text": "Wird ein Levene-Test für den between-Faktor berechnet und muss diese Berechnung für jede abhängige Variable einzeln gemacht werden?\nFür beide Fragen gilt: Ja! Der Levene-Test vergleicht die Varianzen von mindestens zwei Gruppen. Dementsprechend kann ein Levene-Test nur für einen between-Faktor durchgeführt werden. Darüber hinaus kann ein einzelner Levene-Test nur die Varianzverteilung einer abhängigen Variable (über alle Gruppen hinweg) betrachten. Daher muss für jede abhängige Variable, für die die Annahme der Varianzhomogenität benötigt wird und infrage steht, ein Levene-Test berechnet werden.",
+    "crumbs": [
+      "FAQ",
+      "4  Statistik"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/statistic.html#ist-vor-der-berechnung-einer-anova-notwendigerweise-ein-levene-test-durchzuführen",
+    "href": "scripts/03_faq/statistic.html#ist-vor-der-berechnung-einer-anova-notwendigerweise-ein-levene-test-durchzuführen",
+    "title": "4 Statistik",
+    "section": "Ist vor der Berechnung einer ANOVA notwendigerweise ein Levene-Test durchzuführen?",
+    "text": "Ist vor der Berechnung einer ANOVA notwendigerweise ein Levene-Test durchzuführen?\nDie Durchführung eines Levene-Tests vor der ANOVA ist dann notwendig, wenn die Varianzhomogenität zwischen Gruppen nicht anderweitig ersichtlich ist. Zeigen die Daten beispielsweise gleich grosse Stichproben und normalverteilte Verteilungen der Werte innerhalb der Gruppen, dann kann von Varianzhomogenität auch ohne den Levene-Test ausgegangen werden. Auf alle Fälle sollte man vor der Datenanalyse festlegen, ob ein Levene Test berechnet wird oder nicht, Und gegebenenfalls ein Verfahren definieren für den Fall das die Varianzhomogenität nicht gegeben ist (z.B. ein nichtparametrisches Verfahren wie die Welch-ANOVA)",
+    "crumbs": [
+      "FAQ",
+      "4  Statistik"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/statistic.html#welche-masse-für-effektstärken-werden-üblicherweise-bei-einer-anova-und-einem-post-hoc-t-test-berichtet",
+    "href": "scripts/03_faq/statistic.html#welche-masse-für-effektstärken-werden-üblicherweise-bei-einer-anova-und-einem-post-hoc-t-test-berichtet",
+    "title": "4 Statistik",
+    "section": "Welche Masse für Effektstärken werden üblicherweise bei einer ANOVA und einem (post-hoc) t-Test berichtet?",
+    "text": "Welche Masse für Effektstärken werden üblicherweise bei einer ANOVA und einem (post-hoc) t-Test berichtet?\nBei einer ANOVA wird im Rahmen des Seminars, sofern nicht anders verlangt, das Effektstärkemass η² berichtet. Bei (post-hoc) t-Tests wird im Rahmen des Seminars, sofern nicht anders verlangt, das Effektstärkemass von Cohens` d verwendet.",
+    "crumbs": [
+      "FAQ",
+      "4  Statistik"
+    ]
+  },
+  {
+    "objectID": "scripts/03_faq/statistic.html#bei-der-analyse-der-internen-konsistenz-mit-der-funktion-alpha-erscheint-die-fehlermeldung-warnung-some-items-were-negatively-correlated-with-the-first-principal-component-and-probably-should-be-reversed.-to-do-this-run-the-function-again-with-the-check.keystrue-option.-was-bedeutet-diese-warnmeldung-und-kann-man-sie-einfach-ignorieren-oder-muss-sie-weiter-berücksichtigt-werden",
+    "href": "scripts/03_faq/statistic.html#bei-der-analyse-der-internen-konsistenz-mit-der-funktion-alpha-erscheint-die-fehlermeldung-warnung-some-items-were-negatively-correlated-with-the-first-principal-component-and-probably-should-be-reversed.-to-do-this-run-the-function-again-with-the-check.keystrue-option.-was-bedeutet-diese-warnmeldung-und-kann-man-sie-einfach-ignorieren-oder-muss-sie-weiter-berücksichtigt-werden",
+    "title": "4 Statistik",
+    "section": "Bei der Analyse der internen Konsistenz mit der Funktion alpha() erscheint die Fehlermeldung: „Warnung: Some items were negatively correlated with the first principal component and probably should be reversed. To do this, run the function again with the ‘check.keys=TRUE’ option“. Was bedeutet diese Warnmeldung und kann man sie einfach ignorieren oder muss sie weiter berücksichtigt werden?",
+    "text": "Bei der Analyse der internen Konsistenz mit der Funktion alpha() erscheint die Fehlermeldung: „Warnung: Some items were negatively correlated with the first principal component and probably should be reversed. To do this, run the function again with the ‘check.keys=TRUE’ option“. Was bedeutet diese Warnmeldung und kann man sie einfach ignorieren oder muss sie weiter berücksichtigt werden?\nDiese Warnmeldung - in Verbindung mit der Funktion alpha() zur Berechnung der internen Konsistenz - weist darauf hin, dass ein Item invers codiert sein könnte, da es nur einen geringen oder sogar negativen Zusammenhang zu den anderen Items aufweist. Dies kann daran liegen, dass das Item den Versuchspersonen invers vorgelegt worden war und lediglich vergessen wurde, die Skala anschliessend erneut zu invertieren. Das Item kann aber auch in die „richtige“ Richtung codiert sein und die Kennwerte des Items erklären sich durch weitere Umstände wie beispielsweise eine kleine Stichprobe. Abhängig davon welcher Fall zutrifft müsste das Item vor der Berechnung der internen Konsistenz entweder noch invertiert oder die Warnmeldung kann ignoriert werden.",
+    "crumbs": [
+      "FAQ",
+      "4  Statistik"
     ]
   }
 ]
