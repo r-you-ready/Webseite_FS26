@@ -33,6 +33,7 @@ jobs:
           packages: |
             rmarkdown
             knitr
+            chattr
 
       - name: Render website
         run: quarto render
