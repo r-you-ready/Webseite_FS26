@@ -4,5 +4,137 @@
   },
   "about.qmd": {
     "about.html": "df4f1cc2"
+  },
+  "hausuebungen.qmd": {
+    "hausuebungen.html": "17c30856"
+  },
+  "scripts/04_misc/Memes.qmd": {
+    "Memes.html": "e50bd55f"
+  },
+  "scripts/04_misc/links_und_ressourcen.qmd": {
+    "links_und_ressourcen.html": "b5785d76"
+  },
+  "scripts/04_misc/front_page.qmd": {
+    "front_page.html": "eb17a367"
+  },
+  "scripts/04_misc/checkliste_abschlussarbeit.qmd": {
+    "checkliste_abschlussarbeit.html": "5f505b3d"
+  },
+  "scripts/04_misc/ChatGPT.qmd": {
+    "ChatGPT.html": "a027002f"
+  },
+  "scripts/04_misc/0_presentation.qmd": {
+    "0_presentation.html": "30680c04"
+  },
+  "scripts/04_misc/about.qmd": {
+    "about.html": "c3a1af8c"
+  },
+  "scripts/04_misc/muddiest_points_2.qmd": {
+    "muddiest_points_2.html": "0e55729d"
+  },
+  "scripts/04_misc/leistungsnachweis.qmd": {
+    "leistungsnachweis.html": "c3c6520e"
+  },
+  "scripts/04_misc/here.qmd": {
+    "here.html": "aa11fe09"
+  },
+  "scripts/04_misc/muddiest_points_3.qmd": {
+    "muddiest_points_3.html": "82284dbd"
+  },
+  "scripts/01_slides/EH_1.qmd": {
+    "EH_1.html": "5561a0af"
+  },
+  "scripts/01_slides/EH_2.qmd": {
+    "EH_2.html": "6f9f6af2"
+  },
+  "scripts/01_slides/EH_3.qmd": {
+    "EH_3.html": "adf72d51"
+  },
+  "scripts/01_slides/EH_7.qmd": {
+    "EH_7.html": "29b465d1"
+  },
+  "scripts/01_slides/EH_6.qmd": {
+    "EH_6.html": "f919eab7"
+  },
+  "scripts/01_slides/EH_4.qmd": {
+    "EH_4.html": "d8e1f042"
+  },
+  "scripts/01_slides/EH_5.qmd": {
+    "EH_5.html": "24d0d2e1"
+  },
+  "scripts/01_slides/EH_8.qmd": {
+    "EH_8.html": "011d17a5"
+  },
+  "scripts/01_slides/EH_9.qmd": {
+    "EH_9.html": "ec994cdb"
+  },
+  "scripts/01_slides/EH_14.qmd": {
+    "EH_14.html": "274a141c"
+  },
+  "scripts/01_slides/EH_12.qmd": {
+    "EH_12.html": "e670f81c"
+  },
+  "scripts/01_slides/EH_13.qmd": {
+    "EH_13.html": "a947fe0d"
+  },
+  "scripts/01_slides/EH_11.qmd": {
+    "EH_11.html": "a944086d"
+  },
+  "scripts/01_slides/EH_10.qmd": {
+    "EH_10.html": "d590d902"
+  },
+  "scripts/03_faq/codebook.qmd": {
+    "codebook.html": "5c5d3185"
+  },
+  "scripts/03_faq/datenanalyseplan.qmd": {
+    "datenanalyseplan.html": "8e26f6f2"
+  },
+  "scripts/03_faq/faq.qmd": {
+    "faq.html": "12842cac"
+  },
+  "scripts/03_faq/fehlermeldungen.qmd": {
+    "fehlermeldungen.html": "9ec65397"
+  },
+  "scripts/03_faq/statistic.qmd": {
+    "statistic.html": "80a9ab58"
+  },
+  "scripts/03_faq/rstudio.qmd": {
+    "rstudio.html": "0c48410f"
+  },
+  "scripts/02_excercises/loesung_4.qmd": {
+    "loesung_4.html": "bd298fe5"
+  },
+  "scripts/02_excercises/loesung_5.qmd": {
+    "loesung_5.html": "75a9cb0f"
+  },
+  "scripts/02_excercises/loesung_7.qmd": {
+    "loesung_7.html": "131bbee3"
+  },
+  "scripts/02_excercises/loesung_6.qmd": {
+    "loesung_6.html": "376da9f1"
+  },
+  "scripts/02_excercises/loesung_2.qmd": {
+    "loesung_2.html": "2be4acb9"
+  },
+  "scripts/02_excercises/loesung_3.qmd": {
+    "loesung_3.html": "66d25036"
+  },
+  "scripts/02_excercises/loesung_1.qmd": {
+    "loesung_1.html": "53150418"
+  },
+  "scripts/02_excercises/Übungen.qmd": {
+    "Übungen.html": "4af6db31"
+  },
+  "scripts/02_excercises/hausuebung_loesung_1.qmd": {
+    "hausuebung_loesung_1.html": "20a1d1ac"
+  },
+  "scripts/02_excercises/hausuebung_loesung_3.qmd": {
+    "hausuebung_loesung_3.html": "b5b2e276"
+  },
+  "scripts/02_excercises/hausuebung_loesung_2.qmd": {
+    "hausuebung_loesung_2.html": "0e13f6cf"
+  },
+  "scripts/03_faq/endabgabe.qmd": {
+    "endabgabe.html": "747e09a7"
   }
 }
