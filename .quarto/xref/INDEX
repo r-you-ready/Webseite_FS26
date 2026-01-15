@@ -136,5 +136,11 @@
   },
   "scripts/03_faq/endabgabe.qmd": {
     "endabgabe.html": "747e09a7"
+  },
+  "scripts/04_misc/requirements.qmd": {
+    "requirements.html": "95d8bbc2"
+  },
+  "scripts/04_misc/index.qmd": {
+    "index.html": "a78cfacf"
   }
 }

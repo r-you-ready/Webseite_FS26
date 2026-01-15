@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R u Ready</title>
+<title>R u Ready - Muddiest Points 3</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -67,6 +121,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 <link rel="stylesheet" href="../../styles/website_styles.css">
@@ -417,18 +500,461 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="-1">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#muddiest-points-3" id="toc-muddiest-points-3" class="nav-link active" data-scroll-target="#muddiest-points-3">Muddiest Points 3</a>
+  <ul class="collapse">
+  <li><a href="#abschlussarbeit" id="toc-abschlussarbeit" class="nav-link" data-scroll-target="#abschlussarbeit"><strong>Abschlussarbeit:</strong></a>
+  <ul class="collapse">
+  <li><a href="#frage-1-datensatz-einlesen" id="toc-frage-1-datensatz-einlesen" class="nav-link" data-scroll-target="#frage-1-datensatz-einlesen"><strong>Frage 1: Datensatz einlesen</strong></a></li>
+  <li><a href="#frage-2-codebook" id="toc-frage-2-codebook" class="nav-link" data-scroll-target="#frage-2-codebook">Frage 2: Codebook</a></li>
+  <li><a href="#frage-3-abbildungentabellen" id="toc-frage-3-abbildungentabellen" class="nav-link" data-scroll-target="#frage-3-abbildungentabellen">Frage 3: Abbildungen/Tabellen</a></li>
+  <li><a href="#frage-4-interpretation" id="toc-frage-4-interpretation" class="nav-link" data-scroll-target="#frage-4-interpretation">Frage 4: Interpretation</a></li>
+  <li><a href="#frage-5-rekodierung-mittlerer-items" id="toc-frage-5-rekodierung-mittlerer-items" class="nav-link" data-scroll-target="#frage-5-rekodierung-mittlerer-items">Frage 5: Rekodierung mittlerer Items</a></li>
+  <li><a href="#frage-6-ordnerstruktur-und-relative-pfade" id="toc-frage-6-ordnerstruktur-und-relative-pfade" class="nav-link" data-scroll-target="#frage-6-ordnerstruktur-und-relative-pfade">Frage 6: Ordnerstruktur und relative Pfade</a></li>
+  </ul></li>
+  <li><a href="#statistik" id="toc-statistik" class="nav-link" data-scroll-target="#statistik">Statistik</a>
+  <ul class="collapse">
+  <li><a href="#frage-7-anovas-und-t-tests" id="toc-frage-7-anovas-und-t-tests" class="nav-link" data-scroll-target="#frage-7-anovas-und-t-tests">Frage 7: ANOVAs und t-Tests</a></li>
+  <li><a href="#frage-8-berechnung-cohens-d-für-2x3-anova" id="toc-frage-8-berechnung-cohens-d-für-2x3-anova" class="nav-link" data-scroll-target="#frage-8-berechnung-cohens-d-für-2x3-anova">Frage 8: Berechnung Cohens d für 2x3 ANOVA</a></li>
+  <li><a href="#frage-10-na.rm-true." id="toc-frage-10-na.rm-true." class="nav-link" data-scroll-target="#frage-10-na.rm-true.">Frage 10: na.rm = true.</a></li>
+  <li><a href="#frage-11-rowmeans-oder-mean" id="toc-frage-11-rowmeans-oder-mean" class="nav-link" data-scroll-target="#frage-11-rowmeans-oder-mean">Frage 11: Rowmeans oder mean:</a></li>
+  <li><a href="#frage-13-tabellen" id="toc-frage-13-tabellen" class="nav-link" data-scroll-target="#frage-13-tabellen">Frage 13: Tabellen</a></li>
+  <li><a href="#frage-14-statistik" id="toc-frage-14-statistik" class="nav-link" data-scroll-target="#frage-14-statistik">Frage 14: Statistik</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../scripts/04_misc/muddiest_points_2.html">Muddiest Points</a></li><li class="breadcrumb-item"><a href="../../scripts/04_misc/muddiest_points_3.html">Muddiest Points 3</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Muddiest Points 3</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="muddiest-points-3" class="level1">
+<h1>Muddiest Points 3</h1>
+<section id="abschlussarbeit" class="level2">
+<h2 class="anchored" data-anchor-id="abschlussarbeit"><strong>Abschlussarbeit:</strong></h2>
+<section id="frage-1-datensatz-einlesen" class="level3">
+<h3 class="anchored" data-anchor-id="frage-1-datensatz-einlesen"><strong>Frage 1: Datensatz einlesen</strong></h3>
+<ul>
+<li><p><em>Ich habe mich gefragt (v.a. auch in Bezug auf unsere spezialisierten Daten), ob man zuerst die einzelnen Dataframes bereinigen muss (v.a. in Bezug auf die duplizierten Zeilen) oder ob mann zuerst einen dat_full erstellen soll und dann diesen bereinigen?</em></p></li>
+<li><p><em>Mir ist nicht ganz klar in welcher Reihenfolge man fehlende Werte, duplizierte Werte und das mergen macht.</em></p></li>
+<li><p><em>Sicherheit im Umgang mit den verschiedenen Schritten der Datenbereinigung</em></p></li>
+</ul>
+<p><strong>Antwort:</strong><br>
+Einige Schritte der Datenaufbereitung sollten vor dem Mergen durchgeführt werden, da das Zusammenführen der Datensätze sonst unnötig kompliziert werden kann. Beispielsweise können Duplikate oder fehlende Werte (NAs) beim Mergen zu Problemen führen und sollten daher idealerweise bereits vorher behandelt werden. Für viele andere Schritte, wie etwa Rekodierungen, spielt es hingegen keine Rolle, ob sie im einzelnen Datensatz oder erst im gemergten Datensatz durchgeführt werden. Es gibt dabei keine festgelegte Reihenfolge, die zwingend eingehalten werden muss. Ob das Vorgehen korrekt war, kann man abschliessend überprüfen, indem man den gemergten Datensatz inspiziert und auf Plausibilität prüft (z. B. ob <em>N</em> = 159).</p>
+<hr>
+</section>
+<section id="frage-2-codebook" class="level3">
+<h3 class="anchored" data-anchor-id="frage-2-codebook">Frage 2: Codebook</h3>
+<ul>
+<li><em>Codebook: Muss es für die einzelnen Datensätze gemacht werden? Ich habe nämlich alles zuerst bereinigt, umgepoolt und dann gemerged und als dat_full.csv abgespeichert. Bedeutet, dass in dat_full keine NAs und revers kodierte Items mehr sind und auch nicht mehr im Codebook wären, sollte dat_full im Codebook verwendet werden müssen (zumind. bei mir). Zudem wurde in dat_full noch mmq_mean hinzugefügt, muss das auch ins Codebook?<br>
+</em><br>
+<strong>Antwort:</strong></li>
+</ul>
+<p>Das Codebook für den gemergten Datensatz ist ausreichend. Reverse-kodierte Items sollten dennoch angegeben werden, wobei im Codebook vermerkt werden sollte, dass diese bereits rekodiert wurden. Wenn keine <code>NAs</code> vorhanden sind müssen diese auch nicht vermerkt werden. Jede Variable sollte im Codebook enthalten sein, einschliesslich zusammengesetzter Variablen wie <code>mmq_mean</code>.</p>
+<hr>
+</section>
+<section id="frage-3-abbildungentabellen" class="level3">
+<h3 class="anchored" data-anchor-id="frage-3-abbildungentabellen">Frage 3: Abbildungen/Tabellen</h3>
+<ul>
+<li><em>Es steht man soll eine Tabelle/Abbildung nach Wahl erstellen. Heisst, wir müssen nicht alle Plots nachmachen?</em></li>
+</ul>
+<p><strong>Antwort:</strong> Eine Tabelle oder eine Abbildung genügt. Ihr müsst nicht alle Plots des Papers nachmachen!</p>
+<hr>
+</section>
+<section id="frage-4-interpretation" class="level3">
+<h3 class="anchored" data-anchor-id="frage-4-interpretation">Frage 4: Interpretation</h3>
+<p><em>Müssen Resultate interpretiert werden und wenn ja, wie müssen diese verschriftlicht werden?</em></p>
+<p><strong>Antwort:</strong> Es werden keine inhaltlichen Interpretationen der Ergebnisse gefordert. Kurze Zusammenfassungen der Resultate direkt nach den jeweiligen Codechunks können jedoch das Verständnis erleichtern und illustrieren, dass ihr die Analysen richtig lesen könnt.</p>
+<p>Zum Beispiel: <em>The one-way ANOVA indicated that there were no significant group differences in this working memory performance measure, F(2, 156) = 0.07, p = 0.929, η² &lt; 0.01.</em></p>
+<hr>
+</section>
+<section id="frage-5-rekodierung-mittlerer-items" class="level3">
+<h3 class="anchored" data-anchor-id="frage-5-rekodierung-mittlerer-items">Frage 5: Rekodierung mittlerer Items</h3>
+<ul>
+<li><em>Wenn man etwas umkodiert (z.B. umgekehrt kodierte Items) und es eine ungerade Anzahl hat, muss man dann das mittlere Item bei der Umkodierung auch angeben (z.B. bei fünf Stufen wäre es die 3, die gleich bleibt - müsste ich das bei der Umkodierung dennoch notieren?)</em></li>
+</ul>
+<p><strong>Antwort:</strong> Nein, solange die Rekodierung klar nachvollziehbar ist ist es nicht zwingend nötig (aber schadet auch nicht).</p>
+<hr>
+</section>
+<section id="frage-6-ordnerstruktur-und-relative-pfade" class="level3">
+<h3 class="anchored" data-anchor-id="frage-6-ordnerstruktur-und-relative-pfade">Frage 6: Ordnerstruktur und relative Pfade</h3>
+<p><em>Ordner- und Pfadstruktur: Wo genau sollten die Quartoskripte relativ zu den eingelesenen Daten abgespeichert werden? -&gt; Wenn man die Quartoskripte im Ordner Grinschgl2020 abspeichert geht das zwar gut, jedoch sind dann die Quartoskripte nicht in einem eignen Ordner. Wenn ich sie in einen eignen Ordner lege, dann stimmt der Pfad aber nicht mehr. Gibt es hier eine gute Lösung?</em></p>
+<p><strong>Antwort:</strong> Öffne die Skripte innerhalb des Projekts. Dann wird der Dateipfad automatisch relativ zum Projektverzeichnis ausgewertet, auch wenn sich die Skripte nicht im gleichen Ordner befinden. Falls dies nicht funktioniert, überprüfe in den Einstellungen, ob die Option „Evaluate chunks in directory“ auf „Project“ gesetzt ist.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/EH_14/Screenshot 2025-12-15 134205.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<hr>
+</section>
+</section>
+<section id="statistik" class="level2">
+<h2 class="anchored" data-anchor-id="statistik">Statistik</h2>
+<section id="frage-7-anovas-und-t-tests" class="level3">
+<h3 class="anchored" data-anchor-id="frage-7-anovas-und-t-tests">Frage 7: ANOVAs und t-Tests</h3>
+<ul>
+<li><p><em>Bitte nochmals die Logik der ANOVA sowohl für <strong>One-way ANOVA</strong> wie v.a. auch <strong>2x3 mixed ANOVA</strong> erklären. Welcher Output liefert nun welche Inhalte? Und welche Codes sind alle wichtig?</em></p></li>
+<li><p><em>Ich finde es schwierig, die Outputs der verschiedenen <strong>Anovas</strong> und <strong>t-tests</strong> zu verstehen.</em></p></li>
+<li><p>Ich würde gerne die <strong>Mixed Anovas</strong> und <strong>t-Tests</strong> noch einmal anschauen, vielleicht einfach noch einmal kurz repetieren, worauf man da bei den Codes und der Interpretation achten muss.</p></li>
+</ul>
+<p><strong>Antwort:</strong></p>
+<p><a href="https://www.youtube.com/watch?v=ITf4vHhyGpc">🌐Erklärvideo ANOVA</a></p>
+<p><a href="https://www.youtube.com/watch?v=4dIYRo5WsIo">🌐Erklärvideo ANOVA + t-Test</a></p>
+<p><a href="http://youtube.com/watch?v=R7xd624pR1A&amp;t=338s">🌐Erklärvideo: <strong>Using Linear Models for t tests and ANOVA, Clearly Explained!!!</strong></a></p>
+<section id="frage-7.1-one-way-anova" class="level4">
+<h4 class="anchored" data-anchor-id="frage-7.1-one-way-anova"><strong>Frage 7.1 One-Way ANOVA:</strong></h4>
+<p>Die ANOVA prüft generell die Frage, ob die beobachtete Variation in den Daten größer ist, als man sie durch Zufall erwarten würde. Der zentrale Gedanke der ANOVA ist, dass Unterschiede zwischen Gruppen dann als bedeutsam gelten, wenn die Gruppenmittelwerte stark voneinander abweichen, während die Streuung innerhalb der Gruppen gering ist, sodass es unwahrscheinlich ist, dass diese Unterschiede nur durch Zufall entstanden sind.</p>
+<p>Dieses Verhältnis wird durch den F-Wert ausgedrückt:</p>
+<p><span class="math inline">\(F = \frac{\text{Varianz zwischen den Gruppen}}{\text{Varianz innerhalb der Gruppen}}\)</span>.</p>
+<p><strong>Die One-Way ANOVA beantwortet die Frage:</strong></p>
+<blockquote class="blockquote">
+<p><em>Unterscheiden sich mehr als zwei Gruppen in einer abhängigen Variable?</em></p>
+</blockquote>
+<p><strong>Beispiel:</strong></p>
+<p>Beispielsweise wird untersucht, ob sich Pinguine in ihrer Schnabellänge zwischen mehreren Gruppen (z. B. Inseln) unterscheiden. Da mehr als zwei Gruppen verglichen werden, ist eine One-Way ANOVA angemessen.</p>
+<p>Da der p-Wert &lt; 0.05 ist, ist die ANOVA signifikant. Das bedeutet, dass sich mindestens zwei der Gruppen signifikant voneinander unterscheiden. Welche Gruppen sich konkret unterscheiden, kann jedoch erst mit Post-hoc-t-Tests überprüft werden.</p>
+<p>Das generalized <code>η²</code> (ges) gibt an, wie viel Varianz der abhängigen Variable durch den Faktor erklärt wird. In diesem Fall erklärt die Gruppenzugehörigkeit (z. B. Spezies) ca. 70 % der Varianz der Schnabellänge.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>model_1 <span class="ot">&lt;-</span> <span class="fu">aov_4</span>(bill_length_mm <span class="sc">~</span> species <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span>id), <span class="at">data =</span> penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Missing values for 2 ID(s), which were removed before analysis:
+272, 4
+Below the first few rows (in wide format) of the removed cases with missing data.
+       id species  .
+# 193 272  Gentoo NA
+# 279   4  Adelie NA</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Contrasts set to contr.sum for the following variables: species</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Anova Table (Type 3 tests)
+
+Response: bill_length_mm
+        num Df den Df    MSE     F     ges                Pr(&gt;F)    
+species      2    339 8.7607 410.6 0.70781 &lt; 0.00000000000000022 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+</section>
+<section id="frage-7.2-t-tests" class="level4">
+<h4 class="anchored" data-anchor-id="frage-7.2-t-tests"><strong>Frage 7.2 t-Tests</strong></h4>
+<p>Der Post-hoc t-Test hier ist die logische Konsequenz aus der signifikanten ANOVA.</p>
+<p>Da es drei Spezies (Gentoo, Chinstrap, Adelie) gibt können wir drei verschiedene Gruppenvergleiche berechnen. Hier zeigen wir ein Beispiel.</p>
+<p>Der t-Test prüft, ob sich die Mittelwerte zweier Gruppen in der abhängigen Variable (Schnabellänge) unterscheiden. Auf Basis von Stichprobendaten wird untersucht, ob sich Pinguine der Spezies Adelie und Chinstrap in ihrer Schnabellänge (bill_length_mm) unterscheiden. Das signifikante Ergebnis (p &lt; 0.05) spricht dafür, dass sich die mittlere Schnabellänge dieser beiden Gruppen auf Populationsebene unterscheidet.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>penguins_filtered <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">!=</span> <span class="st">"Gentoo"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(bill_length_mm <span class="sc">~</span> species, <span class="at">data =</span> penguins_filtered)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  bill_length_mm by species
+t = -21.865, df = 106.97, p-value &lt; 0.00000000000000022
+alternative hypothesis: true difference in means between group Adelie and group Chinstrap is not equal to 0
+95 percent confidence interval:
+ -10.952948  -9.131917
+sample estimates:
+   mean in group Adelie mean in group Chinstrap 
+               38.79139                48.83382 </code></pre>
+</div>
+</div>
+</section>
+<section id="frage-7.3-t-test-notationen" class="level4">
+<h4 class="anchored" data-anchor-id="frage-7.3-t-test-notationen">Frage 7.3 : t-Test Notationen</h4>
+<ul>
+<li><em>Wieso braucht man bei t.test() “~” und nicht “,” bzw. wovon hängt dies ab?</em></li>
+</ul>
+<p><strong>Antwort:</strong> Bei <code>t.test()</code> wird das <code>~</code> verwendet, wenn der Test in der Formel-Schreibweise durchgeführt wird. Diese Schreibweise trennt die abhängige Variable (links vom <code>~</code>) von der Gruppierungsvariable (rechts vom <code>~</code>) und ist typisch für viele statistische Funktionen in R. Sie wird vor allem dann genutzt, wenn die Daten in einem Dataframe vorliegen.</p>
+<p>Ein Komma wird hingegen verwendet, wenn man die beiden Gruppen direkt als separate Vektoren übergibt. Welche Schreibweise man verwendet, hängt also davon ab, wie die Daten strukturiert sind (Dataframe vs.&nbsp;einzelne Vektoren) und welche Schnittstelle die Funktion anbietet.</p>
+<p><strong>Beispiele mit Formelschreibweise:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Datensatz auf zwei Arten beschränken</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>penguins_2 <span class="ot">&lt;-</span> <span class="fu">subset</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  penguins,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Adelie"</span>, <span class="st">"Chinstrap"</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># t-Test mit Formel-Schreibweise</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(flipper_length_mm <span class="sc">~</span> species, <span class="at">data =</span> penguins_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  flipper_length_mm by species
+t = -5.7804, df = 119.68, p-value = 0.00000006049
+alternative hypothesis: true difference in means between group Adelie and group Chinstrap is not equal to 0
+95 percent confidence interval:
+ -7.880530 -3.859244
+sample estimates:
+   mean in group Adelie mean in group Chinstrap 
+               189.9536                195.8235 </code></pre>
+</div>
+</div>
+<p><strong>Mit Komma:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vektoren für die zwei Gruppen</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>adelie_flipper <span class="ot">&lt;-</span> penguins<span class="sc">$</span>flipper_length_mm[</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  penguins<span class="sc">$</span>species <span class="sc">==</span> <span class="st">"Adelie"</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>chinstrap_flipper <span class="ot">&lt;-</span> penguins<span class="sc">$</span>flipper_length_mm[</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  penguins<span class="sc">$</span>species <span class="sc">==</span> <span class="st">"Chinstrap"</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># t-Test mit Vektoren</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(adelie_flipper, chinstrap_flipper)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  adelie_flipper and chinstrap_flipper
+t = -5.7804, df = 119.68, p-value = 0.00000006049
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -7.880530 -3.859244
+sample estimates:
+mean of x mean of y 
+ 189.9536  195.8235 </code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="frage-7.2-anova" class="level4">
+<h4 class="anchored" data-anchor-id="frage-7.2-anova"><strong>Frage 7.2 ANOVA:</strong></h4>
+<p>Die 2×3 ANOVA im Grinschgl et al.&nbsp;(2021) Paper beantwortet die folgenden Fragen:<br>
+Gibt es Unterschiede zwischen den Feedbackgruppen, gibt es Veränderungen über die Zeit (<code>Pre1</code> vs.&nbsp;<code>Pre4</code>), und unterscheiden sich diese zeitlichen Veränderungen zwischen den Gruppen (<code>above</code> vs.&nbsp;<code>control</code> vs.&nbsp;<code>below</code>)?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>mixed_anova <span class="ot">&lt;-</span> <span class="fu">aov_4</span>(rating <span class="sc">~</span> group_all <span class="sc">+</span> (time_rating <span class="sc">|</span> code), <span class="at">data =</span> dat_long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Converting to factor: group_all</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Contrasts set to contr.sum for the following variables: group_all</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mixed_anova)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Univariate Type III Repeated-Measures ANOVA Assuming Sphericity
+
+                      Sum Sq num Df Error SS den Df  F value
+(Intercept)           8198.9      1   500.58    156 2555.113
+group_all              126.7      2   500.58    156   19.736
+time_rating             42.0      1   288.70    156   22.668
+group_all:time_rating   74.4      2   288.70    156   20.090
+                                     Pr(&gt;F)    
+(Intercept)           &lt; 0.00000000000000022 ***
+group_all                     0.00000002286 ***
+time_rating                   0.00000436406 ***
+group_all:time_rating         0.00000001724 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>Der signifikante Haupteffekt der Feedbackgruppe (<code>group_all</code>) zeigt, dass sich die mittleren Ratings zwischen den Gruppen unterscheiden, unabhängig vom Zeitpunkt der Messung.</p>
+<p>Der signifikante Haupteffekt der Feedbackgruppe (<code>group_all</code>) zeigt, dass sich die mittleren Ratings zwischen den Gruppen unterscheiden, unabhängig vom Zeitpunkt der Messung.</p>
+<p>Der signifikante Interaktionseffekt zeigt, dass sich die Veränderung der Ratings über die Zeit zwischen den Feedbackgruppen unterscheidet. 👉Der Effekt der Zeit ist <strong>nicht für alle Gruppen gleich.</strong></p>
+<hr>
+</section>
+</section>
+<section id="frage-8-berechnung-cohens-d-für-2x3-anova" class="level3">
+<h3 class="anchored" data-anchor-id="frage-8-berechnung-cohens-d-für-2x3-anova">Frage 8: Berechnung Cohens d für 2x3 ANOVA</h3>
+<ul>
+<li><em>bitte Berechnung von Cohens d erneut für spezifisch 2x3 mixed ANOVA erklären. Hier sehe ich weder in den Hands On noch in den Foliensätze einen passenden Code, der bei mir funktioniert.</em></li>
+</ul>
+<p><strong>Antwort:</strong> Cohen’s d wird für die Post-hoc-t-Tests berechnet, nicht für die 2×3-ANOVA selbst. (Für die ANOVA selbst berechnen wir Eta2). Cohen’s d ist ein Effektstärkenmaß, das angibt, wie groß der Unterschied zwischen zwei Gruppen ist, unabhängig von der Stichprobengröße. Hier ein Beispiel aus den Hands On Übungen. ​​</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>dat_full_below_above <span class="ot">&lt;-</span> dat_full <span class="sc">|&gt;</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(group_all <span class="sc">!=</span> <span class="st">"control"</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>dat_full_below_above<span class="sc">$</span>group_all <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(dat_full_below_above<span class="sc">$</span>group_all)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(pre4 <span class="sc">~</span> group_all, <span class="at">data =</span> dat_full_below_above, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Two Sample t-test
+
+data:  pre4 by group_all
+t = 7.9845, df = 104, p-value = 0.000000000001991
+alternative hypothesis: true difference in means between group above and group below is not equal to 0
+95 percent confidence interval:
+ 2.025170 3.363509
+sample estimates:
+mean in group above mean in group below 
+           5.966038            3.271698 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>effsize<span class="sc">::</span><span class="fu">cohen.d</span>(pre4 <span class="sc">~</span> group_all, <span class="at">data =</span> dat_full_below_above)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Cohen's d
+
+d estimate: 1.551045 (large)
+95 percent confidence interval:
+   lower    upper 
+1.111706 1.990383 </code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="frage-10-na.rm-true." class="level3">
+<h3 class="anchored" data-anchor-id="frage-10-na.rm-true.">Frage 10: na.rm = true.</h3>
+<ul>
+<li><em>Was macht es aus, dass man explizit na.rm = TRUE bei mean() und sd() angibt</em></li>
+</ul>
+<p><strong>Antwort:</strong> Mittelwerte und Standardabweichungen können nicht korrekt berechnet werden, wenn sich fehlende Werte (<code>NAs</code>) in den Daten befinden. Mit <code>na.rm = TRUE</code> werden diese fehlenden Werte bei der Berechnung ausgeschlossen. Wurden die <code>NAs</code> bereits zuvor bereinigt, ist dieser Befehl zwar redundant, schadet jedoch nicht.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="cn">NA</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.5</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="frage-11-rowmeans-oder-mean" class="level3">
+<h3 class="anchored" data-anchor-id="frage-11-rowmeans-oder-mean">Frage 11: Rowmeans oder mean:</h3>
+<ul>
+<li><em>Woher weiss man, ob man rowMeans() und(/oder) mean() anwenden soll?</em></li>
+</ul>
+<p><code>rowMeans(df)</code> berechnet die Zeilenmittelwerte, also den Mittelwert pro Zeile über alle Spalten hinweg.<br>
+In einem Wide-Datensatz entspricht das typischerweise dem Mittelwert pro Person über mehrere Variablen / Messungen.</p>
+<p><code>mean(df$V1)</code> berechnet den Mittelwert einer einzelnen Spalte (<code>V1</code>) über alle Zeilen hinweg.<br>
+Das entspricht dem Mittelwert einer Variable über alle Personen</p>
+<p><code>rowMeans</code> bietet sich also dafür an z.B. Skalenwerte zu berechnen (z.B. Durschnitt mehrerer Skalenitems) zu berechnen, während <code>mean</code> besser für Durschnittswerte über das gesamte Sample geeignet ist.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>V1</th>
+<th>V2</th>
+<th>V3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>5</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>8</td>
+<td>9</td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">V1 =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">7</span>),</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">V2 =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">8</span>),</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">V3 =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">9</span>)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Zeilenmittelwerte (Mittelwert pro Zeile über V1–V3)</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="fu">rowMeans</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2 5 8</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mittelwert über Variable</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>((df<span class="sc">$</span>V1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="frage-13-tabellen" class="level3">
+<h3 class="anchored" data-anchor-id="frage-13-tabellen">Frage 13: Tabellen</h3>
+<ul>
+<li><em>Mir ist noch nicht richtig klar, wie man APA konforme ANOVA Tabellen erzeugt, die man gerade abspeichern kann und dann in eine Word Datei einfügen kann. Z.B für eine dreifaktorielle ANOVA?</em></li>
+</ul>
+<p><strong>Antwort:</strong> Tabellen für ANOVAs haben wir nicht behandelt. In der Praxis werden ANOVAs meist auch nicht in Tabellenform berichtet, sondern direkt im Text. Es ist jedoch möglich, APA-konforme ANOVA-Tabellen mit Packages <code>apaTables</code> wie <a href="https://cran.r-project.org/web/packages/papaja/refman/papaja.html#arrange_anova">Papaja</a> zu erstellen.</p>
+<p>Beispiel aus <span class="citation" data-cites="grinschgl2021">Grinschgl et al. (<a href="#ref-grinschgl2021" role="doc-biblioref">2021</a>)</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(apaTables)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>model_1 <span class="ot">&lt;-</span> <span class="fu">aov</span>(bill_length_mm <span class="sc">~</span> island <span class="sc">+</span> sex <span class="sc">+</span> species, <span class="at">data =</span> penguins_filtered)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="fu">apa.aov.table</span>(</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">lm_output =</span> model_1,</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename  =</span> <span class="st">"anova_table.doc"</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+ANOVA results using bill_length_mm as the dependent variable
+ 
+
+   Predictor       SS  df       MS       F    p partial_eta2 CI_90_partial_eta2
+ (Intercept) 50463.39   1 50463.39 9751.90 .000                                
+      island    10.22   2     5.11    0.99 .374          .01         [.00, .04]
+         sex   685.30   1   685.30  132.43 .000          .39         [.30, .46]
+     species  3254.78   1  3254.78  628.98 .000          .75         [.71, .78]
+       Error  1081.52 209     5.17                                             
+
+Note: Values in square brackets indicate the bounds of the 90% confidence interval for partial eta-squared </code></pre>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/EH_14/aov_table.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<hr>
+</section>
+<section id="frage-14-statistik" class="level3">
+<h3 class="anchored" data-anchor-id="frage-14-statistik">Frage 14: Statistik</h3>
+<ul>
+<li><em>Besseres Verständnis dafür, welche statistischen Tests in welcher Situation angemessen sind</em></li>
+</ul>
+<p><strong>Antwort:</strong> Sprengt hier leider den Rahmen. Wir verweisen hier gerne auf den <a href="https://www.methodenberatung.uzh.ch/de/datenanalyse_spss.html">Statistikbaum der UZH</a>. Jedoch kann auch dieser eine tiefergehende Auseinandersetzung mit der Fragestellung und dem Datenformat nicht ersetzen! Für spezifische Fragen zu diesem Thema, kann auch gerne die Methodenberatung genutzt werden!</p>
 
 
 
-</main> <!-- /main -->
+</section>
+</section>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-grinschgl2021" class="csl-entry" role="listitem">
+Grinschgl, Sandra, Hauke S. Meyerhoff, Stephan Schwan, and Frank Papenmeier. 2021. <span>“From Metacognitive Beliefs to Strategy Selection: Does Fake Performance Feedback Influence Cognitive Offloading?”</span> <em>Psychological Research</em> 85 (7): 2654–66. <a href="https://doi.org/10.1007/s00426-020-01435-9">https://doi.org/10.1007/s00426-020-01435-9</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

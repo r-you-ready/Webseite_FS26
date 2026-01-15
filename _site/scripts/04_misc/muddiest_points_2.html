@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R u Ready</title>
+<title>R u Ready - Muddiest Points 2</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -417,16 +451,301 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="-1">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#muddiest-points-session-2" id="toc-muddiest-points-session-2" class="nav-link active" data-scroll-target="#muddiest-points-session-2">Muddiest Points – Session 2</a>
+  <ul class="collapse">
+  <li><a href="#frage-1-datensatz-einlesen---zusätzliche-spalte" id="toc-frage-1-datensatz-einlesen---zusätzliche-spalte" class="nav-link" data-scroll-target="#frage-1-datensatz-einlesen---zusätzliche-spalte"><strong>Frage 1: Datensatz einlesen - zusätzliche Spalte</strong></a></li>
+  <li><a href="#frage-2-relative-pfade" id="toc-frage-2-relative-pfade" class="nav-link" data-scroll-target="#frage-2-relative-pfade"><strong>Frage 2: Relative Pfade</strong></a></li>
+  <li><a href="#frage-3-verschachtelung-und-across" id="toc-frage-3-verschachtelung-und-across" class="nav-link" data-scroll-target="#frage-3-verschachtelung-und-across"><strong>Frage 3: Verschachtelung und Across</strong></a></li>
+  <li><a href="#frage-4-dataframe-oder-vektor" id="toc-frage-4-dataframe-oder-vektor" class="nav-link" data-scroll-target="#frage-4-dataframe-oder-vektor"><strong>Frage 4: Dataframe oder Vektor</strong></a></li>
+  <li><a href="#frage-5-datenstrukturen" id="toc-frage-5-datenstrukturen" class="nav-link" data-scroll-target="#frage-5-datenstrukturen"><strong>Frage 5: Datenstrukturen</strong></a></li>
+  <li><a href="#frage-6-allgemeine-fehler" id="toc-frage-6-allgemeine-fehler" class="nav-link" data-scroll-target="#frage-6-allgemeine-fehler"><strong>Frage 6: Allgemeine Fehler</strong></a></li>
+  <li><a href="#frage-7-einlesen-speichern-und-organisieren" id="toc-frage-7-einlesen-speichern-und-organisieren" class="nav-link" data-scroll-target="#frage-7-einlesen-speichern-und-organisieren"><strong>Frage 7: Einlesen speichern und Organisieren</strong></a></li>
+  <li><a href="#frage-8-wide---long" id="toc-frage-8-wide---long" class="nav-link" data-scroll-target="#frage-8-wide---long"><strong>Frage 8: Wide - Long</strong></a></li>
+  <li><a href="#frage-9-class-attributes-und-table" id="toc-frage-9-class-attributes-und-table" class="nav-link" data-scroll-target="#frage-9-class-attributes-und-table"><strong>Frage 9: Class, Attributes, und Table</strong></a></li>
+  <li><a href="#frage-10-nachhaltige-anpassungen-datensatz" id="toc-frage-10-nachhaltige-anpassungen-datensatz" class="nav-link" data-scroll-target="#frage-10-nachhaltige-anpassungen-datensatz"><strong>Frage 10: Nachhaltige Anpassungen Datensatz</strong></a></li>
+  <li><a href="#frage-11-group_by" id="toc-frage-11-group_by" class="nav-link" data-scroll-target="#frage-11-group_by">Frage 11: Group_by</a></li>
+  <li><a href="#frage-12-read_delim-read_csv-write.csv" id="toc-frage-12-read_delim-read_csv-write.csv" class="nav-link" data-scroll-target="#frage-12-read_delim-read_csv-write.csv">Frage 12: Read_delim, read_csv, write.csv</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Muddiest Points 2</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
+
+
+<section id="muddiest-points-session-2" class="level2">
+<h2 class="anchored" data-anchor-id="muddiest-points-session-2">Muddiest Points – Session 2</h2>
+<section id="frage-1-datensatz-einlesen---zusätzliche-spalte" class="level3">
+<h3 class="anchored" data-anchor-id="frage-1-datensatz-einlesen---zusätzliche-spalte"><strong>Frage 1: Datensatz einlesen - zusätzliche Spalte</strong></h3>
+<p><em>Bei mir gibt es beim Einlesen des Datensatzes immer noch eine zusätzliche Spalte, welche nochmal durchnummeriert ist (also wie eine ID, aber ohne Namen). Wie lese ich den Datensatz richtig ein, damit ich diese Spalte nicht immer noch zusätzlich löschen muss?</em></p>
+<p><strong>Antwort:</strong><br>
+Wahrscheinlich hast du beim <strong>Speichern</strong> der Daten mit <code>write.csv()</code> das Argument <code>row.names</code> nicht gesetzt. Wenn du <code>row.names = FALSE</code> angibst, entsteht diese zusätzliche Spalte nicht. Genauere Erklärung findest du <a href="https://r-you-ready.github.io/HS2025/EH_8-PSY-016893.html?q=rowname#/nachtrag-row.names-false">hier</a>. Das Problem liegt also vermutlich nicht am Einlesen der Daten, sondern daran wie du die Daten abgespeichert hast. Wenn dem nicht so ist - bitte komm noch mal auf uns zu!</p>
+<hr>
+</section>
+<section id="frage-2-relative-pfade" class="level3">
+<h3 class="anchored" data-anchor-id="frage-2-relative-pfade"><strong>Frage 2: Relative Pfade</strong></h3>
+<p><em>Manchmal sind mir die Pfade, die ich beim Einlesen und Abspeichern einer Datei angeben muss, nicht klar. Die kürzere Version funktioniert oft nicht, deshalb muss ich immer den ganzen Pfad eingeben.</em></p>
+<p><strong>Antwort:</strong><br>
+Wenn relative Pfade nicht funktionieren, überprüfe zuerst, ob du dein Projekt korrekt geöffnet hast. Falls das Problem bleibt, kannst du mit <code>getwd()</code> dein aktuelles Arbeitsverzeichnis ausgeben lassen. Dieses sollte auf deinen Projektordner zeigen.</p>
+<p><strong>Wenn das nicht funktionieren sollte prüfe ob du diese Einstellung unter “Tools - Global Options” vorgenommen hast:</strong> Evaluate Chunks in directory: Projekt</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/EH_10/Global-ops.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p><strong>Weitere Möglichkeiten:</strong></p>
+<p>Wenn du dich zum Beispiel im Ordner <code>grinschgl2020/code/</code> befindest, aber eine Datei aus einem übergeordneten Ordner einlesen möchtest (z. B. <code>grinschgl2020/data/</code>), kannst du beim Einlesen <code>..</code> verwenden. Damit geht R eine Ebene nach oben, und relative Pfade funktionieren wie erwartet.</p>
+<p>Beispiel:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Wir befinden uns in: grinschgl2020/code/</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Eine Ebene nach oben gehen (..) und in den data-Ordner wechseln</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>daten <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"../data/raw/daten_roh.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="frage-3-verschachtelung-und-across" class="level3">
+<h3 class="anchored" data-anchor-id="frage-3-verschachtelung-und-across"><strong>Frage 3: Verschachtelung und Across</strong></h3>
+<p><em>Einige Funktionen wie <code>across()</code> werden in anderen Funktionen verschachtelt verwendet und brauchen zusätzliche Argumente. Die Logik der Verschachtelung ist mir noch nicht klar.</em></p>
+<p><strong>Antwort:</strong><br>
+Funktionen wie <code>across()</code> werden verschachtelt, weil sie nur innerhalb von dplyr-Funktionen wie <code>mutate()</code> oder <code>summarise()</code> arbeiten. Die äussere Funktion bestimmt, was passieren soll (z. B. Spalten verändern). <code>across()</code> legt dann fest, <strong>welche Spalten</strong> betroffen sind und <strong>welche Transformation</strong> angewendet wird. Deshalb braucht <code>across()</code> Argumente wie <code>.cols</code> und <code>.fns</code>. Die äussere Funktion gibt den Rahmen vor, <code>across()</code> steuert die konkrete Operation.</p>
+<p>Beispiel:</p>
+<p><code>across()</code> hat zwei wichtige Argumente:</p>
+<ul>
+<li><p><strong>.cols</strong> → <em>Welche Spalten sollen ausgewählt werden?</em><br>
+Im Beispiel: alle Spalten, die auf <strong>“_r”</strong> enden. Across geht wert für wert durch diese Spalten</p></li>
+<li><p><strong>.fns</strong> → <em>Welche Operation soll auf jeden einzelnen Wert dieser Spalten angewendet werden?</em><br>
+Im Beispiel: Für jeden Wert wird <strong>6 – Wert</strong> berechnet (Umkehrkodierung).</p></li>
+<li><p>Das <code>.x</code> steht für den aktuellen Wert durch den across durchgeht. Manchmal wird auch nur ein Punkt ausgeschrieben da beide Schreibweisen funktionieren.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data_reversed <span class="ot">&lt;-</span> data_numeric <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">ends_with</span>(<span class="st">"_r"</span>), <span class="sc">~</span> <span class="dv">6</span> <span class="sc">-</span> .x) <span class="co">#~ 6 - . --&gt; Für jede wert der col -6 </span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="frage-4-dataframe-oder-vektor" class="level3">
+<h3 class="anchored" data-anchor-id="frage-4-dataframe-oder-vektor"><strong>Frage 4: Dataframe oder Vektor</strong></h3>
+<p><em>Ich habe manchmal ein Data Frame an eine Funktion übergeben, obwohl diese einen Vektor erwartet, oder umgekehrt. Mir ist noch nicht klar, welche Funktionen Vektoren und welche Data Frames erwarten.</em></p>
+<p><em>Gibt es irgendeine “Merkhilfe” um zu wissen bei welchen Packages/ Funktionen ich die Variablen auf welche Art auflisten muss?&nbsp;–&gt; Also ob mit “Variable” oder c(Variable)?</em></p>
+<p><strong>Antwort:</strong><br>
+Es gibt keine feste Regel, aber die Hilfeseite (<code>?funktion</code>) zeigt immer, welcher Datentyp erwartet wird. Grundsätzlich gilt: Funktionen, die Spaltenweise etwas berechnen (z. B. <code>mean</code>, <code>sum</code>, <code>skew</code>), erwarten Vektoren – oft extrahiert man diese mit <code>$</code> aus einen Dataframe.<br>
+Funktionen, die Daten transformieren (<code>summarise</code>, <code>mutate</code>, <code>filter</code>, <code>select</code>), erwarten dagegen Data Frames, da sie auf mehreren Variablen gleichzeitig arbeiten.</p>
+<p>Das <strong>c</strong> bei Vektoren steht für <em>concatenate</em> und wird verwendet, wenn wir mit Vektoren arbeiten. Wenn nur ein Element im Vektor vorhanden ist, brauchen wir kein <code>c()</code> (Skalar). Sobald mehrere Elemente enthalten sind, benötigen wir <code>c()</code>.</p>
+<hr>
+</section>
+<section id="frage-5-datenstrukturen" class="level3">
+<h3 class="anchored" data-anchor-id="frage-5-datenstrukturen"><strong>Frage 5: Datenstrukturen</strong></h3>
+<p><em>Ich bin mir noch unsicher darin, wann bestimmte Datenstrukturen notwendig sind – zum Beispiel die Umwandlung von Variablen in Faktoren.</em></p>
+<p><strong>Antwort:</strong><br>
+Viele Transformationen sind notwendig, weil statistische Funktionen bestimmte Datentypen voraussetzen. Die ANOVA etwa benötigt Faktoren, wenn Gruppen verglichen werden sollen, damit R die Gruppen-Variable als kategorial erkennt. Solche Transformationen sind also Teil der korrekten Vorbereitung der Daten. Wenn du z.B. eine ANOVA durchführst und vergisst die Gruppen-Variable als Faktor umzuwandeln, bekommst du eine Warnung. Durch diese erkennst du dann, dass ein Faktor benötigt wird - es ist also nicht allzu schlimm, wenn du die Umwandlung zunächst verpasst hast.</p>
+<p>Es ist eine gute Faustregel, Variablen in Faktoren umzuwandeln, wenn sie klar kategoriale Gruppen darstellen – zum Beispiel eine Gruppenzugehörigkeit wie “above”, “below” oder “control”.</p>
+<hr>
+</section>
+<section id="frage-6-allgemeine-fehler" class="level3">
+<h3 class="anchored" data-anchor-id="frage-6-allgemeine-fehler"><strong>Frage 6: Allgemeine Fehler</strong></h3>
+<p><em>Ich wäre froh, wenn wir allgemeine Fehler beim Codieren durchgehen könnten – also häufige Syntaxfehler und worauf man achten sollte.</em></p>
+<p><strong>Antwort:</strong><br>
+(Dieser Punkt ist als Wunsch notiert.)</p>
+<hr>
+</section>
+<section id="frage-7-einlesen-speichern-und-organisieren" class="level3">
+<h3 class="anchored" data-anchor-id="frage-7-einlesen-speichern-und-organisieren"><strong>Frage 7: Einlesen speichern und Organisieren</strong></h3>
+<p><em>Daten korrekt einlesen, abspeichern, und im Projektkontext richtig organisieren. / Abspeichern der Daten, gute Ordnerstruktur? Das ist nur ein “kleiner” Punkt, aber ich habe immer ein bisschen ein Durcheinander, wie ich Skripts und Projekte am besten abspeichere, damit auch immer alles funktioniert bei der Analyse. Oft habe ich bspw. zu lange Dateipfade</em></p>
+<p><strong>Antwort:</strong><br>
+Grundsätzlich gilt: Alle <strong>Rohdaten</strong> werden im <strong>raw/</strong>-Ordner gespeichert (und <strong>niemals überschrieben</strong>). Diese Daten werden dann im <em>processing</em>-Skript bereinigt und verarbeitet. Die verarbeiteten Datensaetze werden anschliessend mit <code>write.csv()</code> im <strong>processed/</strong>-Ordner gespeichert.</p>
+<p>Im <em>analysis</em>-Skript werden <strong>keine Bereinigungen</strong> mehr vorgenommen, sondern nur noch die eigentlichen Analyseschritte durchgefuehrt (mit Ausnahme kleiner Anpassungen wie das Setzen von Faktoren, da diese Aenderungen nicht gespeichert werden).</p>
+<p>Diese Struktur orientiert sich am <strong>PsychDS-Standard</strong>.</p>
+<p><strong>Hausübungen und Hands on:</strong> Da wir mit vielen verschiedenen Datensätzen und Skripten arbeiten, ist es sinnvoll, eine klare Ordnerstruktur zu verwenden, zum Beispiel einen Ordner für Skripte und einen für Daten. Man kann sich dabei an der PsychDS-Struktur orientieren und diese übernehmen, auch wenn wir nicht mit den <em>dat_full</em>-Daten arbeiten.</p>
+<p>Zu den Pfaden: Achte darauf, relative Pfade zu verwenden. Lange Pfade sind grundsätzlich kein Problem, solange sie relativ, nachvollziehbar und konsistent aufgebaut sind.</p>
+<hr>
+</section>
+<section id="frage-8-wide---long" class="level3">
+<h3 class="anchored" data-anchor-id="frage-8-wide---long"><strong>Frage 8: Wide - Long</strong></h3>
+<p><em>Wide to long: Weshalb ist das notwendig, weshalb kann man nicht beim einen Format bleiben?</em></p>
+<p><strong>Antwort:</strong><br>
+Viele Funktionen setzen ein bestimmtes Datenformat voraus. Repeated-Measures-Funktionen sind das beste Beispiel – sie benötigen Long-Format, weil jede Zeile eine Beobachtung darstellt. Das wird in den nächsten Wochen noch verständlicher - wenn wir dann Berechnungen mit dem Wide als auch Long Format durchführen.</p>
+<hr>
+</section>
+<section id="frage-9-class-attributes-und-table" class="level3">
+<h3 class="anchored" data-anchor-id="frage-9-class-attributes-und-table"><strong>Frage 9: Class, Attributes, und Table</strong></h3>
+<p><em>Was ist der Unterschied zwischen <code>class()</code>, <code>attributes()</code> und <code>table()</code>?</em></p>
+<p><strong>Antwort:</strong></p>
+<ul>
+<li><strong>class()</strong> zeigt den Typ eines Objekts</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">class</span>(penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "tbl_df"     "tbl"        "data.frame"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">class</span>(penguins<span class="sc">$</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "factor"</code></pre>
+</div>
+</div>
+<ul>
+<li><strong>table()</strong> zeigt Häufigkeiten</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(penguins<span class="sc">$</span>island)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+   Biscoe     Dream Torgersen 
+      168       124        52 </code></pre>
+</div>
+</div>
+<ul>
+<li><p><strong>attributes()</strong> zeigt die Attribute eines Objekts</p>
+<ul>
+<li><p>bei Data Frames: Variablennamen, rownames, Datentypen</p></li>
+<li><p>bei Faktoren: Levels und Klasse</p></li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attributes</span>(penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$class
+[1] "tbl_df"     "tbl"        "data.frame"
+
+$row.names
+  [1]   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18
+ [19]  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35  36
+ [37]  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53  54
+ [55]  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71  72
+ [73]  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89  90
+ [91]  91  92  93  94  95  96  97  98  99 100 101 102 103 104 105 106 107 108
+[109] 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126
+[127] 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144
+[145] 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162
+[163] 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180
+[181] 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198
+[199] 199 200 201 202 203 204 205 206 207 208 209 210 211 212 213 214 215 216
+[217] 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231 232 233 234
+[235] 235 236 237 238 239 240 241 242 243 244 245 246 247 248 249 250 251 252
+[253] 253 254 255 256 257 258 259 260 261 262 263 264 265 266 267 268 269 270
+[271] 271 272 273 274 275 276 277 278 279 280 281 282 283 284 285 286 287 288
+[289] 289 290 291 292 293 294 295 296 297 298 299 300 301 302 303 304 305 306
+[307] 307 308 309 310 311 312 313 314 315 316 317 318 319 320 321 322 323 324
+[325] 325 326 327 328 329 330 331 332 333 334 335 336 337 338 339 340 341 342
+[343] 343 344
+
+$names
+[1] "species"           "island"            "bill_length_mm"   
+[4] "bill_depth_mm"     "flipper_length_mm" "body_mass_g"      
+[7] "sex"               "year"             </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attributes</span>(penguins<span class="sc">$</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$levels
+[1] "Adelie"    "Chinstrap" "Gentoo"   
+
+$class
+[1] "factor"</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="frage-10-nachhaltige-anpassungen-datensatz" class="level3">
+<h3 class="anchored" data-anchor-id="frage-10-nachhaltige-anpassungen-datensatz"><strong>Frage 10: Nachhaltige Anpassungen Datensatz</strong></h3>
+<p><em>Wie kann ich nachhaltige Anpassungen an Variablen im Datensatz vornehmen?</em></p>
+<p><strong>Antwort:</strong></p>
+<p>Um Änderungen im Datensatz festzuhalten, muss eine Zuweisung mit <code>&lt;-</code> vorgenommen werden. Wenn ein Befehl ohne Zuweisung ausgeführt wird, wird das Resultat nicht im Environment abgespeichert. Wenn ein Objekt im Environment ist, heisst das nicht, dass dieses automatisch als z. B. CSV gespeichert wird. Dafür sollte es mit einer passenden Write-Funktion gespeichert werden. Im Processing-Skript führt ihr alle Aufbereitungsschritte (z. B. Variablen umbenennen) durch und speichert am Ende den bereinigten Datensatz mit <code>write.csv()</code> oder einer ähnlichen Funktion ab, damit alle Änderungen nachhaltig gesichert sind.</p>
+<p><strong>Beispiel –&gt; Keine Veränderung am Datensatzt weil keine Zuweisung</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span>  </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mean_bill_length =</span> <span class="fu">mean</span>(bill_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Beispiel mit Zuweisung: Gleicher Datensatz wird verändert</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mean_bill_length =</span> <span class="fu">mean</span>(bill_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="frage-11-group_by" class="level3">
+<h3 class="anchored" data-anchor-id="frage-11-group_by">Frage 11: Group_by</h3>
+<p><em>Für mich persönlich ist die group_by() Funktion irgendwie nicht ganz klar. Die Vorstellung, wie die Daten sortiert werden, ist nicht so intuitiv.</em>&nbsp;</p>
+<p><strong>Antwort:</strong></p>
+<p>Für viele ist die Funktion anfangs nicht intuitiv. Die Vorstellung, wie die Daten intern in Gruppen „aufgeteilt“ werden, ohne dass sie tatsächlich sortiert oder neu angeordnet werden, fühlt sich ungewohnt an. Das ist völlig normal – die Logik hinter <code>group_by()</code> entwickelt sich meist erst, wenn man sieht, wie sie gemeinsam mit Funktionen wie <code>summarise()</code> oder <code>mutate()</code> wirkt. Kategoriale Daten werden in ihre kategorien augeteilt, kontinuierliche Daten werden in ihre einzigartigen werte gruppiert.</p>
+<p><strong>Beispiel Kontinuierliche Variable:</strong> Gruppe für jedes Gewicht</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>penguins_summary <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(body_mass_g) <span class="sc">|&gt;</span> </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_bill_length =</span> <span class="fu">mean</span>(bill_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>penguins_summary[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 2
+   body_mass_g mean_bill_length
+         &lt;int&gt;            &lt;dbl&gt;
+ 1        2700             46.9
+ 2        2850             36.4
+ 3        2900             37.4
+ 4        2925             37.9
+ 5        2975             37.5
+ 6        3000             37.2
+ 7        3050             35.6
+ 8        3075             37.7
+ 9        3100             36  
+10        3150             36.6</code></pre>
+</div>
+</div>
+<p><strong>Beispiel kategoriale Variable</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>penguins_summary_2 <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(island) <span class="sc">|&gt;</span> </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_bill_length =</span> <span class="fu">mean</span>(bill_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>penguins_summary_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  island    mean_bill_length
+  &lt;fct&gt;                &lt;dbl&gt;
+1 Biscoe                45.3
+2 Dream                 44.2
+3 Torgersen             39.0</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="frage-12-read_delim-read_csv-write.csv" class="level3">
+<h3 class="anchored" data-anchor-id="frage-12-read_delim-read_csv-write.csv">Frage 12: Read_delim, read_csv, write.csv</h3>
+<p><em>Ich habe auch ein bisschen ein Durcheinander, wann die Daten am besten wie abgespeichert/eingelesen werden. Also mit read_delim(), row.names = FALSE, csv2 vs csv usw.</em>&nbsp;</p>
+<ul>
+<li><p><strong>Einlesen:</strong><br>
+Kurz zusammengefasst: Am einfachsten ist es, zunächst die Point-and-Click-Oberfläche in RStudio zu nutzen und die Optionen so einzustellen, dass die Daten sinnvoll eingelesen werden, und anschliessend den generierten Code zu übernehmen. <code>read_csv()</code> ist im Prinzip das Gleiche wie <code>read_delim()</code>, nur dass es standardmässig ein Komma als Trennzeichen verwendet (CSV bedeutet <em>comma separated values</em>). Bei <code>read_delim()</code> muss das Trennzeichen hingegen explizit angegeben werden, zum Beispiel ein Semikolon.</p></li>
+<li><p><strong>Speichern:</strong><br>
+Zum Speichern nutzt ihr am besten <code>write.csv()</code>. Von <code>write.csv2()</code> sollte man eher die Finger lassen, da es historische Spezialfälle abdeckt und meist eher zu Verwirrung führt.</p></li>
+</ul>
+
+
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

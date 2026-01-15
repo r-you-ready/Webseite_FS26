@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R u Ready</title>
+<title>R u Ready - Checkliste Abschlussarbeit</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -417,16 +417,185 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="-1">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#aspekte-die-bei-der-bereinigung-processing-beachtet-werden-sollten" id="toc-aspekte-die-bei-der-bereinigung-processing-beachtet-werden-sollten" class="nav-link active" data-scroll-target="#aspekte-die-bei-der-bereinigung-processing-beachtet-werden-sollten"><strong>Aspekte, die bei der Bereinigung (<code>processing</code>) beachtet werden sollten</strong></a></li>
+  <li><a href="#weitere-vorbereitende-schritte-im-processed-datensatz" id="toc-weitere-vorbereitende-schritte-im-processed-datensatz" class="nav-link" data-scroll-target="#weitere-vorbereitende-schritte-im-processed-datensatz"><strong>Weitere vorbereitende Schritte im processed-Datensatz</strong></a></li>
+  <li><a href="#im-analyseskript-analysis-werden" id="toc-im-analyseskript-analysis-werden" class="nav-link" data-scroll-target="#im-analyseskript-analysis-werden">Im Analyseskript (<code>analysis</code>) werden</a></li>
+  <li><a href="#dinge-die-im-datenanalyseplan-angepasst-werden-müssen" id="toc-dinge-die-im-datenanalyseplan-angepasst-werden-müssen" class="nav-link" data-scroll-target="#dinge-die-im-datenanalyseplan-angepasst-werden-müssen"><strong>Dinge, die im Datenanalyseplan angepasst werden müssen:</strong></a></li>
+  <li><a href="#dinge-die-im-codebook-angepasst-werden-müssen" id="toc-dinge-die-im-codebook-angepasst-werden-müssen" class="nav-link" data-scroll-target="#dinge-die-im-codebook-angepasst-werden-müssen"><strong>Dinge, die im Codebook angepasst werden müssen:</strong></a></li>
+  <li><a href="#ordnerstruktur-für-die-abgabe" id="toc-ordnerstruktur-für-die-abgabe" class="nav-link" data-scroll-target="#ordnerstruktur-für-die-abgabe"><strong>Ordnerstruktur für die Abgabe</strong></a></li>
+  <li><a href="#self-check-wie-sehen-plausible-ergebnisse-aus" id="toc-self-check-wie-sehen-plausible-ergebnisse-aus" class="nav-link" data-scroll-target="#self-check-wie-sehen-plausible-ergebnisse-aus"><strong>Self-Check: Wie sehen plausible Ergebnisse aus?</strong></a></li>
+  <li><a href="#zu-erwartende-abweichungen-der-ergebnisse-von-der-originalstudie" id="toc-zu-erwartende-abweichungen-der-ergebnisse-von-der-originalstudie" class="nav-link" data-scroll-target="#zu-erwartende-abweichungen-der-ergebnisse-von-der-originalstudie"><strong>Zu erwartende Abweichungen der Ergebnisse von der Originalstudie:</strong></a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Checkliste Abschlussarbeit</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
+
+
+<p><strong>Abgabe bis 11.1.2026 - 23:55</strong></p>
+<p><strong>Abgabe als ZIP-File: vorname_nachname_abschlussarbeit.zip</strong></p>
+<p>Für die Abschlussarbeit erhaltet ihr simulierte Daten. Diese werden den Daten des Originalpapers in den meisten Aspekten sehr ähnlich sein. Allerdings müssen einige Teile davon zusätzlich bereinigt werden, bevor sie ausgewertet werden können. Die folgende Checkliste soll euch dabei helfen, an alle relevanten Aspekte der Datenbereinigung zu denken.</p>
+<p>Die Datensatzaufbereitung erfolgt im <em>processing</em>-Skript. Der final aufbereitete Datensatz (<em>dat_full</em>) sowie der Long-Datensatz (<em>dat_long</em>) werden im Ordner <em>data/processed</em> gespeichert.</p>
+<section id="aspekte-die-bei-der-bereinigung-processing-beachtet-werden-sollten" class="level2">
+<h2 class="anchored" data-anchor-id="aspekte-die-bei-der-bereinigung-processing-beachtet-werden-sollten"><strong>Aspekte, die bei der Bereinigung (<code>processing</code>) beachtet werden sollten</strong></h2>
+<ul>
+<li>Haben alle Daten die gleiche Anzahl an Beobachtungen?</li>
+</ul>
+<pre><code>-   Gibt es Personen mit fehlenden Werten, die ausgeschlossen werden müssen?
+
+-   Gibt es Personen doppelt im Datensatz?</code></pre>
+<ul>
+<li><p>Gibt es unmögliche Werte in den Daten, z. B. <em>-999</em>? Wie können diese Daten ersetzt werden z.B aus anderen Variablen berechnet werden?</p></li>
+<li><p>Gibt es reverse-kodierte Fragebogenvariablen (<em>var_name_r</em>)?</p></li>
+<li><p>Gibt es Variablen, die nicht den korrekten Datentyp haben, z. B. numerische Variablen, die als Character angezeigt werden? Schaut euch diese Variablen genau an!<br>
+(Beispiel: <em>drei</em> = 3, <em>stimme voll und ganz zu</em> = höchster Wert)</p></li>
+</ul>
+</section>
+<section id="weitere-vorbereitende-schritte-im-processed-datensatz" class="level2">
+<h2 class="anchored" data-anchor-id="weitere-vorbereitende-schritte-im-processed-datensatz"><strong>Weitere vorbereitende Schritte im processed-Datensatz</strong></h2>
+<ul>
+<li><p>Mergen der 7 Einzeldatensätze</p></li>
+<li><p>Droppen von redundanten Variablen</p></li>
+<li><p>Umbenennen von Variablen, die nicht im <em>snake_case</em>-Format sind</p></li>
+<li><p>Berechnung der <em>mmq_mean</em> Variable</p></li>
+<li><p>Erstellung Long-Datensatz</p></li>
+<li><p>Speichern der Daten (Wide &amp; Long)!</p></li>
+</ul>
+<hr>
+</section>
+<section id="im-analyseskript-analysis-werden" class="level2">
+<h2 class="anchored" data-anchor-id="im-analyseskript-analysis-werden">Im Analyseskript (<code>analysis</code>) werden</h2>
+<ul>
+<li><p>Nötige Vorbereitungen gemacht, die nicht zum processing gehören (z.B. Faktoren setzen)</p></li>
+<li><p>Die Analysen aus dem Datenanlyseplan durchgeführt!</p>
+<ul>
+<li><p>Deskriptive Statistik (M &amp; SD) berechnen so wie in Table 1 (siehe Grinschgl et al., 2021)</p></li>
+<li><p>2x3 mixed ANOVA für subj. Leistungseinschätzungen mit post-hoc t-Tests, inkl.Effektstärken (η2 und Cohen’s d)</p></li>
+<li><p>One-Way ANOVA für jede Offloading Variable (3x), inkl. Effektstärke (η2)</p></li>
+<li><p>One-Way ANOVA für Trial Duration in Pattern Copy Task, inkl. Effektstärke (η2)</p></li>
+<li><p>One-Way ANOVA für MMQ mit post-hoc t-Tests, inkl. Effektstärken (η2 und Cohen’sd)</p></li>
+<li><p>One-Way ANOVA für Arbeitsgedächtnisleistung im Feature Switch Detection Task,inkl. Effektstärke (η2)</p></li>
+<li><p>1 Tabelle oder 1 Abbildung nach Wahl erstellen</p></li>
+<li><p>Optional: Testen der Voraussetzungen bei jeder Analyse – wenn diese gemacht wird, soll es auch im Datenanalyseplan beschrieben werden und die Analysen bei Voraussetzungsverletzungen entsprechend angepasst werden.</p></li>
+</ul></li>
+</ul>
+<p><strong>Post-hoc-t-Tests werden nur für die 2x3-ANOVA und die MMQ-ANOVA erwartet. Sollte eine weitere ANOVA zufällig signifikante Werte aufweisen, werden hierfür keine Post-hoc-t-Tests verlangt.</strong></p>
+<hr>
+</section>
+<section id="dinge-die-im-datenanalyseplan-angepasst-werden-müssen" class="level2">
+<h2 class="anchored" data-anchor-id="dinge-die-im-datenanalyseplan-angepasst-werden-müssen"><strong>Dinge, die im Datenanalyseplan angepasst werden müssen:</strong></h2>
+<ul>
+<li><p>Data Collection Procedures</p></li>
+<li><p>Missing Data</p></li>
+<li><p>Unit of Analyses/Data Exclusion</p></li>
+</ul>
+</section>
+<section id="dinge-die-im-codebook-angepasst-werden-müssen" class="level2">
+<h2 class="anchored" data-anchor-id="dinge-die-im-codebook-angepasst-werden-müssen"><strong>Dinge, die im Codebook angepasst werden müssen:</strong></h2>
+<ul>
+<li><p>Coding of item → reverse-kodierte Items</p></li>
+<li><p>Coding of Missing Data (falls vorhanden)</p></li>
+<li><p>1stes Blatt: Data Collection Procedures → <em>Simulierte Daten.</em></p></li>
+</ul>
+<hr>
+</section>
+<section id="ordnerstruktur-für-die-abgabe" class="level2">
+<h2 class="anchored" data-anchor-id="ordnerstruktur-für-die-abgabe"><strong>Ordnerstruktur für die Abgabe</strong></h2>
+<p>Die (für unser Seminar leicht abgeänderte) Psych-DS-Struktur wird eingehalten. Das bedeutet:</p>
+<ul>
+<li>Daten im Ordner <code>data</code>.</li>
+</ul>
+<pre><code>-   Rohdaten in `data/raw` (werden nicht verändert).
+
+-   Aufbereitete Daten (`dat_full`) in `data/processed`</code></pre>
+<ul>
+<li><p>Analyseskripte (processing und analysis) im Ordner <code>code</code></p></li>
+<li><p>Gerenderte Analyseskripte (html) ebenfalls im Ordner <code>code</code></p></li>
+<li><p>Datenanalyseplan im Ordner <code>preregistration</code></p></li>
+<li><p>Codebook im Ordner <code>data</code></p></li>
+</ul>
+<hr>
+</section>
+<section id="self-check-wie-sehen-plausible-ergebnisse-aus" class="level2">
+<h2 class="anchored" data-anchor-id="self-check-wie-sehen-plausible-ergebnisse-aus"><strong>Self-Check: Wie sehen plausible Ergebnisse aus?</strong></h2>
+<p>Die grundsätzliche Struktur der Daten sollte sehr ähnlich zu den Originaldaten sein.</p>
+<ul>
+<li>Beispiel aus einem simulierten Datensatz vs Originaldaten</li>
+</ul>
+<p>Die Ergebnisse bewegen sich alle in einem ähnlichen Rahmen wie die Daten aus der Originalstudie.</p>
+<p><strong>Originale Ergebnisse</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/EH_12/original_results_1.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p><strong>Simulierter Datensatz</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/EH_12/possible_results_2.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Dementsprechend werden auch die Effekte der Analysen ähnlich ausfallen:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/EH_12/possible_results_3.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="zu-erwartende-abweichungen-der-ergebnisse-von-der-originalstudie" class="level2">
+<h2 class="anchored" data-anchor-id="zu-erwartende-abweichungen-der-ergebnisse-von-der-originalstudie"><strong>Zu erwartende Abweichungen der Ergebnisse von der Originalstudie:</strong></h2>
+<ul>
+<li>Zufällig signifikante Effekte, die in der Originalstudie nicht signifikant waren, sind möglich. In der Originalstudie zeigte diese Variable keinen signifikanten Effekt. Post-hoc-t-Tests werden hierfür jedoch nicht erwartet.</li>
+</ul>
+<p><img src="images/EH_12/possible_results_sig.png" class="img-fluid"></p>
+<ul>
+<li>Einzelne Werte werden sich unterscheiden! Deskriptiva, Effektgrössen usw. werden sich unterscheiden! Eta2 sind hier grösser als in der Originalstudie.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/EH_12/possible_results_4.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<ul>
+<li>Deskriptiva: Unterschiede in den Means und SDs!</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/EH_12/possible_results.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>##<strong>Unplausible Resultate</strong></p>
+<p>Ergebnisse die ein komplett anderes Gesamtbild hinterlassen sind nicht zu erwarten!</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/EH_12/unpluaisble_results.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R u Ready</title>
+<title>R u Ready - ChatGPT in RStudio</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -417,16 +451,99 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="-1">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#einführung" id="toc-einführung" class="nav-link active" data-scroll-target="#einführung">Einführung</a></li>
+  <li><a href="#einrichtung" id="toc-einrichtung" class="nav-link" data-scroll-target="#einrichtung">Einrichtung</a>
+  <ul class="collapse">
+  <li><a href="#installieren-von-paketen-welche-chattr-im-hintergrund-benötigt" id="toc-installieren-von-paketen-welche-chattr-im-hintergrund-benötigt" class="nav-link" data-scroll-target="#installieren-von-paketen-welche-chattr-im-hintergrund-benötigt">Installieren von Paketen, welche chattr im Hintergrund benötigt</a></li>
+  <li><a href="#installieren-des-chattr-pakets-von-github" id="toc-installieren-des-chattr-pakets-von-github" class="nav-link" data-scroll-target="#installieren-des-chattr-pakets-von-github">Installieren des chattr-Pakets von GitHub</a></li>
+  <li><a href="#laden-von-chattr" id="toc-laden-von-chattr" class="nav-link" data-scroll-target="#laden-von-chattr">Laden von chattr</a></li>
+  <li><a href="#erstellen-des-chat-interface" id="toc-erstellen-des-chat-interface" class="nav-link" data-scroll-target="#erstellen-des-chat-interface">Erstellen des Chat-Interface</a></li>
+  </ul></li>
+  <li><a href="#anwendung" id="toc-anwendung" class="nav-link" data-scroll-target="#anwendung">Anwendung</a>
+  <ul class="collapse">
+  <li><a href="#prompt-beispiel" id="toc-prompt-beispiel" class="nav-link" data-scroll-target="#prompt-beispiel">Prompt-Beispiel</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../scripts/04_misc/links_und_ressourcen.html">Links und Ressourcen</a></li><li class="breadcrumb-item"><a href="../../scripts/04_misc/ChatGPT.html">ChatGPT in RStudio</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">ChatGPT in RStudio</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
+
+
+<section id="einführung" class="level1">
+<h1>Einführung</h1>
+<p>Damit ihr ChatGPT in RStudio einbinden könnt ist ein <strong>Account bei OpenAI / ChatGPT</strong> notwendig (falls ihr ChatGPT bisher ohne Anmeldung genutzt habt): https://chatgpt.com/</p>
+<p>Neben dieser Anleitung gibt es auch noch dieses <a href="https://www.youtube.com/watch?v=t7NrkAeosog"><strong>YouTube-Tutorial</strong></a> [2:36 - 5:08] welches euch bei der Einrichtung behilflich sein könnte.</p>
+<p><strong>Rechtliche Informationen</strong> zum Umgang mit ChatGPT und anderen generativen KI-Anwendungen findet ihr <a href="https://www.unibe.ch/universitaet/campus__und__infrastruktur/rund_um_computer/soft_und_hardware/software/generative_kis/index_ger.html">hier</a>.</p>
+</section>
+<section id="einrichtung" class="level1">
+<h1>Einrichtung</h1>
+<section id="installieren-von-paketen-welche-chattr-im-hintergrund-benötigt" class="level2">
+<h2 class="anchored" data-anchor-id="installieren-von-paketen-welche-chattr-im-hintergrund-benötigt">Installieren von Paketen, welche chattr im Hintergrund benötigt</h2>
+<p>Eventuell habt ihr diese schon installiert und ihr könnt diesen Schritt dann überspringen. Ansonsten müsst ihr diese Pakete, wie auch alle anderen, nur einmalig installieren.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"shiny"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"httr2"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"jsonlite"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="installieren-des-chattr-pakets-von-github" class="level2">
+<h2 class="anchored" data-anchor-id="installieren-des-chattr-pakets-von-github">Installieren des chattr-Pakets von GitHub</h2>
+<p>Auch hier gilt, die Installation des Paketes müsst ihr nur einmalig vornehmen.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"remotes"</span>) <span class="co"># Hier werdet ihr in der Console möglicherweise gefragt, ob ihr das Paket unter dem vorgeschlagenen Dateipfad abspeichern wollt. Sofern dieser für euch passt könnt ihr einfach mit "Y" unten in der Console eingeben und mit Enter bestätigen.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"mlverse/chattr"</span>) <span class="co"># Hier werdet ihr möglicherweise gefragt, welche der betroffenen Pakete ihr updaten wollt. Es empfehlt sich, alle zu updaten. Ihr könnt dies tun, indem ihr "1" in der Console eingebt und mit Enter bestätigt.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="laden-von-chattr" class="level2">
+<h2 class="anchored" data-anchor-id="laden-von-chattr">Laden von chattr</h2>
+<p>Die Schritte ab hier, also das Laden des Paketes und das Starten des Chat-Interface, müsst ihr bei jedem Start von RStudio erneut durchführen.</p>
+<div class="cell" data-eval="false">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(chattr) <span class="co"># So wie ihr es auch bereits von anderen Paketen kennt</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="erstellen-des-chat-interface" class="level2">
+<h2 class="anchored" data-anchor-id="erstellen-des-chat-interface">Erstellen des Chat-Interface</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.setenv</span>(<span class="at">OPENAI_API_KEY =</span> <span class="st">"Hier müsst ihr euren eigenen OpenAI API-Key einsetzen"</span>) <span class="co"># Ihr erhaltet euren OpenAI API Key, indem ihr euch bei OpenAI anmeldet und unter https://platform.openai.com/account/api-keys einen neuen Key generiert.</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">chattr_app</span>() <span class="co"># Hier werdet ihr möglicherweise gefragt, welche Version von ChatGPT ihr verwenden mögt. Mit Eingabe der Nummer wählt ihr das entsprechende Modell aus. Mit Enter bestätigt ihr die Eingabe.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="anwendung" class="level1">
+<h1>Anwendung</h1>
+<section id="prompt-beispiel" class="level2">
+<h2 class="anchored" data-anchor-id="prompt-beispiel">Prompt-Beispiel</h2>
+<p>Wofür braucht das Paket <code>chattr</code> im Hintergrund noch die Pakete <code>shiny</code>, <code>httr2</code> und <code>jsonlite</code>?</p>
+
+
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
