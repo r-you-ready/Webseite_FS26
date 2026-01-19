@@ -17,6 +17,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      RENV_CONFIG_AUTOLOADER_ENABLED: "FALSE"
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -28,6 +30,14 @@ jobs:
         uses: r-lib/actions/setup-r@v2
         with:
           use-public-rspm: true
+          
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libcurl4-openssl-dev libssl-dev libxml2-dev pkg-config
+
+      - name: Disable renv (remove folder)
+        run: rm -rf renv renv.lock
 
       - name: Install R packages (explicit)
         run: |
