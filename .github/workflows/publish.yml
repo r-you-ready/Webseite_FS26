@@ -34,10 +34,17 @@ jobs:
           Rscript -e 'install.packages(c("rmarkdown","knitr","chattr"), repos="https://cloud.r-project.org")'
 
 
-      - name: Render website
-        env:
-          RENV_CONFIG_AUTOLOADER_ENABLED: "FALSE"
-        run: quarto render
+      - name: Debug: show where chattr is referenced
+        run: |
+          echo "---- List file path ----"
+          ls -la scripts/04_misc || true
+          echo "---- First 120 lines of ChatGPT.qmd ----"
+          sed -n '1,120p' scripts/04_misc/ChatGPT.qmd || true
+          echo "---- Search for library(chattr) in repo ----"
+          grep -R --line-number "library(chattr" . || true
+          echo "---- Search for chattr in repo ----"
+          grep -R --line-number "chattr" . || true
+
 
 
       - name: Upload Pages artifact
