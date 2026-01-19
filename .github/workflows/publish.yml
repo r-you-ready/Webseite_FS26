@@ -33,7 +33,7 @@ jobs:
         run: |
           Rscript -e 'install.packages(c("rmarkdown","knitr","chattr"), repos="https://cloud.r-project.org")'
 
-      - name: Debug: show where chattr is referenced
+      - name: Debug show where chattr is referenced
         run: |
           echo "---- List file path ----"
           ls -la scripts/04_misc || true
