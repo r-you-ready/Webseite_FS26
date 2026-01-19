@@ -41,7 +41,7 @@ jobs:
 
       - name: Install R packages (explicit)
         run: |
-          Rscript -e 'install.packages(c("rmarkdown","knitr","chattr"), repos="https://cloud.r-project.org")'
+          Rscript -e 'install.packages(c("rmarkdown","knitr","chattr","tidyverse"), repos="https://cloud.r-project.org")'
 
       - name: Debug show where chattr is referenced
         run: |
