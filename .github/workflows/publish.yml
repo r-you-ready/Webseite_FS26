@@ -33,19 +33,19 @@ jobs:
         run: |
           Rscript -e 'install.packages(c("rmarkdown","knitr","chattr"), repos="https://cloud.r-project.org")'
 
-
       - name: Debug: show where chattr is referenced
         run: |
           echo "---- List file path ----"
           ls -la scripts/04_misc || true
-          echo "---- First 120 lines of ChatGPT.qmd ----"
-          sed -n '1,120p' scripts/04_misc/ChatGPT.qmd || true
+          echo "---- First 160 lines of ChatGPT.qmd ----"
+          sed -n '1,160p' scripts/04_misc/ChatGPT.qmd || true
           echo "---- Search for library(chattr) in repo ----"
           grep -R --line-number "library(chattr" . || true
           echo "---- Search for chattr in repo ----"
           grep -R --line-number "chattr" . || true
 
-
+      - name: Render website
+        run: quarto render
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
