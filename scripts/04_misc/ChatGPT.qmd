@@ -39,7 +39,7 @@ remotes::install_github("mlverse/chattr") # Hier werdet ihr möglicherweise gefr
 
 Die Schritte ab hier, also das Laden des Paketes und das Starten des Chat-Interface, müsst ihr bei jedem Start von RStudio erneut durchführen.
 
-```{r, Eval = FALSE}
+```{r, eval = FALSE}
 library(chattr) # So wie ihr es auch bereits von anderen Paketen kennt
 ```
 
