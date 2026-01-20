@@ -35,7 +35,8 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y \
-            libcurl4-openssl-dev libssl-dev libxml2-dev pkg-config \
+            pkg-config \
+            libcurl4-openssl-dev libssl-dev libxml2-dev \
             libfontconfig1-dev libfreetype6-dev \
             libharfbuzz-dev libfribidi-dev \
             libpng-dev libtiff5-dev libjpeg-dev libwebp-dev
@@ -43,20 +44,62 @@ jobs:
       - name: Disable renv (remove folder)
         run: rm -rf renv renv.lock
 
-      - name: Install R packages (explicit)
+      - name: Detect R packages used in qmd/R files
         run: |
-          Rscript -e 'install.packages(c("rmarkdown","knitr","chattr","tidyverse"), repos="https://cloud.r-project.org")'
+          Rscript -e '
+          files <- c(
+            list.files(".", pattern="\\.qmd$", recursive=TRUE, full.names=TRUE),
+            list.files(".", pattern="\\.R$", recursive=TRUE, full.names=TRUE),
+            list.files(".", pattern="\\.Rmd$", recursive=TRUE, full.names=TRUE)
+          )
+          files <- files[!grepl("^_site/|^\\.quarto/|^renv/|^\\.git/", files)]
 
-      - name: Debug show where chattr is referenced
+          pkgs <- character()
+          for (f in files) {
+            txt <- tryCatch(readLines(f, warn = FALSE), error = function(e) character())
+            m1 <- gregexpr("\\\\b(library|require)\\\\s*\\\\(\\\\s*([A-Za-z][A-Za-z0-9._]*)\\\\s*\\\\)", txt, perl=TRUE)
+            hits1 <- regmatches(txt, m1)
+            if (length(hits1)) for (h in unlist(hits1)) {
+              pkgs <- c(pkgs, sub(".*\\\\(\\\\s*([A-Za-z][A-Za-z0-9._]*)\\\\s*\\\\).*", "\\\\1", h))
+            }
+            m2 <- gregexpr("\\\\b(library|require)\\\\s*\\\\(\\\\s*\\\"([^\\\"]+)\\\"\\\\s*\\\\)", txt, perl=TRUE)
+            hits2 <- regmatches(txt, m2)
+            if (length(hits2)) for (h in unlist(hits2)) {
+              pkgs <- c(pkgs, sub(".*\\\"([^\\\"]+)\\\".*", "\\\\1", h))
+            }
+          }
+
+          pkgs <- unique(pkgs)
+          base_pkgs <- c("stats","graphics","grDevices","utils","datasets","methods","base","tools","compiler","parallel","grid","splines","tcltk")
+          pkgs <- setdiff(pkgs, base_pkgs)
+
+          pkgs <- unique(c("rmarkdown","knitr", pkgs))
+
+          cat("Number of files scanned:", length(files), "\\n")
+          cat("Detected packages:\\n")
+          cat(paste0(" - ", pkgs, collapse="\\n"), "\\n")
+          writeLines(pkgs, "ci-packages.txt")
+          '
+
+      - name: Install detected R packages
         run: |
-          echo "---- List file path ----"
-          ls -la scripts/04_misc || true
-          echo "---- First 160 lines of ChatGPT.qmd ----"
-          sed -n '1,160p' scripts/04_misc/ChatGPT.qmd || true
-          echo "---- Search for library(chattr) in repo ----"
-          grep -R --line-number "library(chattr" . || true
-          echo "---- Search for chattr in repo ----"
-          grep -R --line-number "chattr" . || true
+          Rscript -e '
+          repos <- "https://cloud.r-project.org"
+          pkgs <- readLines("ci-packages.txt", warn=FALSE)
+          avail <- rownames(available.packages(repos=repos))
+          to_install <- intersect(pkgs, avail)
+          missing <- setdiff(pkgs, avail)
+
+          cat("Installing from CRAN:\\n", paste(to_install, collapse=", "), "\\n")
+          if (length(missing)) cat("Not on CRAN (skipped):\\n", paste(missing, collapse=", "), "\\n")
+
+          install.packages(to_install, repos=repos)
+          '
+          
+      - name: Install GitHub-only R packages (if needed)
+        run: |
+          Rscript -e 'if (!requireNamespace("remotes", quietly=TRUE)) install.packages("remotes", repos="https://cloud.r-project.org")'
+          Rscript -e 'if (!requireNamespace("chattr", quietly=TRUE)) remotes::install_github("mlverse/chattr", dependencies=TRUE)'
 
       - name: Render website
         run: quarto render
