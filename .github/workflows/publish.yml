@@ -97,6 +97,8 @@ jobs:
           '
           
       - name: Install GitHub-only R packages (if needed)
+        env:
+          GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
         run: |
           Rscript -e 'if (!requireNamespace("remotes", quietly=TRUE)) install.packages("remotes", repos="https://cloud.r-project.org")'
           Rscript -e 'if (!requireNamespace("chattr", quietly=TRUE)) remotes::install_github("mlverse/chattr", dependencies=TRUE)'
