@@ -86,12 +86,16 @@ jobs:
           Rscript -e '
           repos <- "https://cloud.r-project.org"
           pkgs <- readLines("ci-packages.txt", warn=FALSE)
+
+          # HARD ADD: make sure this is installed
+          pkgs <- unique(c(pkgs, "palmerpenguins"))
+
           avail <- rownames(available.packages(repos=repos))
           to_install <- intersect(pkgs, avail)
           missing <- setdiff(pkgs, avail)
 
-          cat("Installing from CRAN:\\n", paste(to_install, collapse=", "), "\\n")
-          if (length(missing)) cat("Not on CRAN (skipped):\\n", paste(missing, collapse=", "), "\\n")
+          cat("Installing from CRAN:\n", paste(to_install, collapse=", "), "\n")
+          if (length(missing)) cat("Not on CRAN (skipped):\n", paste(missing, collapse=", "), "\n")
 
           install.packages(to_install, repos=repos)
           '
