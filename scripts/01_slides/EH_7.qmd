@@ -88,14 +88,14 @@ penguins |>
 *Bietet und einige der wichtigsten Funktionen für die Datenaufbereitung!*
 
 ::: {style="display: flex; justify-content: center; gap: 50px;"}
-<img src="images/EH_7/images.jpg" alt="Image 1" width="45%"/> <img src="../../images/EH_7/Functions.png" alt="Image 2" width="45%"/>
+<img src="/images/EH_7/images.jpg" alt="Image 1" width="45%"/> <img src="/images/EH_7/Functions.png" alt="Image 2" width="45%"/>
 :::
 
 ------------------------------------------------------------------------
 
 ## dplyr: filter()
 
-![](images/EH_7/filter.png){fig-align="center"}
+![](/images/EH_7/filter.png){fig-align="center"}
 
 ::: notes
 fehlendes " bei "Gentoo"
