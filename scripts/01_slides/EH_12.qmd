@@ -79,7 +79,7 @@ Auf ILIAS findet ihr Ordner mit eurem Namen. Diese sind nach dem PsychDS System 
 
 ## Abschlussarbeit / Leistungsnachweis
 
-<iframe src="PDFs/LeistungsnachweisHS25.pdf" width="100%" height="600px">
+<iframe src="../../PDFs/LeistungsnachweisHS25.pdf" width="100%" height="600px">
 
 </iframe>
 

@@ -60,7 +60,7 @@ HS 2025<br><br><br> **LV-Leitung**: Dr. Sandra Grinschgl / MSc. Aaron Friedli<br
 
 ## Abbildungen: Visualize
 
-![](../../../../images/EH_10/ggplot.png){fig-align="center" width="186"}
+![](../../images/EH_10/ggplot.png){fig-align="center" width="186"}
 
 ------------------------------------------------------------------------
 
