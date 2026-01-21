@@ -8,7 +8,7 @@ bibliography: references.bib
 library(tidyverse)
 library(readr)
 
-dat_full <- read_csv("data/raw/dat_full.csv")
+dat_full <- read_csv("raw/dat_full.csv")
 ```
 
 Bei Bedarf findest du hier nochmals die Slides zu Einheit 7 & 8 :\
@@ -288,18 +288,14 @@ Im Umgang mit fehlenden Werten sollten wir:
 # Copy the dataset file to make it downloadable
 
 file.copy(
-"../../raw/bfi_10_data.csv",
-"../../bfi_10_data.csv",
-overwrite = TRUE
+  "raw/bfi_10_data.csv",
+  "bfi_10_data.csv",
+  overwrite = TRUE
 )
-
-# Read in the dataset
 
 bfi_10_data <- readr::read_csv(
-"../../raw/bfi_10_data.csv"
+  "raw/bfi_10_data.csv"
 )
-
-
 ```
 
 <a href="bfi_10_data.csv" download class="btn btn-primary"> 📥 Download bfi_10_data.csv </a>

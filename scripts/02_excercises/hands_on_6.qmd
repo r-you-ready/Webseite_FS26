@@ -8,7 +8,7 @@ bibliography: references.bib
 library(tidyverse)
 
 dat_full <- read_csv("data/raw/dat_full.csv")
-dat_long <- read_csv("processed/data_long.csv")
+dat_long <- read_csv("data/processed/data_long.csv")
 ```
 
 **Bei Bedarf findest du hier nochmals die Slides zu Einheit 11:**\

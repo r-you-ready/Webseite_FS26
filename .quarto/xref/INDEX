@@ -151,5 +151,38 @@
   },
   "scripts/01_slides/1_presentation.qmd": {
     "1_presentation.html": "c501ebdb"
+  },
+  "scripts/02_excercises/hausuebungen.qmd": {
+    "hausuebungen.html": "3fc2eca6"
+  },
+  "scripts/02_excercises/hands_on_4.qmd": {
+    "hands_on_4.html": "3e84956f"
+  },
+  "scripts/02_excercises/hands_on_5.qmd": {
+    "hands_on_5.html": "9f447c29"
+  },
+  "scripts/02_excercises/hands_on_7.qmd": {
+    "hands_on_7.html": "bb1ed108"
+  },
+  "scripts/02_excercises/hands_on_6.qmd": {
+    "hands_on_6.html": "0d365d51"
+  },
+  "scripts/02_excercises/hands_on_2.qmd": {
+    "hands_on_2.html": "a47f252e"
+  },
+  "scripts/02_excercises/hands_on_3.qmd": {
+    "hands_on_3.html": "7cae8587"
+  },
+  "scripts/02_excercises/hands_on_1.qmd": {
+    "hands_on_1.html": "836fd0dc"
+  },
+  "scripts/02_excercises/hausuebung_2.qmd": {
+    "hausuebung_2.html": "75514a9d"
+  },
+  "scripts/02_excercises/hausuebung_3.qmd": {
+    "hausuebung_3.html": "d889592e"
+  },
+  "scripts/02_excercises/hausuebung_1.qmd": {
+    "hausuebung_1.html": "39283dfe"
   }
 }

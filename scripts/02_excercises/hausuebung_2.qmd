@@ -226,7 +226,7 @@ plot_2
 
 Füge dem Diagramm **Titel** sowie **Achsenbeschriftungen** zu deinem Plot und verwende ein Theme das du passend findest.
 
-![](images/EH_10/themes_ggplot.png){fig-align="center" width="518"}
+![](../../images/EH_10/themes_ggplot.png){fig-align="center" width="518"}
 
 ```{r, eval = FALSE}
 plot_3 <- plot_2 +    
