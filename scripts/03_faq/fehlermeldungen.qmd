@@ -60,7 +60,6 @@ RStudio geöffnet:
 file.edit("~/.Rprofile")
 ```
 
-```
 
 In diese Datei kann dann der Befehl zur expliziten Setzung der URL
 platziert werden. Diese Datei abspeichern und RStudio neu starten. Jetzt
