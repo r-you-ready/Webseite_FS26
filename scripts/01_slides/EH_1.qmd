@@ -100,7 +100,7 @@ HS 2025<br><br><br> **LV-Leitung**: Dr. Sandra Grinschgl / MSc. Aaron Friedli<br
 
 Bitte melde dich auf einem für dich angemessenem Weg bei uns, wenn dir in dieser Lehrveranstaltung Barrieren begegnen, die auszugleichen sind.
 
-[![](../..//presentation_files/eh1/barrierefreiheit.png){fig-align="center"}](https://www.unibe.ch/unibe/portal/content/e1006/e1061/e106351/e1427734/UniBE_Icon_001_ger.png)
+[![](../../presentation_files/eh1/barrierefreiheit.png){fig-align="center"}](https://www.unibe.ch/unibe/portal/content/e1006/e1061/e106351/e1427734/UniBE_Icon_001_ger.png)
 
 ------------------------------------------------------------------------
 
