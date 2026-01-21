@@ -153,7 +153,7 @@ penguins |>
 
 👉 Long Format is häufig benötigt für Analysen mit einem **repeated measures** Faktor
 
-![](images/EH_9/variables.png){fig-align="center" width="1200"}
+![](/images/EH_9/variables.png){fig-align="center" width="1200"}
 
 ------------------------------------------------------------------------
 
@@ -245,7 +245,7 @@ Umgang mit fehlenden Werten: `drop_na()`, `replace_na()` stammen auch aus tidyr
 
 aus [Einführung in R, Kapitel 4.1](https://methodenlehre.github.io/einfuehrung-in-R/chapters/04-tidyverse.html)
 
-![](images/Datenaufbereitung.png){fig-align="center"}
+![](/images/Datenaufbereitung.png){fig-align="center"}
 
 ------------------------------------------------------------------------
 
@@ -459,7 +459,7 @@ In diesem Beispiel werden nur zwei Items verwendet - wir gehen davon aus dass bf
 
 -   Wide to long Transformationen gemacht - **You mastered the tidyr!**
 
-    ![](images/tidyr.png){width="156"}
+    ![](/images/tidyr.png){width="156"}
 
 -   Datenqualitätsindikatoren kennengelernt
 

@@ -33,7 +33,7 @@ HS 2025<br><br><br> **LV-Leitung**: Dr. Sandra Grinschgl / MSc. Aaron Friedli<br
 
 ## Muddiest Points Umfrage:
 
-<iframe src="PDFs/Muddiest_Points_1.pdf" width="100%" height="600px">
+<iframe src="../../PDFs/Muddiest_Points_1.pdf" width="100%" height="600px">
 
 </iframe>
 
