@@ -637,28 +637,9 @@ Einige Schritte der Datenaufbereitung sollten vor dem Mergen durchgeführt werde
 <p>Da der p-Wert &lt; 0.05 ist, ist die ANOVA signifikant. Das bedeutet, dass sich mindestens zwei der Gruppen signifikant voneinander unterscheiden. Welche Gruppen sich konkret unterscheiden, kann jedoch erst mit Post-hoc-t-Tests überprüft werden.</p>
 <p>Das generalized <code>η²</code> (ges) gibt an, wie viel Varianz der abhängigen Variable durch den Faktor erklärt wird. In diesem Fall erklärt die Gruppenzugehörigkeit (z. B. Spezies) ca. 70 % der Varianz der Schnabellänge.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>model_1 <span class="ot">&lt;-</span> <span class="fu">aov_4</span>(bill_length_mm <span class="sc">~</span> species <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span>id), <span class="at">data =</span> penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Missing values for 2 ID(s), which were removed before analysis:
-272, 4
-Below the first few rows (in wide format) of the removed cases with missing data.
-       id species  .
-# 193 272  Gentoo NA
-# 279   4  Adelie NA</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Contrasts set to contr.sum for the following variables: species</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Anova Table (Type 3 tests)
-
-Response: bill_length_mm
-        num Df den Df    MSE     F     ges                Pr(&gt;F)    
-species      2    339 8.7607 410.6 0.70781 &lt; 0.00000000000000022 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>model_1 <span class="ot">&lt;-</span> <span class="fu">aov_4</span>(bill_length_mm <span class="sc">~</span> species <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span>id), <span class="at">data =</span> penguins)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="frage-7.2-t-tests" class="level4">
@@ -667,23 +648,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <p>Da es drei Spezies (Gentoo, Chinstrap, Adelie) gibt können wir drei verschiedene Gruppenvergleiche berechnen. Hier zeigen wir ein Beispiel.</p>
 <p>Der t-Test prüft, ob sich die Mittelwerte zweier Gruppen in der abhängigen Variable (Schnabellänge) unterscheiden. Auf Basis von Stichprobendaten wird untersucht, ob sich Pinguine der Spezies Adelie und Chinstrap in ihrer Schnabellänge (bill_length_mm) unterscheiden. Das signifikante Ergebnis (p &lt; 0.05) spricht dafür, dass sich die mittlere Schnabellänge dieser beiden Gruppen auf Populationsebene unterscheidet.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>penguins_filtered <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">!=</span> <span class="st">"Gentoo"</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(bill_length_mm <span class="sc">~</span> species, <span class="at">data =</span> penguins_filtered)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Welch Two Sample t-test
-
-data:  bill_length_mm by species
-t = -21.865, df = 106.97, p-value &lt; 0.00000000000000022
-alternative hypothesis: true difference in means between group Adelie and group Chinstrap is not equal to 0
-95 percent confidence interval:
- -10.952948  -9.131917
-sample estimates:
-   mean in group Adelie mean in group Chinstrap 
-               38.79139                48.83382 </code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>penguins_filtered <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">!=</span> <span class="st">"Gentoo"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(bill_length_mm <span class="sc">~</span> species, <span class="at">data =</span> penguins_filtered)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="frage-7.3-t-test-notationen" class="level4">
@@ -695,54 +663,28 @@ sample estimates:
 <p>Ein Komma wird hingegen verwendet, wenn man die beiden Gruppen direkt als separate Vektoren übergibt. Welche Schreibweise man verwendet, hängt also davon ab, wie die Daten strukturiert sind (Dataframe vs.&nbsp;einzelne Vektoren) und welche Schnittstelle die Funktion anbietet.</p>
 <p><strong>Beispiele mit Formelschreibweise:</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Datensatz auf zwei Arten beschränken</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>penguins_2 <span class="ot">&lt;-</span> <span class="fu">subset</span>(</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  penguins,</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Adelie"</span>, <span class="st">"Chinstrap"</span>)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># t-Test mit Formel-Schreibweise</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(flipper_length_mm <span class="sc">~</span> species, <span class="at">data =</span> penguins_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Welch Two Sample t-test
-
-data:  flipper_length_mm by species
-t = -5.7804, df = 119.68, p-value = 0.00000006049
-alternative hypothesis: true difference in means between group Adelie and group Chinstrap is not equal to 0
-95 percent confidence interval:
- -7.880530 -3.859244
-sample estimates:
-   mean in group Adelie mean in group Chinstrap 
-               189.9536                195.8235 </code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Datensatz auf zwei Arten beschränken</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>penguins_2 <span class="ot">&lt;-</span> <span class="fu">subset</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  penguins,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Adelie"</span>, <span class="st">"Chinstrap"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># t-Test mit Formel-Schreibweise</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(flipper_length_mm <span class="sc">~</span> species, <span class="at">data =</span> penguins_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Mit Komma:</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vektoren für die zwei Gruppen</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>adelie_flipper <span class="ot">&lt;-</span> penguins<span class="sc">$</span>flipper_length_mm[</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  penguins<span class="sc">$</span>species <span class="sc">==</span> <span class="st">"Adelie"</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>chinstrap_flipper <span class="ot">&lt;-</span> penguins<span class="sc">$</span>flipper_length_mm[</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  penguins<span class="sc">$</span>species <span class="sc">==</span> <span class="st">"Chinstrap"</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># t-Test mit Vektoren</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(adelie_flipper, chinstrap_flipper)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Welch Two Sample t-test
-
-data:  adelie_flipper and chinstrap_flipper
-t = -5.7804, df = 119.68, p-value = 0.00000006049
-alternative hypothesis: true difference in means is not equal to 0
-95 percent confidence interval:
- -7.880530 -3.859244
-sample estimates:
-mean of x mean of y 
- 189.9536  195.8235 </code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vektoren für die zwei Gruppen</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>adelie_flipper <span class="ot">&lt;-</span> penguins<span class="sc">$</span>flipper_length_mm[</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  penguins<span class="sc">$</span>species <span class="sc">==</span> <span class="st">"Adelie"</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>chinstrap_flipper <span class="ot">&lt;-</span> penguins<span class="sc">$</span>flipper_length_mm[</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  penguins<span class="sc">$</span>species <span class="sc">==</span> <span class="st">"Chinstrap"</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># t-Test mit Vektoren</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(adelie_flipper, chinstrap_flipper)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <hr>
 </section>
@@ -751,31 +693,9 @@ mean of x mean of y
 <p>Die 2×3 ANOVA im Grinschgl et al.&nbsp;(2021) Paper beantwortet die folgenden Fragen:<br>
 Gibt es Unterschiede zwischen den Feedbackgruppen, gibt es Veränderungen über die Zeit (<code>Pre1</code> vs.&nbsp;<code>Pre4</code>), und unterscheiden sich diese zeitlichen Veränderungen zwischen den Gruppen (<code>above</code> vs.&nbsp;<code>control</code> vs.&nbsp;<code>below</code>)?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>mixed_anova <span class="ot">&lt;-</span> <span class="fu">aov_4</span>(rating <span class="sc">~</span> group_all <span class="sc">+</span> (time_rating <span class="sc">|</span> code), <span class="at">data =</span> dat_long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Converting to factor: group_all</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Contrasts set to contr.sum for the following variables: group_all</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mixed_anova)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Univariate Type III Repeated-Measures ANOVA Assuming Sphericity
-
-                      Sum Sq num Df Error SS den Df  F value
-(Intercept)           8198.9      1   500.58    156 2555.113
-group_all              126.7      2   500.58    156   19.736
-time_rating             42.0      1   288.70    156   22.668
-group_all:time_rating   74.4      2   288.70    156   20.090
-                                     Pr(&gt;F)    
-(Intercept)           &lt; 0.00000000000000022 ***
-group_all                     0.00000002286 ***
-time_rating                   0.00000436406 ***
-group_all:time_rating         0.00000001724 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>mixed_anova <span class="ot">&lt;-</span> <span class="fu">aov_4</span>(rating <span class="sc">~</span> group_all <span class="sc">+</span> (time_rating <span class="sc">|</span> code), <span class="at">data =</span> dat_long)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mixed_anova)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Der signifikante Haupteffekt der Feedbackgruppe (<code>group_all</code>) zeigt, dass sich die mittleren Ratings zwischen den Gruppen unterscheiden, unabhängig vom Zeitpunkt der Messung.</p>
 <p>Der signifikante Haupteffekt der Feedbackgruppe (<code>group_all</code>) zeigt, dass sich die mittleren Ratings zwischen den Gruppen unterscheiden, unabhängig vom Zeitpunkt der Messung.</p>
@@ -790,35 +710,13 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </ul>
 <p><strong>Antwort:</strong> Cohen’s d wird für die Post-hoc-t-Tests berechnet, nicht für die 2×3-ANOVA selbst. (Für die ANOVA selbst berechnen wir Eta2). Cohen’s d ist ein Effektstärkenmaß, das angibt, wie groß der Unterschied zwischen zwei Gruppen ist, unabhängig von der Stichprobengröße. Hier ein Beispiel aus den Hands On Übungen. ​​</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>dat_full_below_above <span class="ot">&lt;-</span> dat_full <span class="sc">|&gt;</span> </span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(group_all <span class="sc">!=</span> <span class="st">"control"</span>)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>dat_full_below_above<span class="sc">$</span>group_all <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(dat_full_below_above<span class="sc">$</span>group_all)</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(pre4 <span class="sc">~</span> group_all, <span class="at">data =</span> dat_full_below_above, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Two Sample t-test
-
-data:  pre4 by group_all
-t = 7.9845, df = 104, p-value = 0.000000000001991
-alternative hypothesis: true difference in means between group above and group below is not equal to 0
-95 percent confidence interval:
- 2.025170 3.363509
-sample estimates:
-mean in group above mean in group below 
-           5.966038            3.271698 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>effsize<span class="sc">::</span><span class="fu">cohen.d</span>(pre4 <span class="sc">~</span> group_all, <span class="at">data =</span> dat_full_below_above)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Cohen's d
-
-d estimate: 1.551045 (large)
-95 percent confidence interval:
-   lower    upper 
-1.111706 1.990383 </code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dat_full_below_above <span class="ot">&lt;-</span> dat_full <span class="sc">|&gt;</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(group_all <span class="sc">!=</span> <span class="st">"control"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>dat_full_below_above<span class="sc">$</span>group_all <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(dat_full_below_above<span class="sc">$</span>group_all)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(pre4 <span class="sc">~</span> group_all, <span class="at">data =</span> dat_full_below_above, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>effsize<span class="sc">::</span><span class="fu">cohen.d</span>(pre4 <span class="sc">~</span> group_all, <span class="at">data =</span> dat_full_below_above)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <hr>
 </section>
@@ -829,16 +727,10 @@ d estimate: 1.551045 (large)
 </ul>
 <p><strong>Antwort:</strong> Mittelwerte und Standardabweichungen können nicht korrekt berechnet werden, wenn sich fehlende Werte (<code>NAs</code>) in den Daten befinden. Mit <code>na.rm = TRUE</code> werden diese fehlenden Werte bei der Berechnung ausgeschlossen. Wurden die <code>NAs</code> bereits zuvor bereinigt, ist dieser Befehl zwar redundant, schadet jedoch nicht.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="cn">NA</span>)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] NA</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 3.5</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="cn">NA</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <hr>
 </section>
@@ -879,22 +771,17 @@ Das entspricht dem Mittelwert einer Variable über alle Personen</p>
 </tbody>
 </table>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">V1 =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">7</span>),</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">V2 =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">8</span>),</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">V3 =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">9</span>)</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Zeilenmittelwerte (Mittelwert pro Zeile über V1–V3)</span></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="fu">rowMeans</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2 5 8</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mittelwert über Variable</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>((df<span class="sc">$</span>V1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">V1 =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">7</span>),</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">V2 =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">8</span>),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">V3 =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">9</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Zeilenmittelwerte (Mittelwert pro Zeile über V1–V3)</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">rowMeans</span>(df)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Mittelwert über Variable</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>((df<span class="sc">$</span>V1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <hr>
 </section>
@@ -906,29 +793,14 @@ Das entspricht dem Mittelwert einer Variable über alle Personen</p>
 <p><strong>Antwort:</strong> Tabellen für ANOVAs haben wir nicht behandelt. In der Praxis werden ANOVAs meist auch nicht in Tabellenform berichtet, sondern direkt im Text. Es ist jedoch möglich, APA-konforme ANOVA-Tabellen mit Packages <code>apaTables</code> wie <a href="https://cran.r-project.org/web/packages/papaja/refman/papaja.html#arrange_anova">Papaja</a> zu erstellen.</p>
 <p>Beispiel aus <span class="citation" data-cites="grinschgl2021">Grinschgl et al. (<a href="#ref-grinschgl2021" role="doc-biblioref">2021</a>)</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(apaTables)</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>model_1 <span class="ot">&lt;-</span> <span class="fu">aov</span>(bill_length_mm <span class="sc">~</span> island <span class="sc">+</span> sex <span class="sc">+</span> species, <span class="at">data =</span> penguins_filtered)</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="fu">apa.aov.table</span>(</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">lm_output =</span> model_1,</span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename  =</span> <span class="st">"anova_table.doc"</span></span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-
-ANOVA results using bill_length_mm as the dependent variable
- 
-
-   Predictor       SS  df       MS       F    p partial_eta2 CI_90_partial_eta2
- (Intercept) 50463.39   1 50463.39 9751.90 .000                                
-      island    10.22   2     5.11    0.99 .374          .01         [.00, .04]
-         sex   685.30   1   685.30  132.43 .000          .39         [.30, .46]
-     species  3254.78   1  3254.78  628.98 .000          .75         [.71, .78]
-       Error  1081.52 209     5.17                                             
-
-Note: Values in square brackets indicate the bounds of the 90% confidence interval for partial eta-squared </code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(apaTables)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>model_1 <span class="ot">&lt;-</span> <span class="fu">aov</span>(bill_length_mm <span class="sc">~</span> island <span class="sc">+</span> sex <span class="sc">+</span> species, <span class="at">data =</span> penguins_filtered)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">apa.aov.table</span>(</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">lm_output =</span> model_1,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename  =</span> <span class="st">"anova_table.doc"</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">

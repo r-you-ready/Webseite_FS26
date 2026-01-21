@@ -9,7 +9,7 @@ format:
     theme: [default, ../../custom.scss]
     transition: slide
     slide-number: true
-    logo: presentation_files/eh1/unibe.png
+    logo: /images/unibe.png
     incremental: false
     self_contained: true
     show-slide-number: all

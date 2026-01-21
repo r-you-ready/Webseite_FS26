@@ -456,6 +456,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#rendering-in-quarto-zu-einer-pdf-funktioniert-nicht" id="toc-rendering-in-quarto-zu-einer-pdf-funktioniert-nicht" class="nav-link active" data-scroll-target="#rendering-in-quarto-zu-einer-pdf-funktioniert-nicht">Rendering in Quarto zu einer PDF funktioniert nicht</a></li>
+  <li><a href="#das-objekt-mit-dem-ich-etwas-machen-möchte-kann-nicht-gefunden-werden" id="toc-das-objekt-mit-dem-ich-etwas-machen-möchte-kann-nicht-gefunden-werden" class="nav-link" data-scroll-target="#das-objekt-mit-dem-ich-etwas-machen-möchte-kann-nicht-gefunden-werden">Das Objekt mit dem ich etwas machen möchte kann nicht gefunden werden</a></li>
   <li><a href="#beim-rendern-einer-html-werden-noch-einige-weitere-ordner-und-dateien-erstellt" id="toc-beim-rendern-einer-html-werden-noch-einige-weitere-ordner-und-dateien-erstellt" class="nav-link" data-scroll-target="#beim-rendern-einer-html-werden-noch-einige-weitere-ordner-und-dateien-erstellt">Beim Rendern einer html werden noch einige weitere Ordner und Dateien erstellt</a></li>
   </ul>
 </nav>
@@ -502,32 +503,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">repos =</span> <span class="fu">c</span>(<span class="at">CRAN =</span> <span class="st">"https://cloud.r-project.org"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Möchte man die Einstellung dauerhaft behalten braucht es einen weiteren Schritt. Erst wird über die Console eine globale Einstellungsdatei von RStudio geöffnet:</p>
-<pre><code>
-In diese Datei kann dann der Befehl zur expliziten Setzung der URL
-platziert werden. Diese Datei abspeichern und RStudio neu starten. Jetzt
-sollte `tinytex` von der korrekten URL abgerufen, gefunden und
-schlussendlich auch erfolgreich installiert werden können.
-
-# Das Objekt mit dem ich etwas machen möchte kann nicht gefunden werden
-
-"==\&gt; quarto preview Hands on - Block 3.qmd --to html --no-watch-inputs
---no-browse
-
-processing file: Hands-on---Block-3.rmarkdown
-\|................................................. \| 96%
-\[unnamed-chunk-10\] Error:! object 'dat_full' not foundBacktrace: ▆ 1.
-└─dplyr::rename(dat_full, cvstm_sum = "csvtm_sum") Quitting from
-Hands-on---Block-3.rmarkdown:331-343 \[unnamed-chunk-10\] Execution
-halted"
-
-Netterweise gibt uns die Fehlermeldung die Stelle im Code aus, an
-welcher das Problem aufrat:
-
-::: {.cell}
-
-```{.r .cell-code}
-dplyr::rename(dat_full, cvstm_sum = "csvtm_sum")</code></pre>
-<p>:::</p>
+<p>In diese Datei kann dann der Befehl zur expliziten Setzung der URL platziert werden. Diese Datei abspeichern und RStudio neu starten. Jetzt sollte <code>tinytex</code> von der korrekten URL abgerufen, gefunden und schlussendlich auch erfolgreich installiert werden können.</p>
+</section>
+<section id="das-objekt-mit-dem-ich-etwas-machen-möchte-kann-nicht-gefunden-werden" class="level1">
+<h1>Das Objekt mit dem ich etwas machen möchte kann nicht gefunden werden</h1>
+<p>“==&gt; quarto preview Hands on - Block 3.qmd –to html –no-watch-inputs –no-browse</p>
+<p>processing file: Hands-on—Block-3.rmarkdown |…………………………………………. | 96% [unnamed-chunk-10] Error:! object ‘dat_full’ not foundBacktrace: ▆ 1. └─dplyr::rename(dat_full, cvstm_sum = “csvtm_sum”) Quitting from Hands-on—Block-3.rmarkdown:331-343 [unnamed-chunk-10] Execution halted”</p>
+<p>Netterweise gibt uns die Fehlermeldung die Stelle im Code aus, an welcher das Problem aufrat:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">rename</span>(dat_full, <span class="at">cvstm_sum =</span> <span class="st">"csvtm_sum"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><img src="images/Fehlermeldungen.png" class="img-fluid"></p>
 <p>Der zentrale Teil der Fehlermeldung ist hierbei “Error:! object <code>dat_full</code> not found”. Der Datensatz <code>dat_full</code> ist vor der Ausführung scheinbar noch nicht vorhanden. Stellt also unbedingt sicher, vor der Ausführung von <code>dplyr::rename(dat_full, cvstm_sum = "csvtm_sum")</code>den Datensatz eingelesen und den dafür vorgesehenen Chunk zum Einlesen <strong>nicht</strong> auf <code>eval = FALSE</code> gesetzt zu haben.</p>
 </section>

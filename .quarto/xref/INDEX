@@ -142,5 +142,14 @@
   },
   "scripts/03_faq/rstudio.qmd": {
     "rstudio.html": "850d6808"
+  },
+  "scripts/01_slides/1_presentation(1).qmd": {
+    "1_presentation(1).html": "90378d25"
+  },
+  "scripts/01_slides/0_presentation.qmd": {
+    "0_presentation.html": "cb6939fe"
+  },
+  "scripts/01_slides/1_presentation.qmd": {
+    "1_presentation.html": "c501ebdb"
   }
 }
