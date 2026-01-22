@@ -546,7 +546,7 @@ Wenn du ein Projekt öffnest:</p>
 <li>Du kannst entweder ein neues Projekt erstellen oder ein bestehendes Projekt öffnen.</li>
 </ul>
 <p>👉 In RStudio siehst du oben rechts, in welchem Projekt du dich gerade befindest. In diesem Screenshot ist noch kein Projekt geöffnet.</p>
-<p><img src="images/EH3/Project.png" class="img-fluid"></p>
+<p><img src="../../images/EH3/Project.png" class="img-fluid"></p>
 <p><strong>Übung:</strong><br>
 Im Ordner <em>Grinschgl2020</em> liegt bereits eine <code>.Rproj</code>-Datei. Öffne sie und überprüfe oben rechts in RStudio, ob du dich im richtigen Projekt befindest. Du kannst zukünftig immer auf das Projekt klicken wenn du die Analyseskripte dazu öffnen willst.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Bei Fehlermeldungen:">
@@ -562,9 +562,9 @@ Bei Fehlermeldungen:
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>„Achtung! Bei Mac-Usern kann es teilweise zu Problemen mit den Berechtigungen kommen. Falls dir beim Öffnen diese Fehlermeldung angezeigt wird:“</p>
-<p><img src="images/Hands on 2/Screenshot 2025-10-01 at 12.01.56.png" class="img-fluid"></p>
+<p><img src="../../images/Hands on 2/Screenshot 2025-10-01 at 12.01.56.png" class="img-fluid"></p>
 <p>Die Lösung besteht darin, die Berechtigungen für den Ordner anzupassen. Dafür gehst du auf den ‚r_you_ready‘-Ordner und öffnest das Menü mit ‚Get Info‘.</p>
-<p><img src="images/Hands on 2/Screenshot 2025-10-01 at 13.10.23.png" class="img-fluid"></p>
+<p><img src="../../images/Hands on 2/Screenshot 2025-10-01 at 13.10.23.png" class="img-fluid"></p>
 <p>Die Berechtigungen passt du an, indem du auf das Schloss unten rechts klickst, dein Passwort eingibst und bei deinem Account ‚Read &amp; Write‘ auswählst. Anschliessend klickst du auf die drei Punkte im Kreis und führst ‚Apply to enclosed items…‘ aus. Danach solltest du die vollen Berechtigungen haben.</p>
 </div>
 </div>
@@ -615,15 +615,15 @@ Wir verwenden Funktionen aus den Packages <strong>readr</strong> und <strong>rea
 <p>In diesem Seminar arbeiten wir mit csv und xslx Dateien. Wie werden uns mehere Arten und Weisen anschauen wie man diese einlesen kann.</p>
 <p>Beim Einlesen von Daten ist ein wichtiger Faktor, mich welchem Trennzeichen (Delimiter) die Werte von einander getrennt werden.</p>
 <p>Auszug aus <a href="https://rstudio.github.io/cheatsheets/html/data-import.html">Cheatsheet</a>: Die Funktionen read_delim und read_csv:</p>
-<p><img src="images/Hands on 2/cheatsheet_auszug.png" class="img-fluid"></p>
+<p><img src="../../images/Hands on 2/cheatsheet_auszug.png" class="img-fluid"></p>
 <p><code>read_csv()</code> ist eine Spezialisierung von <code>read_delim()</code>, die automatisch Komma als Trennzeichen verwendet, während man bei <code>read_delim()</code> das gewünschte Trennzeichen selbst angeben muss.</p>
 <ul>
 <li><p>Importiere die Datei <code>"data_mmq.csv"</code> über die Point &amp; Klick-Oberfläche von RStudio. Verwende dafür “From Text (readr)”</p>
-<p><img src="images/Hands on 2/Import_Data.png" class="img-fluid"></p>
+<p><img src="../../images/Hands on 2/Import_Data.png" class="img-fluid"></p>
 <ul>
 <li>Tipp: Klicke auf <strong>Environment</strong> → <strong>Import Dataset</strong> → wähle die <code>"readr"</code>-Funktion.</li>
 <li>Schaue dir den Datensatz an: Mit welchem Trennzeichen sind die Daten getrennt?</li>
-<li><img src="images/clipboard-4280669528.png" class="img-fluid">
+<li><img src="../../images/clipboard-4280669528.png" class="img-fluid">
 <ul>
 <li>Stelle in der Oberfläche <code>"Delimiter"</code> auf das passende Trennzeichen. Was verändert sich?</li>
 </ul></li>
@@ -706,7 +706,7 @@ Vertiefung
 <section id="versuche-es-nun-mit-full_join." class="level3">
 <h3 class="anchored" data-anchor-id="versuche-es-nun-mit-full_join.">Versuche es nun mit <code>full_join()</code>.</h3>
 <p>Full_join verbindet zwei Datensätze anhand einer Schlüsselvariable, so dass alle Zeilen aus beiden Datensätzen erhalten bleiben. Die Schlüsselvariable ist essentiell dafür dass die Datensätze richtig verbunden werden (Anordnung der Variablen), und grenzt sich dadurch von Funktionen wie <code>cbind()</code> ab.</p>
-<p><img src="images/Hands on 2/full-join.gif" class="img-fluid" width="307"></p>
+<p><img src="../../images/Hands on 2/full-join.gif" class="img-fluid" width="307"></p>
 <ul>
 <li><p>Lege eine gemeinsame Variable als Schlüssel fest, hier: <code>by = "code"</code>.</p></li>
 <li><p>Füge nun alle 7 Datensätze zu einem zusammen, nenne diesen <code>dat_full</code></p>

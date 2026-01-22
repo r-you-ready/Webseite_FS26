@@ -42,7 +42,7 @@ Wenn du ein Projekt öffnest:
 
 👉 In RStudio siehst du oben rechts, in welchem Projekt du dich gerade befindest. In diesem Screenshot ist noch kein Projekt geöffnet.
 
-![](images/EH3/Project.png)
+![](../../images/EH3/Project.png)
 
 **Übung:**\
 Im Ordner *Grinschgl2020* liegt bereits eine `.Rproj`-Datei. Öffne sie und überprüfe oben rechts in RStudio, ob du dich im richtigen Projekt befindest. Du kannst zukünftig immer auf das Projekt klicken wenn du die Analyseskripte dazu öffnen willst.
@@ -50,11 +50,11 @@ Im Ordner *Grinschgl2020* liegt bereits eine `.Rproj`-Datei. Öffne sie und übe
 ::: {.callout-note collapse="true" title="Bei Fehlermeldungen:"}
 „Achtung! Bei Mac-Usern kann es teilweise zu Problemen mit den Berechtigungen kommen. Falls dir beim Öffnen diese Fehlermeldung angezeigt wird:“
 
-![](images/Hands%20on%202/Screenshot%202025-10-01%20at%2012.01.56.png)
+![](../../images/Hands%20on%202/Screenshot%202025-10-01%20at%2012.01.56.png)
 
 Die Lösung besteht darin, die Berechtigungen für den Ordner anzupassen. Dafür gehst du auf den ‚r_you_ready‘-Ordner und öffnest das Menü mit ‚Get Info‘.
 
-![](images/Hands%20on%202/Screenshot%202025-10-01%20at%2013.10.23.png)
+![](../../images/Hands%20on%202/Screenshot%202025-10-01%20at%2013.10.23.png)
 
 Die Berechtigungen passt du an, indem du auf das Schloss unten rechts klickst, dein Passwort eingibst und bei deinem Account ‚Read & Write‘ auswählst. Anschliessend klickst du auf die drei Punkte im Kreis und führst ‚Apply to enclosed items…‘ aus. Danach solltest du die vollen Berechtigungen haben.
 :::
@@ -111,17 +111,17 @@ Beim Einlesen von Daten ist ein wichtiger Faktor, mich welchem Trennzeichen (Del
 
 Auszug aus [Cheatsheet](https://rstudio.github.io/cheatsheets/html/data-import.html): Die Funktionen read_delim und read_csv:
 
-![](images/Hands%20on%202/cheatsheet_auszug.png)
+![](../../images/Hands%20on%202/cheatsheet_auszug.png)
 
 `read_csv()` ist eine Spezialisierung von `read_delim()`, die automatisch Komma als Trennzeichen verwendet, während man bei `read_delim()` das gewünschte Trennzeichen selbst angeben muss.
 
 -   Importiere die Datei `"data_mmq.csv"` über die Point & Klick-Oberfläche von RStudio. Verwende dafür "From Text (readr)"
 
-    ![](images/Hands%20on%202/Import_Data.png)
+    ![](../../images/Hands%20on%202/Import_Data.png)
 
     -   Tipp: Klicke auf **Environment** → **Import Dataset** → wähle die `"readr"`-Funktion.
     -   Schaue dir den Datensatz an: Mit welchem Trennzeichen sind die Daten getrennt?
-    -   ![](images/clipboard-4280669528.png)
+    -   ![](../../images/clipboard-4280669528.png)
         -   Stelle in der Oberfläche `"Delimiter"` auf das passende Trennzeichen. Was verändert sich?
     -   Betrachte den Code, den die Oberfläche generiert. Versuche den Pfad im Kontext von Projekten zu verstehen.
         -   Wenn du im Projekt gearbeitet hast, sollte bei dir der Code etwa so aussehen: `data_mmq <- read_delim("data/raw/data_mmq.csv", delim = ";", escape_double = FALSE, trim_ws = TRUE)`
@@ -181,7 +181,7 @@ Nun haben wir 7 verschiedene Datensätze in unserem Enviornment. Da wir jedoch m
 
 Full_join verbindet zwei Datensätze anhand einer Schlüsselvariable, so dass alle Zeilen aus beiden Datensätzen erhalten bleiben. Die Schlüsselvariable ist essentiell dafür dass die Datensätze richtig verbunden werden (Anordnung der Variablen), und grenzt sich dadurch von Funktionen wie `cbind()` ab.
 
-![](images/Hands%20on%202/full-join.gif){width="307"}
+![](../../images/Hands%20on%202/full-join.gif){width="307"}
 
 -   Lege eine gemeinsame Variable als Schlüssel fest, hier: `by = "code"`.
 
