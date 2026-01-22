@@ -30,7 +30,7 @@ Wenn relative Pfade nicht funktionieren, überprüfe zuerst, ob du dein Projekt 
 
 **Wenn das nicht funktionieren sollte prüfe ob du diese Einstellung unter "Tools - Global Options" vorgenommen hast:** Evaluate Chunks in directory: Projekt
 
-![](images/EH_10/Global-ops.png){fig-align="center"}
+![](../../images/EH_10/Global-ops.png){fig-align="center"}
 
 **Weitere Möglichkeiten:**
 
