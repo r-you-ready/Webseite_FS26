@@ -91,7 +91,8 @@ Zum Beispiel: *The one-way ANOVA indicated that there were no significant group 
 
 **Antwort:** Öffne die Skripte innerhalb des Projekts. Dann wird der Dateipfad automatisch relativ zum Projektverzeichnis ausgewertet, auch wenn sich die Skripte nicht im gleichen Ordner befinden. Falls dies nicht funktioniert, überprüfe in den Einstellungen, ob die Option „Evaluate chunks in directory“ auf „Project“ gesetzt ist.
 
-![](images/EH_14/Screenshot%202025-12-15%20134205.png){fig-align="center"}
+![](../../images/EH_14/screenshot_2025-12-15_134205.png){fig-align="center"}
+
 
 ------------------------------------------------------------------------
 
@@ -308,7 +309,7 @@ apa.aov.table(
 
 ```
 
-![](images/EH_14/aov_table.png){fig-align="center"}
+![](../../images/EH_14/aov_table.png){fig-align="center"}
 
 ------------------------------------------------------------------------
 
