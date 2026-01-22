@@ -4,11 +4,11 @@ editor: visual
 ---
 
 Bei Bedarf findest du hier nochmals die Slides zu Einheit 3:\
-<iframe src="EH_3.html" width="100%" height="500px"></iframe>
+<iframe src="../01_slides/EH_3.html" width="100%" height="500px"></iframe>
 
 Und zu Einheit 4:
 
-<iframe src="EH_4.html" width="100%" height="500px">
+<iframe src="../01_slides/EH_4.html" width="100%" height="500px">
 
 </iframe>
 

@@ -13,11 +13,11 @@ dat_full <- read_csv("raw/dat_full.csv")
 
 Bei Bedarf findest du hier nochmals die Slides zu Einheit 7 & 8 :\
 
-<iframe src="EH_7.html" width="100%" height="500px">
+<iframe src="../01_slides/EH_7.html" width="100%" height="500px">
 
 </iframe>
 
-<iframe src="EH_8.html" width="100%" height="500px">
+<iframe src="../01_slides/EH_8.html" width="100%" height="500px">
 
 </iframe>
 

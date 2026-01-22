@@ -13,13 +13,13 @@ dat_long <- read_csv("data/processed/data_long.csv")
 
 **Bei Bedarf findest du hier nochmals die Slides zu Einheit 11:**\
 
-<iframe src="EH_11.html" width="100%" height="500px">
+<iframe src="../01_slides/EH_11.html" width="100%" height="500px">
 
 </iframe>
 
 **Und zu Einheit 12:**
 
-<iframe src="EH_12.html" width="100%" height="500px">
+<iframe src="../01_slides/EH_12.html" width="100%" height="500px">
 
 </iframe>
 
