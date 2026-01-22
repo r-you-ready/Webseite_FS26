@@ -15,7 +15,7 @@ Beim Rendern von Quarto-Files treten Probleme auf, die auf der Auswertung von Fi
 
 Während Code beim einfachen Ausführen in RStudio relativ zum Projektordner interpretiert wird, erfolgt die Pfadauswertung beim Rendern relativ zum Skript selbst. Dies kann zu Render-Fehlern wie dem folgenden führen.
 
-![](images/EH_14/Fehlermeldung_path.png){fig-align="center"}
+![](../../images/EH_14/Fehlermeldung_path.png){fig-align="center"}
 
 ## Lösung mit `here`
 
