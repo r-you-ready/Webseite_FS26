@@ -13,7 +13,7 @@ website:
     contents:
       - href: scripts/04_misc/front_page.qmd
         text: "Einleitung"
-      - href: scripts/04_misc/0_presentation.qmd
+      - href: scripts/01_slides/0_presentation.qmd
         text: "Präsentationen"
         contents:
           - href: scripts/01_slides/EH_1.qmd
