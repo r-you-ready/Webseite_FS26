@@ -1,5 +1,7 @@
 project:
   type: website
+  resources:
+    - PDFs
 
 website:
   title: "R u Ready"
