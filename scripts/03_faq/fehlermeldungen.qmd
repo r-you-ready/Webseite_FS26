@@ -87,7 +87,7 @@ welcher das Problem aufrat:
 dplyr::rename(dat_full, cvstm_sum = "csvtm_sum")
 ```
 
-![](images/Fehlermeldungen.png)
+![](../../images/Fehlermeldungen.png)
 
 Der zentrale Teil der Fehlermeldung ist hierbei "Error:! object
 `dat_full` not found". Der Datensatz `dat_full` ist vor der Ausführung
