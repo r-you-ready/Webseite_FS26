@@ -121,32 +121,32 @@ Die Ergebnisse bewegen sich alle in einem ähnlichen Rahmen wie die Daten aus de
 
 **Originale Ergebnisse**
 
-![](images/EH_12/original_results_1.png){fig-align="center"}
+![](../../images/EH_12/original_results_1.png){fig-align="center"}
 
 **Simulierter Datensatz**
 
-![](images/EH_12/possible_results_2.png){fig-align="center"}
+![](../../images/EH_12/possible_results_2.png){fig-align="center"}
 
 Dementsprechend werden auch die Effekte der Analysen ähnlich ausfallen:
 
-![](images/EH_12/possible_results_3.png){fig-align="center"}
+![](../../images/EH_12/possible_results_3.png){fig-align="center"}
 
 ## **Zu erwartende Abweichungen der Ergebnisse von der Originalstudie:**
 
 -   Zufällig signifikante Effekte, die in der Originalstudie nicht signifikant waren, sind möglich. In der Originalstudie zeigte diese Variable keinen signifikanten Effekt. Post-hoc-t-Tests werden hierfür jedoch nicht erwartet.
 
-![](images/EH_12/possible_results_sig.png)
+![](../../images/EH_12/possible_results_sig.png)
 
 -   Einzelne Werte werden sich unterscheiden! Deskriptiva, Effektgrössen usw. werden sich unterscheiden! Eta2 sind hier grösser als in der Originalstudie.
 
-![](images/EH_12/possible_results_4.png){fig-align="center"}
+![](../../images/EH_12/possible_results_4.png){fig-align="center"}
 
 -   Deskriptiva: Unterschiede in den Means und SDs!
 
-![](images/EH_12/possible_results.png){fig-align="center"}
+![](../../images/EH_12/possible_results.png){fig-align="center"}
 
 \##**Unplausible Resultate**
 
 Ergebnisse die ein komplett anderes Gesamtbild hinterlassen sind nicht zu erwarten!
 
-![](images/EH_12/unpluaisble_results.png){fig-align="center"}
+![](../../images/EH_12/unpluaisble_results.png){fig-align="center"}
