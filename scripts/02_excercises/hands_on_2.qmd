@@ -52,9 +52,11 @@ Im Ordner *Grinschgl2020* liegt bereits eine `.Rproj`-Datei. Öffne sie und übe
 
 ![](../../images/Hands%20on%202/Screenshot%202025-10-01%20at%2012.01.56.png)
 
+
 Die Lösung besteht darin, die Berechtigungen für den Ordner anzupassen. Dafür gehst du auf den ‚r_you_ready‘-Ordner und öffnest das Menü mit ‚Get Info‘.
 
 ![](../../images/Hands%20on%202/Screenshot%202025-10-01%20at%2013.10.23.png)
+
 
 Die Berechtigungen passt du an, indem du auf das Schloss unten rechts klickst, dein Passwort eingibst und bei deinem Account ‚Read & Write‘ auswählst. Anschliessend klickst du auf die drei Punkte im Kreis und führst ‚Apply to enclosed items…‘ aus. Danach solltest du die vollen Berechtigungen haben.
 :::
@@ -113,11 +115,12 @@ Auszug aus [Cheatsheet](https://rstudio.github.io/cheatsheets/html/data-import.h
 
 ![](../../images/Hands%20on%202/cheatsheet_auszug.png)
 
+
 `read_csv()` ist eine Spezialisierung von `read_delim()`, die automatisch Komma als Trennzeichen verwendet, während man bei `read_delim()` das gewünschte Trennzeichen selbst angeben muss.
 
 -   Importiere die Datei `"data_mmq.csv"` über die Point & Klick-Oberfläche von RStudio. Verwende dafür "From Text (readr)"
 
-    ![](../../images/Hands%20on%202/Import_Data.png)
+![](../../images/Hands%20on%202/Import_Data.png)
 
     -   Tipp: Klicke auf **Environment** → **Import Dataset** → wähle die `"readr"`-Funktion.
     -   Schaue dir den Datensatz an: Mit welchem Trennzeichen sind die Daten getrennt?
@@ -320,7 +323,7 @@ print  ( mittelwert)
 
 -   Installiere das Package `styler` mit `install.packages()` und lade es. `styler` hat eine sogenannte "Wrapper-Funktion", die du unter "Addins" aufrufen kannst (evtl. musst du R vor dem Laden neu starten). Verwende den Default-Style (tidyverse).
 
-    ![](../../images/clipboard-3096355115.png)
+![](../../images/clipboard-3096355115.png)
 
 -   Versuche mit der `Styler` -Funktion diesen Code zu leserlicher zu machen (markiere den Code und wähle *Style selection*). (Du musst diesen ggplot Code nicht verstehen - wir kommen dazu in einer späteren Einheit noch.)
 

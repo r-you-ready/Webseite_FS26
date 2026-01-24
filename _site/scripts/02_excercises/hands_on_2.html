@@ -618,24 +618,18 @@ Wir verwenden Funktionen aus den Packages <strong>readr</strong> und <strong>rea
 <p><img src="../../images/Hands on 2/cheatsheet_auszug.png" class="img-fluid"></p>
 <p><code>read_csv()</code> ist eine Spezialisierung von <code>read_delim()</code>, die automatisch Komma als Trennzeichen verwendet, während man bei <code>read_delim()</code> das gewünschte Trennzeichen selbst angeben muss.</p>
 <ul>
-<li><p>Importiere die Datei <code>"data_mmq.csv"</code> über die Point &amp; Klick-Oberfläche von RStudio. Verwende dafür “From Text (readr)”</p>
-<p><img src="../../images/Hands on 2/Import_Data.png" class="img-fluid"></p>
-<ul>
-<li>Tipp: Klicke auf <strong>Environment</strong> → <strong>Import Dataset</strong> → wähle die <code>"readr"</code>-Funktion.</li>
-<li>Schaue dir den Datensatz an: Mit welchem Trennzeichen sind die Daten getrennt?</li>
-<li><img src="../../images/clipboard-4280669528.png" class="img-fluid">
-<ul>
-<li>Stelle in der Oberfläche <code>"Delimiter"</code> auf das passende Trennzeichen. Was verändert sich?</li>
-</ul></li>
-<li>Betrachte den Code, den die Oberfläche generiert. Versuche den Pfad im Kontext von Projekten zu verstehen.
-<ul>
-<li>Wenn du im Projekt gearbeitet hast, sollte bei dir der Code etwa so aussehen: <code>data_mmq &lt;- read_delim("data/raw/data_mmq.csv", delim = ";", escape_double = FALSE, trim_ws = TRUE)</code></li>
-<li>Wenn du nicht im Projekt gearbeite hättest, wie würde dann der Dateipfad aussehen?</li>
-</ul></li>
-<li>Wenn du den Code via Klick-Oberfläche eingelesen hast, wirst du den ausgeführten Code in der Konsole sehen. Kopiere diesen in dein Skript, so dass du ihn in Zukunft wiederverwenden und anpassen kannst.</li>
-<li>Schaue dir die eingelesenen Daten mit <code>View(data_mmq)</code> an. Wenn du alles richtig gemacht hast, ist in jeder Zelle nur ein Wert.</li>
-</ul></li>
+<li>Importiere die Datei <code>"data_mmq.csv"</code> über die Point &amp; Klick-Oberfläche von RStudio. Verwende dafür “From Text (readr)”</li>
 </ul>
+<p><img src="../../images/Hands on 2/Import_Data.png" class="img-fluid"></p>
+<pre><code>-   Tipp: Klicke auf **Environment** → **Import Dataset** → wähle die `"readr"`-Funktion.
+-   Schaue dir den Datensatz an: Mit welchem Trennzeichen sind die Daten getrennt?
+-   ![](../../images/clipboard-4280669528.png)
+    -   Stelle in der Oberfläche `"Delimiter"` auf das passende Trennzeichen. Was verändert sich?
+-   Betrachte den Code, den die Oberfläche generiert. Versuche den Pfad im Kontext von Projekten zu verstehen.
+    -   Wenn du im Projekt gearbeitet hast, sollte bei dir der Code etwa so aussehen: `data_mmq &lt;- read_delim("data/raw/data_mmq.csv", delim = ";", escape_double = FALSE, trim_ws = TRUE)`
+    -   Wenn du nicht im Projekt gearbeite hättest, wie würde dann der Dateipfad aussehen?
+-   Wenn du den Code via Klick-Oberfläche eingelesen hast, wirst du den ausgeführten Code in der Konsole sehen. Kopiere diesen in dein Skript, so dass du ihn in Zukunft wiederverwenden und anpassen kannst.
+-   Schaue dir die eingelesenen Daten mit `View(data_mmq)` an. Wenn du alles richtig gemacht hast, ist in jeder Zelle nur ein Wert.</code></pre>
 </section>
 <section id="einlesen-via-code" class="level3">
 <h3 class="anchored" data-anchor-id="einlesen-via-code">Einlesen via Code</h3>
@@ -650,8 +644,8 @@ Suche dafür eine geeignete Funktion zum Einlesen von <code>.csv</code>.</p>
 <li><p>Korrigiere diesen Code und lies damit die Datei <code>data_vp</code> ein (überprüfe den Pfad und den Delimiter)</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data_vp <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"/raw/data_vp.csv"</span>, </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">delim =</span> <span class="st">","</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data_vp <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"/raw/data_vp.csv"</span>, </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">delim =</span> <span class="st">","</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="xslx-dateien" class="level4">
@@ -762,14 +756,14 @@ Vertiefung
 <p>Wir haben in diesen Übungen bereits einige Funktionen verwendet (z. B. <code>sum()</code> oder <code>sort()</code>). Funktionen bestehen aus einem Namen und Argumenten. In diesem Beispiel wird die Funktion <code>sort()</code> aufgerufen. Die Argumente, die dafür benötigt werden, sind <code>first_vector</code> und <code>decreasing = TRUE</code>. Die meisten Funktionen haben <em>Defaults</em>, also Argumente mit einer Voreinstellung. Wenn man diese nicht verändern möchte, müssen sie nicht explizit angegeben werden. <code>sort()</code> hat als Default <code>decreasing = FALSE</code>. Deswegen müssen wir, um die höchsten Werte des Vektors zu bestimmen, diesen Default umstellen. Argumente ohne Defaults müssen zwingend angegben werden).</p>
 <p>Die Defaults von Funktionen lassen sich über die Hilfefunktion nachschauen. Diese kann entweder im Tab <em>Help</em> geöffnet werden oder direkt über die Konsole mit <code>?Funktionsname</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>first_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">22342</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">23234</span>, <span class="dv">342</span>, <span class="dv">342</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>highest_values_1 <span class="ot">&lt;-</span> <span class="fu">sort</span>(first_vector)[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>highest_values <span class="ot">&lt;-</span> <span class="fu">sort</span>(first_vector, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>first_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">22342</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">23234</span>, <span class="dv">342</span>, <span class="dv">342</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>highest_values_1 <span class="ot">&lt;-</span> <span class="fu">sort</span>(first_vector)[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>highest_values <span class="ot">&lt;-</span> <span class="fu">sort</span>(first_vector, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Bei vielen Funktionen werden die <strong>Namen der Argumente</strong> weggelassen.</p>
 <p>Welche Argumente werden hier übergeben? Schreibe die Funktion mit den vollständigen Argumentnamen aus:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">11</span>, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">11</span>, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -4 -1  2  5  8 11</code></pre>
 </div>
@@ -779,7 +773,7 @@ Vertiefung
 <li>Korrigiere diesen Code: Ergänze die Argumentnamen, sodass eine Sequenz von 3 bis 12 in 2er-Schritten erstellt wird. Belasse dabei die Reihenfolge der Zahlen.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">2</span>, <span class="dv">12</span>, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">2</span>, <span class="dv">12</span>, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>ℹ️Manche Funktionen sind in mehreren Paketen beinhaltet, sowie wie z.B. die Funktion <code>filter()</code>. Um die Funktion definitiv aus einem bestimmten Paket zu verwenden, muss man das Paket dazu schreiben: <code>dyplr::filter()</code></p>
 <section id="tab-completion" class="level2">
@@ -805,7 +799,7 @@ Vertiefung
 <p>ℹ️Es ist zwar möglich, mehrere Funktionen ineinander zu verschachteln. Dies kann jedoch schnell zu Verwirrung führen und den Code unnötig unübersichtlich machen. Verschachtelte Funktionen werden von innen nach aussen ausgeführt.</p>
 <p>❓Stelle dir hier die Frage: Was wird genau gerundet? Die einzelnen Elemente des Vektors oder der errechnet Durchschnitt?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">mean</span>(<span class="fu">round</span>(first_vector)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">mean</span>(<span class="fu">round</span>(first_vector)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5785.25</code></pre>
 </div>
@@ -825,20 +819,22 @@ Vertiefung
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Französischschul_NotenSemesester <span class="sc">-</span><span class="er">&lt;</span>(<span class="dv">4</span>,<span class="dv">5</span>, <span class="dv">6</span>,<span class="dv">5</span>,<span class="dv">4</span>,  <span class="dv">3</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span><span class="fu">mean</span>(Französichschul_NotenSemsester</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>  ( mittelwert)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Französischschul_NotenSemesester <span class="sc">-</span><span class="er">&lt;</span>(<span class="dv">4</span>,<span class="dv">5</span>, <span class="dv">6</span>,<span class="dv">5</span>,<span class="dv">4</span>,  <span class="dv">3</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span><span class="fu">mean</span>(Französichschul_NotenSemsester</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>  ( mittelwert)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li><p>Installiere das Package <code>styler</code> mit <code>install.packages()</code> und lade es. <code>styler</code> hat eine sogenannte “Wrapper-Funktion”, die du unter “Addins” aufrufen kannst (evtl. musst du R vor dem Laden neu starten). Verwende den Default-Style (tidyverse).</p>
-<p><img src="../../images/clipboard-3096355115.png" class="img-fluid"></p></li>
-<li><p>Versuche mit der <code>Styler</code> -Funktion diesen Code zu leserlicher zu machen (markiere den Code und wähle <em>Style selection</em>). (Du musst diesen ggplot Code nicht verstehen - wir kommen dazu in einer späteren Einheit noch.)</p></li>
+<li>Installiere das Package <code>styler</code> mit <code>install.packages()</code> und lade es. <code>styler</code> hat eine sogenannte “Wrapper-Funktion”, die du unter “Addins” aufrufen kannst (evtl. musst du R vor dem Laden neu starten). Verwende den Default-Style (tidyverse).</li>
+</ul>
+<p><img src="../../images/clipboard-3096355115.png" class="img-fluid"></p>
+<ul>
+<li>Versuche mit der <code>Styler</code> -Funktion diesen Code zu leserlicher zu machen (markiere den Code und wähle <em>Style selection</em>). (Du musst diesen ggplot Code nicht verstehen - wir kommen dazu in einer späteren Einheit noch.)</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins,<span class="fu">aes</span>(<span class="at">x=</span>flipper_length_mm,<span class="at">y=</span>body_mass_g,<span class="at">color=</span>species))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span><span class="fu">labs</span>(<span class="at">x=</span><span class="st">"flipper"</span>,<span class="at">Y=</span><span class="st">"MASS"</span>)<span class="sc">+</span><span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins,<span class="fu">aes</span>(<span class="at">x=</span>flipper_length_mm,<span class="at">y=</span>body_mass_g,<span class="at">color=</span>species))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span><span class="fu">labs</span>(<span class="at">x=</span><span class="st">"flipper"</span>,<span class="at">Y=</span><span class="st">"MASS"</span>)<span class="sc">+</span><span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="am-ende-deiner-übungen---vergiss-nicht-dein-skript-abzuspeichern--" class="level1">
