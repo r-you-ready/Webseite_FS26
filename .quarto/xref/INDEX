@@ -184,5 +184,11 @@
   },
   "scripts/02_excercises/hausuebung_1.qmd": {
     "hausuebung_1.html": "39283dfe"
+  },
+  "scripts/04_misc/individuelle_loesungen.qmd": {
+    "individuelle_loesungen.html": "87080c1f"
+  },
+  "scripts/04_misc/learnr_shinyapp.qmd": {
+    "learnr_shinyapp.html": "9747fab3"
   }
 }

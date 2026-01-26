@@ -108,6 +108,10 @@ website:
         text: "Leistungsnachweis"
       - href: scripts/04_misc/checkliste_abschlussarbeit.qmd
         text: "Checkliste Abschlussarbeit"
+      - href: scripts/04_misc/individuelle_loesungen.qmd
+        text: "Individuelle Musterlösungen"
+      - href: scripts/04_misc/learnr_shinyapp.qmd
+        text: "LearnR - Shinyapp"
       - href: scripts/04_misc/about.qmd
         text: "About"
 
