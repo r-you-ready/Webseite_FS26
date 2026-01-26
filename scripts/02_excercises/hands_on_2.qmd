@@ -111,13 +111,13 @@ Beim Einlesen von Daten ist ein wichtiger Faktor, mich welchem Trennzeichen (Del
 
 Auszug aus [Cheatsheet](https://rstudio.github.io/cheatsheets/html/data-import.html): Die Funktionen read_delim und read_csv:
 
-![](../../images/Hands%20on%202/cheatsheet_auszug.png)
+![](../../images/cheat.png)
 
 `read_csv()` ist eine Spezialisierung von `read_delim()`, die automatisch Komma als Trennzeichen verwendet, während man bei `read_delim()` das gewünschte Trennzeichen selbst angeben muss.
 
 -   Importiere die Datei `"data_mmq.csv"` über die Point & Klick-Oberfläche von RStudio. Verwende dafür "From Text (readr)"
 
-![](../../images/Hands%20on%202/Import_Data.png)
+![](../../images/import.png)
 
 ```         
 -   Tipp: Klicke auf **Environment** → **Import Dataset** → wähle die `"readr"`-Funktion.
@@ -322,7 +322,7 @@ print  ( mittelwert)
 
 -   Installiere das Package `styler` mit `install.packages()` und lade es. `styler` hat eine sogenannte "Wrapper-Funktion", die du unter "Addins" aufrufen kannst (evtl. musst du R vor dem Laden neu starten). Verwende den Default-Style (tidyverse).
 
-![](../../images/Hands%20on%202/Styler.png)
+![](../../images/styler.png)
 
 -   Versuche mit der `Styler` -Funktion diesen Code zu leserlicher zu machen (markiere den Code und wähle *Style selection*). (Du musst diesen ggplot Code nicht verstehen - wir kommen dazu in einer späteren Einheit noch.)
 
