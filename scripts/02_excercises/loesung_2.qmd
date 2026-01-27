@@ -4,8 +4,23 @@ title: "Lösung 2"
 
 # Lösung - Coding Basics (Einheiten 3 und 4)
 
-Bei Bedarf findest du hier nochmals die Slides zu Einheit 3:\
-<iframe src="../01_slides/EH_3.html" width="100%" height="500px"></iframe>
+Bei Bedarf finden sich hier nochmal die Slides zu Einheit 3:
+
+::: {=html}
+<iframe src="../01_slides/EH_3.html"
+        width="100%"
+        height="500"
+        style="border:0; display:block; margin: 0 0 2rem 0;"></iframe>
+:::
+
+Und hier die Slides zu Einheit 4:
+
+::: {=html}
+<iframe src="../01_slides/EH_4.html"
+        width="100%"
+        height="500"
+        style="border:0; display:block; margin: 0 0 2rem 0;"></iframe>
+:::
 
 # Lernziele dieses Hands-On-Blocks
 
@@ -110,13 +125,13 @@ Beim Einlesen von Daten ist ein wichtiger Faktor, mich welchem Trennzeichen (Del
 
 Auszug aus [Cheatsheet](https://rstudio.github.io/cheatsheets/html/data-import.html): Die Funktionen read_delim und read_csv:
 
-![](images/Hands%20on%202/cheatsheet_auszug.png)
+![](../../images/cheat.png)
 
 `read_csv()` ist eine Spezialisierung von `read_delim()`, die automatisch Komma als Trennzeichen verwendet, während man bei `read_delim()` das gewünschte Trennzeichen selbst angeben muss.
 
 -   Importiere die Datei `"data_mmq.csv"` über die Point & Klick-Oberfläche von RStudio. Verwende dafür "From Text (readr)"
 
-    ![](images/Hands%20on%202/Import_Data.png)
+![](../../images/import.png)
 
     -   Tipp: Klicke auf **Environment** → **Import Dataset** → wähle die `"readr"`-Funktion.
     -   Schaue dir den Datensatz an: Mit welchem Trennzeichen sind die Daten getrennt?
@@ -126,7 +141,7 @@ Ohne eine Anpassung des Trennzeichens wird als Default das Komma "," verwendet. 
 :::
 
 ```         
--   ![](images/clipboard-4280669528.png)
+-   ![](../../images/clipboard-4280669528.png)
     -   Stelle in der Oberfläche `"Delimiter"` auf das passende Trennzeichen. Was verändert sich?
 ```
 
@@ -272,7 +287,7 @@ Sinn ergibt das einfache "kleben" über cbind nicht. Nur für den Fall das alle 
 
 Full_join verbindet zwei Datensätze anhand einer Schlüsselvariable, so dass alle Zeilen aus beiden Datensätzen erhalten bleiben. Die Schlüsselvariable ist essentiell dafür dass die Datensätze richtig verbunden werden (Anordnung der Variablen), und grenzt sich dadurch von Funktionen wie `cbind()` ab.
 
-![](images/Hands%20on%202/full-join.gif){width="307"}
+![](../../images/join.gif){width="307"}
 
 -   Lege eine gemeinsame Variable als Schlüssel fest, hier: `by = "code"`.
 
@@ -549,7 +564,7 @@ library(styler)
 ```
 :::
 
--   ![](images/Hands%20on%202/Styler.png)
+![](../../images/styler.png)
 -   Versuche mit der `Styler` -Funktion diesen Code zu leserlicher zu machen (markiere den Code und wähle *Style selection*). (Du musst diesen ggplot Code nicht verstehen - wir kommen dazu in einer späteren Einheit noch.)
 
 ```{r, eval=FALSE}

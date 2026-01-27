@@ -172,7 +172,6 @@ data <- readr::read_csv("../data/Datensatz.Dateiendung") # Starte im working dir
 
 Wird einer fremden Person nun das gesamte Ordnersystem mit all seinen Inhalten unverändert übergeben, so kann der Dateipfad innerhalb dieses Ordnersystems immer auch den Datensatz einlesen.
 
-![Abb. 2.: Dateipfade](images/dateipfade.png)
 
 ## Wann wird die Tilde (\~) und das Dollarzeichen `($)` verwendet?
 

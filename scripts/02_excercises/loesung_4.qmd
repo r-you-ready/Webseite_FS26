@@ -15,11 +15,23 @@ dat_full <- read_csv(here("data/raw/dat_full.csv"))
 dat_full <- read_csv("data/raw/dat_full.csv")
 ```
 
-Bei Bedarf findest du hier nochmals die Slides zu Einheit 7:\
+Bei Bedarf finden sich hier nochmal die Slides zur EH7:
 
-<iframe src="../01_slides/EH_7.html" width="100%" height="500px">
+::: {=html}
+<iframe src="../01_slides/EH_7.html"
+        width="100%"
+        height="500"
+        style="border:0; display:block; margin: 0 0 2rem 0;"></iframe>
+:::
 
-</iframe>
+Und hier die Slides zur EH8:
+
+::: {=html}
+<iframe src="../01_slides/EH_8.html"
+        width="100%"
+        height="500"
+        style="border:0; display:block; margin: 0 0 2rem 0;"></iframe>
+:::
 
 # Lernziele
 
@@ -73,7 +85,7 @@ In den folgenden Aufgaben lernen wir die grundlegenden Funktionen des **dplyr**-
 
 **Hier findest du ein Cheatsheet zu den dplyr-Funktionen:**
 
-<iframe src="PDFs/dplyr_cheatsheet.pdf" width="100%" height="600px">
+<iframe src="../../PDFs/dplyr_cheatsheet.pdf" width="100%" height="600px">
 
 </iframe>
 

@@ -12,11 +12,23 @@ library(readr)
 
 # Lösung - Tidy & Transform (Einheiten 5 und 6)
 
-Bei Bedarf findest du hier nochmals die Slides zu Einheit 5:\
+Bei Bedarf findest du hier nochmals die Slides zu Einheit 5:
 
-<iframe src="../01_slides/EH_5.html" width="100%" height="500px">
+::: {=html}
+<iframe src="../01_slides/EH_5.html"
+        width="100%"
+        height="500"
+        style="border:0; display:block; margin: 0 0 2rem 0;"></iframe>
+:::
 
-</iframe>
+Und hier die Slides zu Einheit 6:
+
+::: {=html}
+<iframe src="../01_slides/EH_6.html"
+        width="100%"
+        height="500"
+        style="border:0; display:block; margin: 0 0 2rem 0;"></iframe>
+:::
 
 # Lernziele des Hands-On-Blocks 3
 
